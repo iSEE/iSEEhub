@@ -1,9 +1,9 @@
-Package: MyBioconductorPackage
+Package: iSEEExperimentHub
 Title: Demonstration of a Bioconductor Package
 Version: 0.99.0
 Date: 2022-05-10
 Authors@R: 
-    c(person("Kevin", "Rue", "Christophe", "kevinrue@users.noreply.github.com",
+    c(person("Kevin", "Rue-Albrecht", , "kevinrue@users.noreply.github.com",
              role = c("aut", "cre"),
              comment = c(ORCID = "0000-0003-3899-3872")))
 Description: This package demonstrates the set up of a Bioconductor-friendly
@@ -11,20 +11,68 @@ Description: This package demonstrates the set up of a Bioconductor-friendly
     initialisation of a git repository as well as the connection of the local
     repository to the GitHub website.
 License: Artistic-2.0
-URL: https://github.com/kevinrue/MyBioconductorPackage
-BugReports: https://support.bioconductor.org/t/MyBioconductorPackage
+URL: https://github.com/kevinrue/iSEEExperimentHub
+BugReports: https://support.bioconductor.org/t/iSEEExperimentHub
 biocViews: Software,
     Infrastructure
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-Suggests: 
+RoxygenNote: 7.2.1
+Depends:
+    ExperimentHub
+Imports:
+    DT,
+    iSEE,
+    methods,
+    rintrojs,
+    S4Vectors,
+    shiny,
+    shinydashboard
+Suggests:
     BiocStyle,
+    BioPlex,
+    bodymapRat,
+    CLLmethylation,
+    CopyNeutralIMA,
     covr,
+    curatedAdipoArray,
+    curatedAdipoChIP,
+    curatedMetagenomicData,
+    curatedTCGAData,
+    DuoClustering2018,
+    easierData,
+    emtdata,
+    FieldEffectCrc,
+    GSE103322,
+    GSE13015,
+    GSE62944,
+    HDCytoData,
+    HMP16SData,
+    HumanAffyData,
+    imcdatasets,
     knitr,
+    mcsurvdata,
+    MetaGxBreast,
+    MetaGxOvarian,
+    MetaGxPancreas,
+    MethylSeqData,
+    muscData,
+    ObMiTi,
+    quantiseqr,
     RefManageR,
+    restfulSEData,
+    RLHub,
     rmarkdown,
+    sesameData,
     sessioninfo,
-    testthat (>= 3.0.0)
+    SimBenchData,
+    SingleCellMultiModal,
+    spatialDmelxsim,
+    STexampleData,
+    TabulaMurisData,
+    TENxVisiumData,
+    testthat (>= 3.0.0),
+    tissueTreg,
+    VectraPolarisData
 Config/testthat/edition: 3
 VignetteBuilder: knitr

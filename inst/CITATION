@@ -1,7 +1,7 @@
 pkgVer <- function(pkg) {
     if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
     ver <- meta$Version
-    paste0('https://github.com/kevinrue/MyBioconductorPackage/', pkg, ' - R package version ', ver)
+    paste0('https://github.com/kevinrue/iSEEExperimentHub/', pkg, ' - R package version ', ver)
 }
 
 c(
@@ -12,9 +12,9 @@ c(
             as.person("kevinrue")
         ),
         year = format(Sys.Date(), "%Y"),
-        url = "http://www.bioconductor.org/packages/MyBioconductorPackage",
-        note = pkgVer('MyBioconductorPackage'),
-        doi = '10.18129/B9.bioc.MyBioconductorPackage'
+        url = "http://www.bioconductor.org/packages/iSEEExperimentHub",
+        note = pkgVer('iSEEExperimentHub'),
+        doi = '10.18129/B9.bioc.iSEEExperimentHub'
     ),
     bibentry(bibtype="article",
         title = "Demonstration of a Bioconductor Package",

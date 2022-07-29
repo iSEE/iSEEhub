@@ -1,5 +1,5 @@
 ---
-title: "Introduction to MyBioconductorPackage"
+title: "Introduction to iSEEExperimentHub"
 author: 
   - name: Kevin Rue-Albrecht
     affiliation:
@@ -13,9 +13,9 @@ output:
     toc_depth: 2
     code_folding: show
 date: "`r doc_date()`"
-package: "`r pkg_ver('MyBioconductorPackage')`"
+package: "`r pkg_ver('iSEEExperimentHub')`"
 vignette: >
-  %\VignetteIndexEntry{Introduction to MyBioconductorPackage}
+  %\VignetteIndexEntry{Introduction to iSEEExperimentHub}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 ---
@@ -45,22 +45,22 @@ bib <- c(
     rmarkdown = citation("rmarkdown")[1],
     sessioninfo = citation("sessioninfo")[1],
     testthat = citation("testthat")[1],
-    MyBioconductorPackage = citation("MyBioconductorPackage")[1]
+    iSEEExperimentHub = citation("iSEEExperimentHub")[1]
 )
 ```
 
 # Basics
 
-## Install `MyBioconductorPackage`
+## Install `iSEEExperimentHub`
 
-`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg("MyBioconductorPackage")` is a `R` package available via the [Bioconductor](http://bioconductor.org) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg("MyBioconductorPackage")` by using the following commands in your `R` session:
+`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg("iSEEExperimentHub")` is a `R` package available via the [Bioconductor](http://bioconductor.org) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg("iSEEExperimentHub")` by using the following commands in your `R` session:
 
 ```{r "install", eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
       install.packages("BiocManager")
   }
 
-BiocManager::install("MyBioconductorPackage")
+BiocManager::install("iSEEExperimentHub")
 
 ## Check that you have a valid Bioconductor installation
 BiocManager::valid()
@@ -68,40 +68,46 @@ BiocManager::valid()
 
 ## Required knowledge
 
-`r Biocpkg("MyBioconductorPackage")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data (EDIT!). That is, packages like `r Biocpkg("SummarizedExperiment")` (EDIT!).
+`r Biocpkg("iSEEExperimentHub")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data (EDIT!). That is, packages like `r Biocpkg("SummarizedExperiment")` (EDIT!).
 
 If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
 
 ## Asking for help
 
-As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `MyBioconductorPackage` tag and check [the older posts](https://support.bioconductor.org/t/MyBioconductorPackage/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `iSEEExperimentHub` tag and check [the older posts](https://support.bioconductor.org/t/iSEEExperimentHub/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
 
-## Citing `MyBioconductorPackage`
+## Citing `iSEEExperimentHub`
 
-We hope that `r Biocpkg("MyBioconductorPackage")` will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!
+We hope that `r Biocpkg("iSEEExperimentHub")` will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!
 
 ```{r "citation"}
 ## Citation info
-citation("MyBioconductorPackage")
+citation("iSEEExperimentHub")
 ```
 
-# Quick start to using to `MyBioconductorPackage`
+# Quick start to using to `iSEEExperimentHub`
 
 ```{r "start", message=FALSE}
-library("MyBioconductorPackage")
+library("iSEEExperimentHub")
 ```
 
-Edit this as you see fit =)
+```{r}
+app <- iSEEExperimentHub::iSEEExperimentHub()
+if (interactive()) {
+    shiny::runApp(app, port = 1234, launch.browser = TRUE)
+}
+```
+
 
 Here is an example of you can cite your package inside the vignette:
 
-* `r Biocpkg("MyBioconductorPackage")` `r Citep(bib[["MyBioconductorPackage"]])`
+* `r Biocpkg("iSEEExperimentHub")` `r Citep(bib[["iSEEExperimentHub"]])`
 
 
 
 # Reproducibility
 
-The `r Biocpkg("MyBioconductorPackage")` package `r Citep(bib[["MyBioconductorPackage"]])` was made possible thanks to:
+The `r Biocpkg("iSEEExperimentHub")` package `r Citep(bib[["iSEEExperimentHub"]])` was made possible thanks to:
 
 * R `r Citep(bib[["R"]])`
 * `r Biocpkg("BiocStyle")` `r Citep(bib[["BiocStyle"]])`
@@ -119,11 +125,11 @@ Code for creating the vignette
 ```{r createVignette, eval=FALSE}
 ## Create the vignette
 library("rmarkdown")
-system.time(render("MyBioconductorPackage.Rmd", "BiocStyle::html_document"))
+system.time(render("iSEEExperimentHub.Rmd", "BiocStyle::html_document"))
 
 ## Extract the R code
 library("knitr")
-knit("MyBioconductorPackage.Rmd", tangle = TRUE)
+knit("iSEEExperimentHub.Rmd", tangle = TRUE)
 ```
 
 Date the vignette was generated.
