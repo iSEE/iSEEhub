@@ -22,6 +22,7 @@ Depends:
     SingleCellExperiment,
     ExperimentHub
 Imports:
+    BiocManager,
     DT,
     iSEE,
     methods,

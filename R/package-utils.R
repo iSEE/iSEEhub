@@ -11,6 +11,8 @@
 #' 
 #' @export
 #' 
+#' @importFrom BiocManager available
+#' 
 #' @rdname INTERNAL_generate_description_suggests
 .generate_description_suggests <- function() {
     extras <- c("BiocStyle", "covr", "knitr", "RefManageR", "rmarkdown",
