@@ -1,0 +1,30 @@
+Package: MyBioconductorPackage
+Title: Demonstration of a Bioconductor Package
+Version: 0.99.0
+Date: 2022-05-10
+Authors@R: 
+    c(person("Kevin", "Rue", "Christophe", "kevinrue@users.noreply.github.com",
+             role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0003-3899-3872")))
+Description: This package demonstrates the set up of a Bioconductor-friendly
+    package using the packages usethis and biocthis. The setup includes the
+    initialisation of a git repository as well as the connection of the local
+    repository to the GitHub website.
+License: Artistic-2.0
+URL: https://github.com/kevinrue/MyBioconductorPackage
+BugReports: https://support.bioconductor.org/t/MyBioconductorPackage
+biocViews: Software,
+    Infrastructure
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests: 
+    BiocStyle,
+    covr,
+    knitr,
+    RefManageR,
+    rmarkdown,
+    sessioninfo,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
