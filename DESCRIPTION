@@ -1,15 +1,15 @@
 Package: iSEEExperimentHub
-Title: Demonstration of a Bioconductor Package
+Title: iSEE for the Bioconductor ExperimentHub
 Version: 0.99.0
-Date: 2022-05-10
+Date: 2022-07-29
 Authors@R: 
     c(person("Kevin", "Rue-Albrecht", , "kevinrue@users.noreply.github.com",
              role = c("aut", "cre"),
              comment = c(ORCID = "0000-0003-3899-3872")))
-Description: This package demonstrates the set up of a Bioconductor-friendly
-    package using the packages usethis and biocthis. The setup includes the
-    initialisation of a git repository as well as the connection of the local
-    repository to the GitHub website.
+Description: This package defines a custom landing page for an iSEE app
+    interfacing with the Bioconductor ExperimentHub. The landing page allows
+    users to browse the ExperimentHub, select a data set, download and cache it,
+    and import it directly into a Bioconductor iSEE app.
 License: Artistic-2.0
 URL: https://github.com/kevinrue/iSEEExperimentHub
 BugReports: https://support.bioconductor.org/t/iSEEExperimentHub
