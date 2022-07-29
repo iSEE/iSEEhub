@@ -1,8 +1,8 @@
 #' Landing page function
 #'
-#' @param ehub An instance of [ExperimentHub()].
+#' @param ehub An [ExperimentHub()] object.
 #'
-#' @return A [function()] that defines UI elements and observers for the
+#' @return A `function` that defines UI elements and observers for the
 #' landing page of the app.
 #' 
 #' @importFrom S4Vectors mcols

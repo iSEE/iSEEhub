@@ -1,3 +1,12 @@
+#' Tabulate Available Data Sets
+#' 
+#' Tabulate available (supported) data sets.
+#'
+#' @param ehub An [ExperimentHub()] object.
+#'
+#' @return A `data.frame` of metadata.
+#' 
+#' @rdname INTERNAL_datasets_available
 .datasets_available <- function(ehub) {
     datasets_available_table <- as.data.frame(mcols(ehub))
     exclude_rdataclass <- c("AAStringSet", "adductQuantif", "BamFile",

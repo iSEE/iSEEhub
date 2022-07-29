@@ -1,9 +1,8 @@
 #' iSEEExperimentHub app
 #'
-#' @param ehub An instance of [ExperimentHub()].
+#' @param ehub An [ExperimentHub()] object.
 #'
-#' @return An [iSEE()] app with a custom landing page interfacing with the
-#' Bioconductor [ExperimentHub()].
+#' @return An [iSEE()] app with a custom landing page interfacing with `ehub`.
 #' 
 #' @export
 #' 

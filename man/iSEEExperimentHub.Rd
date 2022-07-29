@@ -7,11 +7,10 @@
 iSEEExperimentHub(ehub)
 }
 \arguments{
-\item{ehub}{An instance of \code{\link[=ExperimentHub]{ExperimentHub()}}.}
+\item{ehub}{An \code{\link[=ExperimentHub]{ExperimentHub()}} object.}
 }
 \value{
-An \code{\link[=iSEE]{iSEE()}} app with a custom landing page interfacing with the
-Bioconductor \code{\link[=ExperimentHub]{ExperimentHub()}}.
+An \code{\link[=iSEE]{iSEE()}} app with a custom landing page interfacing with \code{ehub}.
 }
 \description{
 iSEEExperimentHub app
