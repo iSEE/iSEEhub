@@ -5,6 +5,9 @@
 #' the resource from `ehub` into R.
 #'
 #' @return A [SingleCellExperiment()] object.
+#' 
+#' @import SingleCellExperiment
+#' @import ExperimentHub
 #'
 #' @rdname INTERNAL_load_sce
 .load_sce <- function(ehub, x) {
