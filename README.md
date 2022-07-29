@@ -1,27 +1,37 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# MyBioconductorPackage
+# iSEEExperimentHub
 
 <!-- badges: start -->
 
 [![GitHub
-issues](https://img.shields.io/github/issues/kevinrue/MyBioconductorPackage)](https://github.com/kevinrue/MyBioconductorPackage/issues)
+issues](https://img.shields.io/github/issues/kevinrue/iSEEExperimentHub)](https://github.com/kevinrue/iSEEExperimentHub/issues)
 [![GitHub
-pulls](https://img.shields.io/github/issues-pr/kevinrue/MyBioconductorPackage)](https://github.com/kevinrue/MyBioconductorPackage/pulls)
+pulls](https://img.shields.io/github/issues-pr/kevinrue/iSEEExperimentHub)](https://github.com/kevinrue/iSEEExperimentHub/pulls)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check-bioc](https://github.com/kevinrue/MyBioconductorPackage/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/kevinrue/MyBioconductorPackage/actions)
+[![R-CMD-check-bioc](https://github.com/kevinrue/iSEEExperimentHub/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/kevinrue/iSEEExperimentHub/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/kevinrue/MyBioconductorPackage/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kevinrue/MyBioconductorPackage?branch=main)
+coverage](https://codecov.io/gh/kevinrue/iSEEExperimentHub/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kevinrue/iSEEExperimentHub?branch=main)
 <!-- badges: end -->
 
-The goal of `MyBioconductorPackage` is to …
+The goal of `iSEEExperimentHub` is to provide an interface to the
+Bioconductor
+*[ExperimentHub](https://bioconductor.org/packages/3.16/ExperimentHub)*
+directly within an *[iSEE](https://bioconductor.org/packages/3.16/iSEE)*
+web-application.
+
+The main functionality of this package is to define a custom landing
+page allowing users to browse the Bioconductor
+*[ExperimentHub](https://bioconductor.org/packages/3.16/ExperimentHub)*
+and directly load objects into an
+*[iSEE](https://bioconductor.org/packages/3.16/iSEE)* web-application.
 
 ## Installation instructions
 
 Get the latest stable `R` release from
-[CRAN](http://cran.r-project.org/). Then install `MyBioconductorPackage`
+[CRAN](http://cran.r-project.org/). Then install `iSEEExperimentHub`
 from [Bioconductor](http://bioconductor.org/) using the following code:
 
 ``` r
@@ -29,14 +39,14 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("MyBioconductorPackage")
+BiocManager::install("iSEEExperimentHub")
 ```
 
 And the development version from
-[GitHub](https://github.com/kevinrue/MyBioconductorPackage) with:
+[GitHub](https://github.com/kevinrue/iSEEExperimentHub) with:
 
 ``` r
-BiocManager::install("kevinrue/MyBioconductorPackage")
+BiocManager::install("kevinrue/iSEEExperimentHub")
 ```
 
 ## Example
@@ -44,49 +54,54 @@ BiocManager::install("kevinrue/MyBioconductorPackage")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library("MyBioconductorPackage")
-## basic example code
+library("iSEEExperimentHub")
+#> Loading required package: ExperimentHub
+#> Loading required package: BiocGenerics
+#> Warning: package 'BiocGenerics' was built under R version 4.2.1
+#> 
+#> Attaching package: 'BiocGenerics'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     IQR, mad, sd, var, xtabs
+#> The following objects are masked from 'package:base':
+#> 
+#>     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+#>     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+#>     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+#>     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+#>     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+#>     union, unique, unsplit, which.max, which.min
+#> Loading required package: AnnotationHub
+#> Loading required package: BiocFileCache
+#> Loading required package: dbplyr
+library(ExperimentHub)
+ehub <- ExperimentHub()
+#> snapshotDate(): 2022-07-22
+
+app <- iSEEExperimentHub(ehub)
+
+if (interactive()) {
+  shiny::runApp(app, port = 1234)
+}
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub!
+<img src="man/figures/landing_page.png" width="100%" />
 
 ## Citation
 
-Below is the citation output from using
-`citation('MyBioconductorPackage')` in R. Please run this yourself to
-check for any updates on how to cite **MyBioconductorPackage**.
+Below is the citation output from using `citation('iSEEExperimentHub')`
+in R. Please run this yourself to check for any updates on how to cite
+**iSEEExperimentHub**.
 
 ``` r
-print(citation('MyBioconductorPackage'), bibtex = TRUE)
+print(citation('iSEEExperimentHub'), bibtex = TRUE)
 #> 
 #> kevinrue (2022). _Demonstration of a Bioconductor Package_. doi:
-#> 10.18129/B9.bioc.MyBioconductorPackage (URL:
-#> https://doi.org/10.18129/B9.bioc.MyBioconductorPackage),
-#> https://github.com/kevinrue/MyBioconductorPackage/MyBioconductorPackage
-#> - R package version 0.99.0, <URL:
-#> http://www.bioconductor.org/packages/MyBioconductorPackage>.
+#> 10.18129/B9.bioc.iSEEExperimentHub (URL:
+#> https://doi.org/10.18129/B9.bioc.iSEEExperimentHub),
+#> https://github.com/kevinrue/iSEEExperimentHub/iSEEExperimentHub - R
+#> package version 0.99.0, <URL:
+#> http://www.bioconductor.org/packages/iSEEExperimentHub>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -94,9 +109,9 @@ print(citation('MyBioconductorPackage'), bibtex = TRUE)
 #>     title = {Demonstration of a Bioconductor Package},
 #>     author = {{kevinrue}},
 #>     year = {2022},
-#>     url = {http://www.bioconductor.org/packages/MyBioconductorPackage},
-#>     note = {https://github.com/kevinrue/MyBioconductorPackage/MyBioconductorPackage - R package version 0.99.0},
-#>     doi = {10.18129/B9.bioc.MyBioconductorPackage},
+#>     url = {http://www.bioconductor.org/packages/iSEEExperimentHub},
+#>     note = {https://github.com/kevinrue/iSEEExperimentHub/iSEEExperimentHub - R package version 0.99.0},
+#>     doi = {10.18129/B9.bioc.iSEEExperimentHub},
 #>   }
 #> 
 #> kevinrue (2022). "Demonstration of a Bioconductor Package." _bioRxiv_.
@@ -115,14 +130,13 @@ print(citation('MyBioconductorPackage'), bibtex = TRUE)
 #>   }
 ```
 
-Please note that the `MyBioconductorPackage` was only made possible
-thanks to many other R and bioinformatics software authors, which are
-cited either in the vignettes and/or the paper(s) describing this
-package.
+Please note that the `iSEEExperimentHub` was only made possible thanks
+to many other R and bioinformatics software authors, which are cited
+either in the vignettes and/or the paper(s) describing this package.
 
 ## Code of Conduct
 
-Please note that the `MyBioconductorPackage` project is released with a
+Please note that the `iSEEExperimentHub` project is released with a
 [Contributor Code of
 Conduct](http://bioconductor.org/about/code-of-conduct/). By
 contributing to this project, you agree to abide by its terms.
@@ -136,12 +150,12 @@ contributing to this project, you agree to abide by its terms.
     *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
     customized to use [Bioconductor’s docker
     containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.14/BiocCheck)*.
+    *[BiocCheck](https://bioconductor.org/packages/3.16/BiocCheck)*.
 -   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
 -   The [documentation
-    website](http://kevinrue.github.io/MyBioconductorPackage) is
+    website](http://kevinrue.github.io/iSEEExperimentHub) is
     automatically updated thanks to
     *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
 -   The code is styled automatically thanks to
@@ -153,11 +167,11 @@ contributing to this project, you agree to abide by its terms.
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.14/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.16/biocthis)*.
 
 ## Code of Conduct
 
-Please note that the MyBioconductorPackage project is released with a
+Please note that the iSEEExperimentHub project is released with a
 [Contributor Code of
 Conduct](http://bioconductor.org/about/code-of-conduct/). By
 contributing to this project, you agree to abide by its terms.
