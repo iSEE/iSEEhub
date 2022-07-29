@@ -1,8 +1,8 @@
 #' Landing page function
 #'
-#' @param ehub An instance of [ExperimentHub()].
+#' @param ehub An [ExperimentHub()] object.
 #'
-#' @return A [function()] that defines UI elements and observers for the
+#' @return A `function` that defines UI elements and observers for the
 #' landing page of the app.
 #' 
 #' @importFrom S4Vectors mcols
@@ -15,15 +15,6 @@
 #' @rdname INTERNAL_landing_page
 landing_page <- function(ehub) {
     datasets_available_table <- .datasets_available(ehub)
-    
-    se_load <- function(x) {
-        object <- ehub[[x]]
-        if (!is(object, "SummarizedExperiment")) {
-            object <- as(object, "SummarizedExperiment")
-        }
-        object <- as(object, "SingleCellExperiment")
-        object
-    }
     
     function (FUN, input, output, session) {
         .ui_dataset_table <- "datasets_table"
@@ -117,7 +108,7 @@ landing_page <- function(ehub) {
 
         # nocov start, ignoreNULL=TRUE, ignoreInit=TRUE
         observeEvent(input[[.ui_launch_button]], {
-            se2 <- try(se_load(pObjects[[.dataset_selected_id]]))
+            se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
             if (is(se2, "try-error")) {
                 showNotification("invalid SummarizedExperiment supplied", type="error")
             } else {
