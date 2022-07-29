@@ -7,6 +7,7 @@
 #' @export
 #' 
 #' @importFrom iSEE iSEE
+#' @importFrom AnnotationHub snapshotDate
 #'
 #' @examples
 #' library(ExperimentHub)
@@ -22,5 +23,7 @@ iSEEExperimentHub <- function(ehub) {
         landingPage=landing_page(ehub),
         appTitle = sprintf("iSEEExperimentHub - v%s (snapshotDate: %s)",
             packageVersion("iSEEExperimentHub"),
-            snapshotDate(ehub)))
+            snapshotDate(ehub)
+            )
+        )
 }

@@ -17,12 +17,6 @@ landing_page <- function(ehub) {
     datasets_available_table <- .datasets_available(ehub)
     
     function (FUN, input, output, session) {
-        .ui_dataset_table <- "datasets_table"
-        .ui_launch_button <- "launch"
-        .dataset_selected_id <- paste0(.ui_dataset_table, "_rows_selected")
-        .ui_dataset_columns <- "datasets_columns"
-        .ui_markdown_overview <- "markdown_overview"
-        
         # nocov start
         output$allPanels <- renderUI({
             tagList(
