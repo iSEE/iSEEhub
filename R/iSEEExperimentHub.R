@@ -18,5 +18,9 @@
 #'   shiny::runApp(app, port = 1234)
 #' }
 iSEEExperimentHub <- function(ehub) {
-    iSEE(landingPage=landing_page(ehub))
+    iSEE(
+        landingPage=landing_page(ehub),
+        appTitle = sprintf("iSEEExperimentHub - v%s (snapshotDate: %s)",
+            packageVersion("iSEEExperimentHub"),
+            snapshotDate(ehub)))
 }
