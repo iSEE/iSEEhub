@@ -3,3 +3,4 @@
 .dataset_selected_id <- paste0(.ui_dataset_table, "_rows_selected")
 .ui_dataset_columns <- "iSEEExperiment_INTERNAL_datasets_columns"
 .ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
+.ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"

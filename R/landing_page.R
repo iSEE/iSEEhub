@@ -7,7 +7,7 @@
 #' 
 #' @importFrom S4Vectors mcols
 #' @importFrom methods is as
-#' @importFrom shiny actionButton column fluidRow isolate markdown observeEvent p reactiveValues renderUI selectizeInput showNotification tagList uiOutput
+#' @importFrom shiny actionButton strong column fluidRow isolate markdown observeEvent p reactiveValues renderUI selectizeInput showNotification tagList uiOutput
 #' @importFrom shinydashboard box
 #' @importFrom DT datatable DTOutput renderDT
 #' @importFrom rintrojs introjs
@@ -15,6 +15,7 @@
 #' @rdname INTERNAL_landing_page
 landing_page <- function(ehub) {
     datasets_available_table <- .datasets_available(ehub)
+    rdataclasses_available <- .rdataclasses_available(ehub)
     
     function (FUN, input, output, session) {
         # nocov start
@@ -40,7 +41,24 @@ landing_page <- function(ehub) {
                                     style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"),
                                 style="text-align: center;"))
                         )
+                    ),
+                fluidRow(
+                    shinydashboard::box(title = "Advanced parameters",
+                            collapsible = TRUE, collapsed = TRUE, width = NULL,
+                            selectizeInput(inputId = .ui_dataset_rdataclass, label = "Filter R data classes:",
+                                choices = rdataclasses_available,
+                                selected = .include_rdataclass,
+                                multiple = TRUE,
+                                options = list(plugins=list('remove_button'))),
+                        p(strong("WARNING:"), paste(
+                            "The initial selection above represent currently supported R data classes.",
+                            "All other options should be considered invalid;",
+                            "they are only made available for the purpose of exploring the ExperimentHub.",
+                            "Do not attempt to load objects from those other classes.",
+                            "To request support for new classes, contact us."
+                            ))
                     )
+                )
                 )
         })
         # nocov end
