@@ -16,7 +16,7 @@
 #' @return Observers are created in the server function in which this is called.
 #' A \code{NULL} value is invisibly returned.
 #'
-#' @importFrom shiny isolate observeEvent
+#' @importFrom shiny isolate observeEvent updateSelectizeInput
 #' @importFrom shinyjs disable enable
 #'
 #' @rdname INTERNAL_create_observers
@@ -36,9 +36,9 @@
             value <- input[[.ui_dataset_rdataclass]]
             pObjects[[.ui_dataset_rdataclass]] <- value
             if (identical(value, .include_rdataclass)) {
-                disable(.ui_reset_rdataclasses)
+                shinyjs::disable(.ui_reset_rdataclasses)
             } else {
-                enable(.ui_reset_rdataclasses)
+                shinyjs::enable(.ui_reset_rdataclasses)
             }
             rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
         })

@@ -1,18 +1,16 @@
 #' Generate the DESCRIPTION 'Suggests' Field
-#' 
+#'
 #' A helper function to generate the 'Suggests' field of the `DESCRIPTION` file.
-#' 
-#' @details 
+#'
+#' @details
 #' The return value can be passed to [cat()] to display the result in a way
 #' that may be copy-pasted into the `DESCRIPTION` file.
 #'
 #' @return A `character` scalar that may be used to update the 'Suggests' field
 #' of the `DESCRIPTION` file.
-#' 
-#' @export
-#' 
+#'
 #' @importFrom BiocManager available
-#' 
+#'
 #' @rdname INTERNAL_generate_description_suggests
 .generate_description_suggests <- function() {
     extras <- c("BiocStyle", "covr", "knitr", "RefManageR", "rmarkdown",
