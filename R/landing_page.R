@@ -4,19 +4,19 @@
 #'
 #' @return A `function` that defines UI elements and observers for the
 #' landing page of the app.
-#' 
+#'
 #' @importFrom S4Vectors mcols
 #' @importFrom methods is as
-#' @importFrom shiny actionButton strong column fluidRow isolate markdown observeEvent p reactiveValues renderUI selectizeInput showNotification tagList uiOutput
+#' @importFrom shiny actionButton br strong column fluidRow isolate markdown observeEvent p reactiveValues renderUI selectizeInput showNotification tagList uiOutput
 #' @importFrom shinydashboard box
 #' @importFrom DT datatable DTOutput renderDT
 #' @importFrom rintrojs introjs
-#' 
+#'
 #' @rdname INTERNAL_landing_page
 landing_page <- function(ehub) {
     datasets_available_table <- .datasets_available(ehub)
     rdataclasses_available <- .rdataclasses_available(ehub)
-    
+
     function (FUN, input, output, session) {
         # nocov start
         output$allPanels <- renderUI({
@@ -44,40 +44,47 @@ landing_page <- function(ehub) {
                     ),
                 fluidRow(
                     shinydashboard::box(title = "Advanced parameters",
-                            collapsible = TRUE, collapsed = TRUE, width = NULL,
+                        collapsible = TRUE, collapsed = TRUE, width = NULL,
+                        column(width = 11L,
                             selectizeInput(inputId = .ui_dataset_rdataclass, label = "Filter R data classes:",
                                 choices = rdataclasses_available,
                                 selected = .include_rdataclass,
                                 multiple = TRUE,
-                                options = list(plugins=list('remove_button'))),
-                        p(strong("WARNING:"), paste(
-                            "The initial selection above represent currently supported R data classes.",
-                            "All other options should be considered invalid;",
-                            "they are only made available for the purpose of exploring the ExperimentHub.",
-                            "Do not attempt to load objects from those other classes.",
-                            "To request support for new classes, contact us."
-                            ))
+                                options = list(plugins=list('remove_button')))),
+                        column(width = 1L,
+                            br(), br(),
+                            actionButton("TODO", label="Reset!",
+                                    style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4")),
+                        column(width = 12L,
+                            p(strong("WARNING:"), paste(
+                                "The initial selection above represent currently supported R data classes.",
+                                "All other options should be considered invalid;",
+                                "they are only made available for the purpose of exploring the ExperimentHub.",
+                                "Do not attempt to load objects from those other classes.",
+                                "To request support for new classes, contact us."
+                                )))
                     )
                 )
                 )
         })
         # nocov end
-        
+
         pObjects <- new.env()
+        pObjects$datasets_available_table <- datasets_available_table
         rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
-        
-        observeEvent(input[[.dataset_selected_id]], {
-            pObjects[[.dataset_selected_id]] <- rownames(datasets_available_table)[input[[.dataset_selected_id]]]
+
+        observeEvent(input[[.dataset_selected_row]], {
+            pObjects[[.dataset_selected_id]] <- rownames(pObjects$datasets_available_table)[input[[.dataset_selected_row]]]
             rObjects$rerender_overview <- iSEE:::.increment_counter(isolate(rObjects$rerender_overview))
         }, ignoreInit = FALSE, ignoreNULL = FALSE)
-        
+
         output[[.ui_markdown_overview]] <- renderUI({
             force(rObjects$rerender_overview)
-            dataset_selected_id <- pObjects[[.dataset_selected_id]]
-            if (!length(dataset_selected_id)) {
+            dataset_selected_row <- pObjects[[.dataset_selected_id]]
+            if (!length(dataset_selected_row)) {
                 contents <- markdown("Please select a data set.")
             } else {
-                ehub_selected <- ehub[dataset_selected_id]
+                ehub_selected <- ehub[dataset_selected_row]
                 contents <- markdown(paste0(
                     "# ", sprintf("[%s]", ehub_selected$ah_id), " ", ehub_selected$title, "\n\n",
                     "- **Data provider:** ", ehub_selected$dataprovider, "\n\n",
@@ -100,22 +107,33 @@ landing_page <- function(ehub) {
             }
             contents
         })
-        
+
         observeEvent(input[[.ui_dataset_columns]], {
             pObjects[[.ui_dataset_columns]] <- input[[.ui_dataset_columns]]
             rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
         })
-        
+
+        observeEvent(input[[.ui_dataset_rdataclass]], {
+            pObjects[[.ui_dataset_rdataclass]] <- input[[.ui_dataset_rdataclass]]
+            rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
+        })
+
         output[[.ui_dataset_table]] <- DT::renderDT({
             force(rObjects$rerender_datasets)
-            datasets_table_visible <- datasets_available_table[, pObjects[[.ui_dataset_columns]]]
-            DT::datatable(datasets_table_visible, filter="top", rownames=TRUE,
-            options=list(
-                search=list(search="", smart=FALSE, regex=TRUE, caseInsensitive=FALSE),
-                searchCols=c(list(NULL), list(NULL)), # row names are the first column!
-                scrollX=TRUE,
-                columnDefs=NULL),
-            selection=list(mode = 'single', selected=1L, target = 'row'))
+            keep_rdataclass_indices <- which(datasets_available_table$rdataclass %in% pObjects[[.ui_dataset_rdataclass]])
+            keep_rows <- keep_rdataclass_indices
+            keep_columns <- pObjects[[.ui_dataset_columns]]
+            datasets_table_visible <- datasets_available_table[keep_rows, keep_columns]
+            columns_factor <- intersect(colnames(datasets_table_visible), .ehub_columns_factor)
+            datasets_table_visible <- .dataset_factor_columns(datasets_table_visible, columns_factor)
+            pObjects$datasets_available_table <- datasets_table_visible
+            DT::datatable(pObjects$datasets_available_table, filter="top", rownames=TRUE,
+                options=list(
+                    search=list(search="", smart=FALSE, regex=TRUE, caseInsensitive=FALSE),
+                    searchCols=c(list(NULL), list(NULL)), # row names are the first column!
+                    scrollX=TRUE,
+                    columnDefs=NULL),
+                selection=list(mode = 'single', selected=1L, target = 'row'))
         })
 
         # nocov start, ignoreNULL=TRUE, ignoreInit=TRUE
@@ -135,14 +153,14 @@ landing_page <- function(ehub) {
             }
         }, ignoreNULL=TRUE, ignoreInit=TRUE)
         # nocov end
-        
+
         tour <- rbind(
             data.frame(
                 element = "#launch",
                 intro = "Click this button when you are ready!"
             )
         )
-        
+
         observeEvent(input[[iSEE:::.generalTourSteps]], {
             introjs(session, options=list(steps=tour))
         }, ignoreInit=TRUE)

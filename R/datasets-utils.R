@@ -1,3 +1,5 @@
+# NOTE: SummarizedBenchmark seems to require a bit of work to clean up missing data
+# NOTE: SeuratObject seems to require a bit of work to use the custom function for conversion
 .exclude_rdataclass <- c("AAStringSet", "adductQuantif", "BamFile",
     "boosting", "caretStack", "CellMapperList", "character", "Character",
     "CompressedCharacterList", "CytoImageList", "Data Frame", "data.frame",
@@ -20,27 +22,37 @@
     "GSEABase::SummarizedExperiment", "SpatialExperiment",
     "DEXSeqDataSet")
 
+.ehub_columns_factor <- c("species", "taxonomyid", "coordinate_1_based", "rdataclass", "sourcetype")
+
 #' Tabulate Available Data Sets
-#' 
+#'
 #' Tabulate available (supported) data sets.
 #'
 #' @param ehub An [ExperimentHub()] object.
 #'
 #' @return A `data.frame` of metadata.
-#' 
+#'
 #' @rdname INTERNAL_datasets_available
 .datasets_available <- function(ehub) {
     datasets_available_table <- as.data.frame(mcols(ehub))
-    # NOTE: SummarizedBenchmark seems to require a bit of work to clean up missing data
-    # NOTE: SeuratObject seems to require a bit of work to use the custom function for conversion
-    datasets_available_table <- datasets_available_table[which(datasets_available_table$rdataclass %in% .include_rdataclass), ]
+    # datasets_available_table <- datasets_available_table[which(datasets_available_table$rdataclass %in% .include_rdataclass), ]
     # Convert certain columns to factor, allowing DT::datatable to offer selectize in the corresponding search boxes.
-    datasets_available_table$species <- as.factor(datasets_available_table$species)
-    datasets_available_table$taxonomyid <- as.factor(datasets_available_table$taxonomyid)
-    datasets_available_table$coordinate_1_based <- as.factor(datasets_available_table$coordinate_1_based)
-    datasets_available_table$rdataclass <- as.factor(datasets_available_table$rdataclass)
-    datasets_available_table$sourcetype <- as.factor(datasets_available_table$sourcetype)
     datasets_available_table
+}
+
+#' Coerce Data-Frame Columns to Factor
+#'
+#' @param x A `data.frame` object.
+#' @param cols Character vector of column names to coerce to factor.
+#'
+#' @return An updated `data.frame` object.
+#'
+#' @rdname INTERNAL_dataset_factor_columns
+.dataset_factor_columns <- function(x, cols) {
+    for (col in cols) {
+        x[[col]] <- as.factor(x[[col]])
+    }
+    x
 }
 
 .rdataclasses_available <- function(ehub) {
