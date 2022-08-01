@@ -36,7 +36,7 @@
         })
 
         observeEvent(input[[iSEE:::.generalTourSteps]], {
-            introjs(session, options=list(steps=tour))
+            introjs(session, options=list(steps=.landing_page_tour))
         }, ignoreInit=TRUE)
 
         invisible(NULL)
@@ -44,6 +44,8 @@
 
 #' Observers for Launching Main \code{\link{iSEE}} App
 #'
+#' @param FUN A function to initialize the \code{\link{iSEE}} observer architecture.
+#' Refer to [iSEE::createLandingPage()] for more details.
 #' @param ehub An [ExperimentHub()] object.
 #' @param input The Shiny input object from the server function.
 #' @param pObjects An environment containing global parameters generated in the landing page.
@@ -52,7 +54,7 @@
 #' A \code{NULL} value is invisibly returned.
 #'
 #' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(ehub, input, pObjects) {
+.create_launch_observer <- function(FUN, ehub, input, pObjects) {
     # nocov start
         observeEvent(input[[.ui_launch_button]], {
             se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
