@@ -5,6 +5,7 @@
 .ui_dataset_columns <- "iSEEExperiment_INTERNAL_datasets_columns"
 .ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
 .ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
+.ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
 
 #' Observers for \code{\link{iSEEExperimentHub}}
 #'
@@ -38,6 +39,10 @@
         observeEvent(input[[iSEE:::.generalTourSteps]], {
             introjs(session, options=list(steps=.landing_page_tour))
         }, ignoreInit=TRUE)
+
+        observeEvent(input[[.ui_reset_rdataclasses]], {
+            updateSelectizeInput(session, .ui_dataset_rdataclass, selected = .include_rdataclass)
+        })
 
         invisible(NULL)
 }

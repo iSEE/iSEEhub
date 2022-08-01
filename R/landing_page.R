@@ -56,7 +56,7 @@ landing_page <- function(ehub) {
                                         options = list(plugins=list('remove_button')))),
                                 column(width = 1L,
                                     br(), br(),
-                                    actionButton("TODO", label="Reset!",
+                                    actionButton(.ui_reset_rdataclasses, label="Reset!",
                                         style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"))
                             ),
                             fluidRow(
