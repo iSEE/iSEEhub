@@ -89,12 +89,13 @@ citation("iSEEExperimentHub")
 
 ```{r "start", message=FALSE}
 library("iSEEExperimentHub")
-```
+library(ExperimentHub)
+ehub <- ExperimentHub()
 
-```{r}
-app <- iSEEExperimentHub::iSEEExperimentHub()
+app <- iSEEExperimentHub(ehub)
+
 if (interactive()) {
-    shiny::runApp(app, port = 1234, launch.browser = TRUE)
+  shiny::runApp(app, port = 1234)
 }
 ```
 
