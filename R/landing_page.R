@@ -60,7 +60,7 @@ landing_page <- function(ehub) {
                                         style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"))
                             ),
                             fluidRow(
-                                column(width = 12L,
+                                column(width = 11L,
                                     p(strong("WARNING:"), paste(
                                         "The initial selection above represent currently supported R data classes.",
                                         "All other options should be considered invalid;",
