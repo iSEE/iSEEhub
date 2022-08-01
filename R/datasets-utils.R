@@ -15,12 +15,11 @@
     "randomForest", "SigDF", "SigSet", "Spectra",
     "SpatialFeatureExperiment", "SummarizedBenchmark",  "tbl",
     "TENxMatrix", "tibble", "vector", "Vector")
-# TODO: switch to include_rdataclass when all possible types are checked
-.include_rdataclass <- c("ExpressionSet", "RangedSummarizedExperiment",
-    "SummarizedExperiment",  "bsseq", "SingleCellExperiment",
-    "RGChannelSetExtended", "BSseq",  "SeuratObject",
-    "GSEABase::SummarizedExperiment", "SpatialExperiment",
-    "DEXSeqDataSet")
+
+.include_rdataclass <- c("bsseq", "BSseq", "DEXSeqDataSet", "ExpressionSet",
+    "GSEABase::SummarizedExperiment", "RangedSummarizedExperiment",
+    "RGChannelSetExtended", "SeuratObject", "SingleCellExperiment",
+    "SpatialExperiment", "SummarizedExperiment")
 
 .ehub_columns_factor <- c("species", "taxonomyid", "coordinate_1_based", "rdataclass", "sourcetype")
 
@@ -35,7 +34,6 @@
 #' @rdname INTERNAL_datasets_available
 .datasets_available <- function(ehub) {
     datasets_available_table <- as.data.frame(mcols(ehub))
-    # datasets_available_table <- datasets_available_table[which(datasets_available_table$rdataclass %in% .include_rdataclass), ]
     # Convert certain columns to factor, allowing DT::datatable to offer selectize in the corresponding search boxes.
     datasets_available_table
 }

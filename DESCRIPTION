@@ -31,6 +31,7 @@ Imports:
     S4Vectors,
     shiny,
     shinydashboard,
+    shinyjs,
     utils
 Suggests:
     BiocStyle,

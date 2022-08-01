@@ -17,6 +17,7 @@
 #' A \code{NULL} value is invisibly returned.
 #'
 #' @importFrom shiny isolate observeEvent
+#' @importFrom shinyjs disable enable
 #'
 #' @rdname INTERNAL_create_observers
 .create_observers <- function(ehub, input, session, pObjects, rObjects) {
@@ -32,7 +33,13 @@
         })
 
         observeEvent(input[[.ui_dataset_rdataclass]], {
-            pObjects[[.ui_dataset_rdataclass]] <- input[[.ui_dataset_rdataclass]]
+            value <- input[[.ui_dataset_rdataclass]]
+            pObjects[[.ui_dataset_rdataclass]] <- value
+            if (identical(value, .include_rdataclass)) {
+                disable(.ui_reset_rdataclasses)
+            } else {
+                enable(.ui_reset_rdataclasses)
+            }
             rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
         })
 

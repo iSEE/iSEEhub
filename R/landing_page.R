@@ -66,7 +66,8 @@ landing_page <- function(ehub) {
                                         "All other options should be considered invalid;",
                                         "they are only made available for the purpose of exploring the ExperimentHub.",
                                         "Do not attempt to load objects from those other classes.",
-                                        "To request support for new classes, contact us."
+                                        "To request support for new classes, contact us.",
+                                        "To reset the initial selection, use the button on the right."
                                         ))) # column
                                 ) # fluidRow
                             ) # box
