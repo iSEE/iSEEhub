@@ -7,7 +7,7 @@
 #'
 #' @importFrom S4Vectors mcols
 #' @importFrom methods is as
-#' @importFrom shiny actionButton br strong column fluidRow isolate markdown observeEvent p reactiveValues renderUI selectizeInput showNotification tagList uiOutput
+#' @importFrom shiny actionButton br strong column fluidRow p reactiveValues renderUI selectizeInput showNotification tagList uiOutput
 #' @importFrom shinydashboard box
 #' @importFrom DT datatable DTOutput renderDT
 #' @importFrom rintrojs introjs
@@ -70,89 +70,14 @@ landing_page <- function(ehub) {
         # nocov end
 
         pObjects <- new.env()
-        pObjects$datasets_available_table <- datasets_available_table
+        pObjects$datasets_visible <- datasets_available_table
         rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
 
-        observeEvent(input[[.dataset_selected_row]], {
-            pObjects[[.dataset_selected_id]] <- rownames(pObjects$datasets_available_table)[input[[.dataset_selected_row]]]
-            rObjects$rerender_overview <- iSEE:::.increment_counter(isolate(rObjects$rerender_overview))
-        }, ignoreInit = FALSE, ignoreNULL = FALSE)
+        .create_observers(input, pObjects, rObjects)
 
-        output[[.ui_markdown_overview]] <- renderUI({
-            force(rObjects$rerender_overview)
-            dataset_selected_row <- pObjects[[.dataset_selected_id]]
-            if (!length(dataset_selected_row)) {
-                contents <- markdown("Please select a data set.")
-            } else {
-                ehub_selected <- ehub[dataset_selected_row]
-                contents <- markdown(paste0(
-                    "# ", sprintf("[%s]", ehub_selected$ah_id), " ", ehub_selected$title, "\n\n",
-                    "- **Data provider:** ", ehub_selected$dataprovider, "\n\n",
-                    "- **Species:** ", ehub_selected$species, "\n\n",
-                    "- **Taxonomy ID:** ", ehub_selected$taxonomyid, "\n\n",
-                    "- **Genome:** ", ehub_selected$genome, "\n\n",
-                    "## Description", "\n\n", ehub_selected$description, "\n\n",
-                    "## Details", "\n\n",
-                    "- **Coordinate 1-based:** ", as.logical(ehub_selected$coordinate_1_based), "\n\n",
-                    "- **Maintainer:** ", ehub_selected$maintainer, "\n\n",
-                    "- **Date added:** ", ehub_selected$rdatadateadded, "\n\n",
-                    "- **Preparer class:** ", ehub_selected$preparerclass, "\n\n",
-                    "- **R data class:** ", ehub_selected$rdataclass, "\n\n",
-                    "- **R data path:** ", ehub_selected$rdatapath, "\n\n",
-                    "- **Source URL:** ", ehub_selected$sourceurl, "\n\n",
-                    "- **Source type:** ", ehub_selected$sourcetype, "\n\n",
-                    "## Tags", "\n\n",
-                    paste0(sprintf("- %s", strsplit(ehub_selected$tags, ", ")[[1]]), collapse = "\n")
-                ))
-            }
-            contents
-        })
+        .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 
-        observeEvent(input[[.ui_dataset_columns]], {
-            pObjects[[.ui_dataset_columns]] <- input[[.ui_dataset_columns]]
-            rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
-        })
-
-        observeEvent(input[[.ui_dataset_rdataclass]], {
-            pObjects[[.ui_dataset_rdataclass]] <- input[[.ui_dataset_rdataclass]]
-            rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
-        })
-
-        output[[.ui_dataset_table]] <- DT::renderDT({
-            force(rObjects$rerender_datasets)
-            keep_rdataclass_indices <- which(datasets_available_table$rdataclass %in% pObjects[[.ui_dataset_rdataclass]])
-            keep_rows <- keep_rdataclass_indices
-            keep_columns <- pObjects[[.ui_dataset_columns]]
-            datasets_table_visible <- datasets_available_table[keep_rows, keep_columns]
-            columns_factor <- intersect(colnames(datasets_table_visible), .ehub_columns_factor)
-            datasets_table_visible <- .dataset_factor_columns(datasets_table_visible, columns_factor)
-            pObjects$datasets_available_table <- datasets_table_visible
-            DT::datatable(pObjects$datasets_available_table, filter="top", rownames=TRUE,
-                options=list(
-                    search=list(search="", smart=FALSE, regex=TRUE, caseInsensitive=FALSE),
-                    searchCols=c(list(NULL), list(NULL)), # row names are the first column!
-                    scrollX=TRUE,
-                    columnDefs=NULL),
-                selection=list(mode = 'single', selected=1L, target = 'row'))
-        })
-
-        # nocov start, ignoreNULL=TRUE, ignoreInit=TRUE
-        observeEvent(input[[.ui_launch_button]], {
-            se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
-            if (is(se2, "try-error")) {
-                showNotification("invalid SummarizedExperiment supplied", type="error")
-            } else {
-                # init <- try(initLoad(input[[.initializeInitial]]))
-                # if (is(init, "try-error")) {
-                #     showNotification("invalid initial state supplied", type="warning")
-                #     init <- NULL
-                # }
-                # init <- list(ReducedDimensionPlot())
-                init <- NULL
-                FUN(SE=se2, INITIAL=init)
-            }
-        }, ignoreNULL=TRUE, ignoreInit=TRUE)
-        # nocov end
+        .render_markdown_overview(ehub, output, pObjects, rObjects)
 
         tour <- rbind(
             data.frame(
@@ -160,10 +85,6 @@ landing_page <- function(ehub) {
                 intro = "Click this button when you are ready!"
             )
         )
-
-        observeEvent(input[[iSEE:::.generalTourSteps]], {
-            introjs(session, options=list(steps=tour))
-        }, ignoreInit=TRUE)
 
         invisible(NULL)
     }
