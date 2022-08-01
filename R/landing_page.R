@@ -73,7 +73,9 @@ landing_page <- function(ehub) {
         pObjects$datasets_visible <- datasets_available_table
         rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
 
-        .create_observers(input, pObjects, rObjects)
+        .create_observers(ehub, input, session, pObjects, rObjects)
+
+        .create_launch_observer(ehub, input, pObjects)
 
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 

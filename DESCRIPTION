@@ -30,7 +30,8 @@ Imports:
     rintrojs,
     S4Vectors,
     shiny,
-    shinydashboard
+    shinydashboard,
+    utils
 Suggests:
     BiocStyle,
     BioPlex,

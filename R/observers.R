@@ -18,7 +18,7 @@
 #' @importFrom shiny isolate observeEvent
 #'
 #' @rdname INTERNAL_create_observers
-.create_observers <- function(input, pObjects, rObjects) {
+.create_observers <- function(ehub, input, session, pObjects, rObjects) {
 
         observeEvent(input[[.dataset_selected_row]], {
             pObjects[[.dataset_selected_id]] <- rownames(pObjects$datasets_visible)[input[[.dataset_selected_row]]]
@@ -35,7 +35,25 @@
             rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
         })
 
-        # nocov start
+        observeEvent(input[[iSEE:::.generalTourSteps]], {
+            introjs(session, options=list(steps=tour))
+        }, ignoreInit=TRUE)
+
+        invisible(NULL)
+}
+
+#' Observers for Launching Main \code{\link{iSEE}} App
+#'
+#' @param ehub An [ExperimentHub()] object.
+#' @param input The Shiny input object from the server function.
+#' @param pObjects An environment containing global parameters generated in the landing page.
+#'
+#' @return Observers are created in the server function in which this is called.
+#' A \code{NULL} value is invisibly returned.
+#'
+#' @rdname INTERNAL_create_launch_observer
+.create_launch_observer <- function(ehub, input, pObjects) {
+    # nocov start
         observeEvent(input[[.ui_launch_button]], {
             se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
             if (is(se2, "try-error")) {
@@ -53,9 +71,5 @@
         }, ignoreNULL=TRUE, ignoreInit=TRUE)
         # nocov end
 
-        observeEvent(input[[iSEE:::.generalTourSteps]], {
-            introjs(session, options=list(steps=tour))
-        }, ignoreInit=TRUE)
-
-        invisible(NULL)
+    invisible(NULL)
 }
