@@ -82,7 +82,7 @@ landing_page <- function(ehub) {
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
-        .create_launch_observer(FUN, ehub, input, pObjects)
+        .create_launch_observer(FUN, ehub, input, session, pObjects)
 
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 

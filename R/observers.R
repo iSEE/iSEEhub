@@ -60,28 +60,36 @@
 #' Refer to [iSEE::createLandingPage()] for more details.
 #' @param ehub An [ExperimentHub()] object.
 #' @param input The Shiny input object from the server function.
+#' @param session The Shiny session object from the server function.
 #' @param pObjects An environment containing global parameters generated in the landing page.
 #'
 #' @return Observers are created in the server function in which this is called.
 #' A \code{NULL} value is invisibly returned.
 #'
+#' @importFrom shiny incProgress observeEvent showNotification withProgress
+#'
 #' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(FUN, ehub, input, pObjects) {
+.create_launch_observer <- function(FUN, ehub, input, session, pObjects) {
     # nocov start
         observeEvent(input[[.ui_launch_button]], {
-            se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
-            if (is(se2, "try-error")) {
-                showNotification("invalid SummarizedExperiment supplied", type="error")
-            } else {
-                # init <- try(initLoad(input[[.initializeInitial]]))
-                # if (is(init, "try-error")) {
-                #     showNotification("invalid initial state supplied", type="warning")
-                #     init <- NULL
-                # }
-                # init <- list(ReducedDimensionPlot())
-                init <- NULL
-                FUN(SE=se2, INITIAL=init)
-            }
+            withProgress(message = 'Loading Data Set', value = 0, max = 2, {
+                id_object <- pObjects[[.dataset_selected_id]]
+                incProgress(1, detail = sprintf("Loading '%s'", id_object))
+                se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
+                incProgress(1, detail = "Launching iSEE")
+                if (is(se2, "try-error")) {
+                    showNotification("invalid SummarizedExperiment supplied", type="error")
+                } else {
+                    # init <- try(initLoad(input[[.initializeInitial]]))
+                    # if (is(init, "try-error")) {
+                    #     showNotification("invalid initial state supplied", type="warning")
+                    #     init <- NULL
+                    # }
+                    # init <- list(ReducedDimensionPlot())
+                    init <- NULL
+                    FUN(SE=se2, INITIAL=init)
+                }
+            }, session = session)
         }, ignoreNULL=TRUE, ignoreInit=TRUE)
         # nocov end
 
