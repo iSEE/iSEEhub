@@ -51,9 +51,9 @@ landing_page <- function(ehub) {
                                 column(width = 11L,
                                     selectizeInput(inputId = .ui_dataset_rdataclass, label = "Filter R data classes:",
                                         choices = rdataclasses_available,
-                                        selected = .include_rdataclass,
+                                        selected = sort(.include_rdataclass),
                                         multiple = TRUE,
-                                        options = list(plugins=list('remove_button')))),
+                                        options = list(plugins=list('remove_button'), sortField=list(field = 'text', direction = 'asc')))),
                                 column(width = 1L,
                                     br(), br(),
                                     actionButton(.ui_reset_rdataclasses, label="Reset!",
@@ -82,7 +82,7 @@ landing_page <- function(ehub) {
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
-        .create_launch_observer(FUN, ehub, input, pObjects)
+        .create_launch_observer(FUN, ehub, input, session, pObjects)
 
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 
