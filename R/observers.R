@@ -6,6 +6,7 @@
 .ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
 .ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
 .ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
+.ui_modal_load_messages <- "iSEEExperiment_INTERNAL_modal_load_messages"
 
 #' Observers for \code{\link{iSEEExperimentHub}}
 #'
@@ -67,22 +68,32 @@
 #' A \code{NULL} value is invisibly returned.
 #'
 #' @importFrom shiny incProgress modalDialog observeEvent showModal
-#' showNotification textOutput withProgress
+#' showNotification verbatimTextOutput withProgress
 #'
 #' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(FUN, ehub, input, session, pObjects) {
+.create_launch_observer <- function(FUN, ehub, input, output, session, pObjects, rObjects) {
+
+    rObjects[[.ui_modal_load_messages]] <- ""
+    output[[.ui_modal_load_messages]] <- renderText({ paste0(rObjects[[.ui_modal_load_messages]], collapse = "\n") })
+
     # nocov start
     observeEvent(input[[.ui_launch_button]], {
         showModal(modalDialog(
             title="Console Messages", size="l", fade=FALSE,
             footer=NULL, easyClose=FALSE,
-            p("dataset_load_modal")
+            verbatimTextOutput(.ui_modal_load_messages)
         ))
 
         withProgress(message = 'Loading Data Set', value = 0, max = 2, {
             id_object <- pObjects[[.dataset_selected_id]]
             incProgress(1, detail = sprintf("Loading '%s'", id_object))
-            se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
+            se2 <- try({
+                rObjects[[.ui_modal_load_messages]] <- capture.output(
+                    out <- .load_sce(ehub, pObjects[[.dataset_selected_id]]),
+                    type = "message"
+                )
+                out
+            })
             incProgress(1, detail = "Launching iSEE")
             if (is(se2, "try-error")) {
                 showNotification("invalid SummarizedExperiment supplied", type="error")
@@ -95,7 +106,7 @@
                 # init <- list(ReducedDimensionPlot())
                 init <- NULL
                 FUN(SE=se2, INITIAL=init)
-                removeModal(session = session)
+                # removeModal(session = session)
             }
         }, session = session)
     }, ignoreNULL=TRUE, ignoreInit=TRUE)

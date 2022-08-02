@@ -5,7 +5,7 @@
 #' the resource from `ehub` into R.
 #'
 #' @return A [SingleCellExperiment()] object.
-#' 
+#'
 #' @import SingleCellExperiment
 #' @import ExperimentHub
 #'
@@ -15,6 +15,8 @@
     if (!is(object, "SummarizedExperiment")) {
         object <- as(object, "SummarizedExperiment")
     }
-    object <- as(object, "SingleCellExperiment")
+    if (!is(object, "SingleCellExperiment")) {
+        object <- as(object, "SingleCellExperiment")
+    }
     object
 }
