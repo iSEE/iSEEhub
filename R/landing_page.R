@@ -78,11 +78,14 @@ landing_page <- function(ehub) {
         # nocov end
 
         pObjects <- .create_persistent_objects(datasets_available_table)
-        rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
+        rObjects <- reactiveValues(
+            rerender_datasets=1L,
+            rerender_overview=1L)
+        rObjects[[.flag_loading_dataset]] <- FALSE
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
-        .create_launch_observer(FUN, ehub, input, session, pObjects)
+        .create_launch_observer(FUN, ehub, input, output, session, pObjects, rObjects)
 
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 

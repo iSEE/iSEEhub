@@ -6,6 +6,8 @@
 .ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
 .ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
 .ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
+.ui_dataset_loading_messages <- "iSEEExperiment_INTERNAL_dataset_loading_messages"
+.flag_loading_dataset <- "iSEEExperiment_INTERNAL_loading_dataset"
 
 #' Observers for \code{\link{iSEEExperimentHub}}
 #'
@@ -69,15 +71,39 @@
 #' @importFrom shiny incProgress observeEvent showNotification withProgress
 #'
 #' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(FUN, ehub, input, session, pObjects) {
+.create_launch_observer <- function(FUN, ehub, input, output, session, pObjects, rObjects) {
+
+    dataset_loading_messages_file <- tempfile()
+    pObjects[["loading_dataset"]] <- FALSE
+
+    output[[.ui_dataset_loading_messages]] <- renderText({
+        if (rObjects[[.flag_loading_dataset]]) {
+            invalidateLater(millis = 1000, session = session)
+        }
+        paste0(scan(dataset_loading_messages_file, what = "character", sep = "\n"), collapse = "\n")
+    })
 
     # nocov start
     observeEvent(input[[.ui_launch_button]], {
+        showModal(modalDialog(
+            title="Console", size="l", fade=TRUE,
+            footer=NULL, easyClose=TRUE,
+            verbatimTextOutput(.ui_dataset_loading_messages)
+        ))
+
         withProgress(message = 'Loading Data Set', value = 0, max = 2, {
+            rObjects[[.flag_loading_dataset]] <- TRUE
             id_object <- pObjects[[.dataset_selected_id]]
             incProgress(1, detail = sprintf("Loading '%s'", id_object))
-            se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
+            se2 <- try({
+                out <- capture.output(
+                    se <- .load_sce(ehub, pObjects[[.dataset_selected_id]]),
+                    file = dataset_loading_messages_file,
+                    type = 'message')
+                se
+            })
             incProgress(1, detail = "Launching iSEE app")
+            rObjects[[.flag_loading_dataset]] <- FALSE
             if (is(se2, "try-error")) {
                 showNotification("invalid SummarizedExperiment supplied", type="error")
             } else {
