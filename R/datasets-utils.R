@@ -74,6 +74,9 @@
 #'
 #' @return The cleaned `SummarizedExperiment` object.
 #'
+#' @importFrom methods selectMethod
+#' @importFrom SummarizedExperiment rowData colData rowData<- colData<-
+#'
 #' @rdname INTERNAL_clean_dataset
 .clean_dataset <- function(se) {
     # Over-engineered method to write the code only once
