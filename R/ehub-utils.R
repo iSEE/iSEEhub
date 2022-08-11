@@ -8,10 +8,14 @@
 #'
 #' @import SingleCellExperiment
 #' @import ExperimentHub
+#' @importFrom SummarizedExperiment SummarizedExperiment
 #'
 #' @rdname INTERNAL_load_sce
 .load_sce <- function(ehub, x) {
     object <- ehub[[x]]
+    if (is(object, "GRanges")) {
+        object <- SummarizedExperiment(rowRanges = object)
+    }
     if (!is(object, "SummarizedExperiment")) {
         object <- as(object, "SummarizedExperiment")
     }

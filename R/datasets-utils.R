@@ -6,8 +6,8 @@
     "data.table", "data.table data.frame",  "DataFrame", "Dframe", "DFrame",
     "dgCMatrix", "DNAStringSet", "EBImage", "environment", "FaFile",
     "FilePath", "flowSet", "GAlignmentPairs",  "gds.class",
-    "GeneRegionTrack", "GenomicRanges", "GenomicRatioSet",  "GFF3File",
-    "GRanges", "GSEABase::GeneSetCollection", "H5File",
+    "GeneRegionTrack", "GenomicRatioSet",  "GFF3File",
+    "GSEABase::GeneSetCollection", "H5File",
     "HDF5-SummarizedExperiment", "HDF5Database", "HDF5Matrix", "Int",
     "InteractionSet", "list", "List", "list with 4 GRanges", "Lists",
     "magick-image", "matrix", "Matrix", "matrix array", "MIAME", "mzXML",
@@ -17,9 +17,9 @@
     "TENxMatrix", "tibble", "vector", "Vector"))
 
 .include_rdataclass <- sort(c("bsseq", "BSseq", "DEXSeqDataSet", "ExpressionSet",
-    "GSEABase::SummarizedExperiment", "RangedSummarizedExperiment",
-    "RGChannelSetExtended", "SeuratObject", "SingleCellExperiment",
-    "SpatialExperiment", "SummarizedExperiment"))
+    "GSEABase::SummarizedExperiment", "GenomicRanges", "GRanges",
+    "RangedSummarizedExperiment", "RGChannelSetExtended", "SeuratObject",
+    "SingleCellExperiment", "SpatialExperiment", "SummarizedExperiment"))
 
 .ehub_columns_factor <- c("species", "taxonomyid", "coordinate_1_based", "rdataclass", "sourcetype")
 
@@ -63,4 +63,26 @@
         x[[col]] <- as.factor(x[[col]])
     }
     x
+}
+
+#' Clean SummarizedExperiment objects
+#'
+#' This helper function cleans known artefacts in data sets imported from the
+#' Bioconductor `ExperimentHub`.
+#'
+#' @param se A [SummarizedExperiment-class] object.
+#'
+#' @return The cleaned `SummarizedExperiment` object.
+#'
+#' @rdname INTERNAL_clean_dataset
+.clean_dataset <- function(se) {
+    # Over-engineered method to write the code only once
+    # for processing rowData and colData identically
+    for (FUN.NAME in c("rowData", "colData")) {
+        FUN.GET <- selectMethod(FUN.NAME, class(se))
+        FUN.SET <- selectMethod(paste0(FUN.NAME, "<-"), c(class(se), "DataFrame"))
+        all.is.na <- apply(FUN.GET(se), 2, function(x) all(is.na(x)))
+        se <- FUN.SET(se, value = FUN.GET(se)[, !all.is.na])
+    }
+    se
 }

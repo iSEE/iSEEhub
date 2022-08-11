@@ -81,6 +81,7 @@
             if (is(se2, "try-error")) {
                 showNotification("invalid SummarizedExperiment supplied", type="error")
             } else {
+                se2 <- .clean_dataset(se2)
                 # init <- try(initLoad(input[[.initializeInitial]]))
                 # if (is(init, "try-error")) {
                 #     showNotification("invalid initial state supplied", type="warning")
