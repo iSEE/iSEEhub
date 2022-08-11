@@ -92,49 +92,101 @@
 </h2>
 <p>Get the latest stable <code>R</code> release from <a href="http://cran.r-project.org/" class="external-link">CRAN</a>. Then install <code>iSEEhub</code> from <a href="http://bioconductor.org/" class="external-link">Bioconductor</a> using the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"iSEEhub"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"iSEEhub"</span><span class="op">)</span></span></code></pre></div>
 <p>And the development version from <a href="https://github.com/kevinrue/iSEEhub" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"kevinrue/iSEEhub"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"kevinrue/iSEEhub"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/kevinrue/iSEEhub" class="external-link">"iSEEhub"</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: ExperimentHub</span>
-<span class="co">#&gt; Loading required package: BiocGenerics</span>
-<span class="co">#&gt; Warning: package 'BiocGenerics' was built under R version 4.2.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'BiocGenerics'</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     IQR, mad, sd, var, xtabs</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
-<span class="co">#&gt;     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
-<span class="co">#&gt;     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
-<span class="co">#&gt;     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
-<span class="co">#&gt;     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
-<span class="co">#&gt;     union, unique, unsplit, which.max, which.min</span>
-<span class="co">#&gt; Loading required package: AnnotationHub</span>
-<span class="co">#&gt; Loading required package: BiocFileCache</span>
-<span class="co">#&gt; Loading required package: dbplyr</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ExperimentHub</span><span class="op">)</span>
-<span class="va">ehub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; snapshotDate(): 2022-07-22</span>
-
-<span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/iSEEhub.html">iSEEhub</a></span><span class="op">(</span><span class="va">ehub</span><span class="op">)</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">runApp</a></span><span class="op">(</span><span class="va">app</span>, port <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/kevinrue/iSEEhub" class="external-link">"iSEEhub"</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: SingleCellExperiment</span></span>
+<span><span class="co">#&gt; Loading required package: SummarizedExperiment</span></span>
+<span><span class="co">#&gt; Loading required package: MatrixGenerics</span></span>
+<span><span class="co">#&gt; Loading required package: matrixStats</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'MatrixGenerics'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:matrixStats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,</span></span>
+<span><span class="co">#&gt;     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,</span></span>
+<span><span class="co">#&gt;     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,</span></span>
+<span><span class="co">#&gt;     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,</span></span>
+<span><span class="co">#&gt;     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,</span></span>
+<span><span class="co">#&gt;     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,</span></span>
+<span><span class="co">#&gt;     colWeightedMeans, colWeightedMedians, colWeightedSds,</span></span>
+<span><span class="co">#&gt;     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,</span></span>
+<span><span class="co">#&gt;     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,</span></span>
+<span><span class="co">#&gt;     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,</span></span>
+<span><span class="co">#&gt;     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,</span></span>
+<span><span class="co">#&gt;     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,</span></span>
+<span><span class="co">#&gt;     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,</span></span>
+<span><span class="co">#&gt;     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,</span></span>
+<span><span class="co">#&gt;     rowWeightedSds, rowWeightedVars</span></span>
+<span><span class="co">#&gt; Loading required package: GenomicRanges</span></span>
+<span><span class="co">#&gt; Loading required package: stats4</span></span>
+<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
+<span><span class="co">#&gt; Warning: package 'BiocGenerics' was built under R version 4.2.1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span></span>
+<span><span class="co">#&gt;     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span></span>
+<span><span class="co">#&gt;     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span></span>
+<span><span class="co">#&gt;     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span></span>
+<span><span class="co">#&gt;     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span></span>
+<span><span class="co">#&gt;     union, unique, unsplit, which.max, which.min</span></span>
+<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
+<span><span class="co">#&gt; Loading required package: IRanges</span></span>
+<span><span class="co">#&gt; Loading required package: GenomeInfoDb</span></span>
+<span><span class="co">#&gt; Loading required package: Biobase</span></span>
+<span><span class="co">#&gt; Welcome to Bioconductor</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Vignettes contain introductory material; view with</span></span>
+<span><span class="co">#&gt;     'browseVignettes()'. To cite Bioconductor, see</span></span>
+<span><span class="co">#&gt;     'citation("Biobase")', and for packages 'citation("pkgname")'.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'Biobase'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:MatrixGenerics':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     rowMedians</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:matrixStats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     anyMissing, rowMedians</span></span>
+<span><span class="co">#&gt; Loading required package: ExperimentHub</span></span>
+<span><span class="co">#&gt; Loading required package: AnnotationHub</span></span>
+<span><span class="co">#&gt; Loading required package: BiocFileCache</span></span>
+<span><span class="co">#&gt; Loading required package: dbplyr</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'AnnotationHub'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:Biobase':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     cache</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ExperimentHub</span><span class="op">)</span></span>
+<span><span class="va">ehub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; snapshotDate(): 2022-07-22</span></span>
+<span></span>
+<span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/iSEEhub.html">iSEEhub</a></span><span class="op">(</span><span class="va">ehub</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">runApp</a></span><span class="op">(</span><span class="va">app</span>, port <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><img src="reference/figures/landing_page.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -142,40 +194,40 @@
 </h2>
 <p>Below is the citation output from using <code>citation('iSEEhub')</code> in R. Please run this yourself to check for any updates on how to cite <strong>iSEEhub</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">'iSEEhub'</span><span class="op">)</span>, bibtex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; kevinrue (2022). _Demonstration of a Bioconductor Package_. doi:</span>
-<span class="co">#&gt; 10.18129/B9.bioc.iSEEhub (URL:</span>
-<span class="co">#&gt; https://doi.org/10.18129/B9.bioc.iSEEhub),</span>
-<span class="co">#&gt; https://github.com/kevinrue/iSEEhub/iSEEhub - R</span>
-<span class="co">#&gt; package version 0.99.0, &lt;URL:</span>
-<span class="co">#&gt; http://www.bioconductor.org/packages/iSEEhub&gt;.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   @Manual{,</span>
-<span class="co">#&gt;     title = {Demonstration of a Bioconductor Package},</span>
-<span class="co">#&gt;     author = {{kevinrue}},</span>
-<span class="co">#&gt;     year = {2022},</span>
-<span class="co">#&gt;     url = {http://www.bioconductor.org/packages/iSEEhub},</span>
-<span class="co">#&gt;     note = {https://github.com/kevinrue/iSEEhub/iSEEhub - R package version 0.99.0},</span>
-<span class="co">#&gt;     doi = {10.18129/B9.bioc.iSEEhub},</span>
-<span class="co">#&gt;   }</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; kevinrue (2022). "Demonstration of a Bioconductor Package." _bioRxiv_.</span>
-<span class="co">#&gt; doi: 10.1101/TODO (URL: https://doi.org/10.1101/TODO), &lt;URL:</span>
-<span class="co">#&gt; https://www.biorxiv.org/content/10.1101/TODO&gt;.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   @Article{,</span>
-<span class="co">#&gt;     title = {Demonstration of a Bioconductor Package},</span>
-<span class="co">#&gt;     author = {{kevinrue}},</span>
-<span class="co">#&gt;     year = {2022},</span>
-<span class="co">#&gt;     journal = {bioRxiv},</span>
-<span class="co">#&gt;     doi = {10.1101/TODO},</span>
-<span class="co">#&gt;     url = {https://www.biorxiv.org/content/10.1101/TODO},</span>
-<span class="co">#&gt;   }</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">'iSEEhub'</span><span class="op">)</span>, bibtex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; kevinrue (2022). _Demonstration of a Bioconductor Package_. doi:</span></span>
+<span><span class="co">#&gt; 10.18129/B9.bioc.iSEEExperimentHub (URL:</span></span>
+<span><span class="co">#&gt; https://doi.org/10.18129/B9.bioc.iSEEExperimentHub),</span></span>
+<span><span class="co">#&gt; https://github.com/kevinrue/iSEEExperimentHub/iSEEExperimentHub - R</span></span>
+<span><span class="co">#&gt; package version 0.99.0, &lt;URL:</span></span>
+<span><span class="co">#&gt; http://www.bioconductor.org/packages/iSEEExperimentHub&gt;.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   @Manual{,</span></span>
+<span><span class="co">#&gt;     title = {Demonstration of a Bioconductor Package},</span></span>
+<span><span class="co">#&gt;     author = {{kevinrue}},</span></span>
+<span><span class="co">#&gt;     year = {2022},</span></span>
+<span><span class="co">#&gt;     url = {http://www.bioconductor.org/packages/iSEEExperimentHub},</span></span>
+<span><span class="co">#&gt;     note = {https://github.com/kevinrue/iSEEExperimentHub/iSEEExperimentHub - R package version 0.99.0},</span></span>
+<span><span class="co">#&gt;     doi = {10.18129/B9.bioc.iSEEExperimentHub},</span></span>
+<span><span class="co">#&gt;   }</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; kevinrue (2022). "Demonstration of a Bioconductor Package." _bioRxiv_.</span></span>
+<span><span class="co">#&gt; doi: 10.1101/TODO (URL: https://doi.org/10.1101/TODO), &lt;URL:</span></span>
+<span><span class="co">#&gt; https://www.biorxiv.org/content/10.1101/TODO&gt;.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   @Article{,</span></span>
+<span><span class="co">#&gt;     title = {Demonstration of a Bioconductor Package},</span></span>
+<span><span class="co">#&gt;     author = {{kevinrue}},</span></span>
+<span><span class="co">#&gt;     year = {2022},</span></span>
+<span><span class="co">#&gt;     journal = {bioRxiv},</span></span>
+<span><span class="co">#&gt;     doi = {10.1101/TODO},</span></span>
+<span><span class="co">#&gt;     url = {https://www.biorxiv.org/content/10.1101/TODO},</span></span>
+<span><span class="co">#&gt;   }</span></span></code></pre></div>
 <p>Please note that the <code>iSEEhub</code> was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.</p>
 </div>
 <div class="section level2">
@@ -225,6 +277,7 @@
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+<li><a href="SUPPORT.html">Getting help</a></li>
 </ul>
 </div>
 
@@ -264,7 +317,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
