@@ -1,4 +1,4 @@
-#' iSEEExperimentHub app
+#' iSEEhub app
 #'
 #' @param ehub An [ExperimentHub()] object.
 #'
@@ -14,16 +14,16 @@
 #' library(ExperimentHub)
 #' ehub <- ExperimentHub()
 #'
-#' app <- iSEEExperimentHub(ehub)
+#' app <- iSEEhub(ehub)
 #'
 #' if (interactive()) {
 #'   shiny::runApp(app, port = 1234)
 #' }
-iSEEExperimentHub <- function(ehub) {
+iSEEhub <- function(ehub) {
     iSEE(
         landingPage=landing_page(ehub),
-        appTitle = sprintf("iSEEExperimentHub - v%s (snapshotDate: %s)",
-            packageVersion("iSEEExperimentHub"),
+        appTitle = sprintf("iSEEhub - v%s (snapshotDate: %s)",
+            packageVersion("iSEEhub"),
             snapshotDate(ehub)
             )
         )
