@@ -13,17 +13,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-# iSEEExperimentHub
+# iSEEhub
 
 <!-- badges: start -->
-[![GitHub issues](https://img.shields.io/github/issues/kevinrue/iSEEExperimentHub)](https://github.com/kevinrue/iSEEExperimentHub/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/kevinrue/iSEEExperimentHub)](https://github.com/kevinrue/iSEEExperimentHub/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/kevinrue/iSEEhub)](https://github.com/kevinrue/iSEEhub/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/kevinrue/iSEEhub)](https://github.com/kevinrue/iSEEhub/pulls)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check-bioc](https://github.com/kevinrue/iSEEExperimentHub/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/kevinrue/iSEEExperimentHub/actions)
-[![Codecov test coverage](https://codecov.io/gh/kevinrue/iSEEExperimentHub/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kevinrue/iSEEExperimentHub?branch=main)
+[![R-CMD-check-bioc](https://github.com/kevinrue/iSEEhub/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/kevinrue/iSEEhub/actions)
+[![Codecov test coverage](https://codecov.io/gh/kevinrue/iSEEhub/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kevinrue/iSEEhub?branch=main)
 <!-- badges: end -->
 
-The goal of `iSEEExperimentHub` is to provide an interface to the Bioconductor
+The goal of `iSEEhub` is to provide an interface to the Bioconductor
 `r BiocStyle::Biocpkg("ExperimentHub")` directly within an
 `r BiocStyle::Biocpkg("iSEE")` web-application.
 
@@ -33,32 +33,32 @@ and directly load objects into an `r BiocStyle::Biocpkg("iSEE")` web-application
 
 ## Installation instructions
 
-Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `iSEEExperimentHub` from [Bioconductor](http://bioconductor.org/) using the following code:
+Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `iSEEhub` from [Bioconductor](http://bioconductor.org/) using the following code:
 
 ```{r 'install', eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("iSEEExperimentHub")
+BiocManager::install("iSEEhub")
 ```
 
-And the development version from [GitHub](https://github.com/kevinrue/iSEEExperimentHub) with:
+And the development version from [GitHub](https://github.com/kevinrue/iSEEhub) with:
 
 ```{r 'install_dev', eval = FALSE}
-BiocManager::install("kevinrue/iSEEExperimentHub")
+BiocManager::install("kevinrue/iSEEhub")
 ```
 
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example, eval = requireNamespace('iSEEExperimentHub')}
-library("iSEEExperimentHub")
+```{r example, eval = requireNamespace('iSEEhub')}
+library("iSEEhub")
 library(ExperimentHub)
 ehub <- ExperimentHub()
 
-app <- iSEEExperimentHub(ehub)
+app <- iSEEhub(ehub)
 
 if (interactive()) {
   shiny::runApp(app, port = 1234)
@@ -69,24 +69,24 @@ if (interactive()) {
 
 ## Citation
 
-Below is the citation output from using `citation('iSEEExperimentHub')` in R. Please
-run this yourself to check for any updates on how to cite __iSEEExperimentHub__.
+Below is the citation output from using `citation('iSEEhub')` in R. Please
+run this yourself to check for any updates on how to cite __iSEEhub__.
 
-```{r 'citation', eval = requireNamespace('iSEEExperimentHub')}
-print(citation('iSEEExperimentHub'), bibtex = TRUE)
+```{r 'citation', eval = requireNamespace('iSEEhub')}
+print(citation('iSEEhub'), bibtex = TRUE)
 ```
 
-Please note that the `iSEEExperimentHub` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
+Please note that the `iSEEhub` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
 
 ## Code of Conduct
 
-Please note that the `iSEEExperimentHub` project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+Please note that the `iSEEhub` project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
 ## Development tools
 
 * Continuous code testing is possible thanks to [GitHub actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)  through `r BiocStyle::CRANpkg('usethis')`, `r BiocStyle::CRANpkg('remotes')`, and `r BiocStyle::CRANpkg('rcmdcheck')` customized to use [Bioconductor's docker containers](https://www.bioconductor.org/help/docker/) and `r BiocStyle::Biocpkg('BiocCheck')`.
 * Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh) and `r BiocStyle::CRANpkg('covr')`.
-* The [documentation website](http://kevinrue.github.io/iSEEExperimentHub) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
+* The [documentation website](http://kevinrue.github.io/iSEEhub) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
 * The code is styled automatically thanks to `r BiocStyle::CRANpkg('styler')`.
 * The documentation is formatted thanks to `r BiocStyle::CRANpkg('devtools')` and `r BiocStyle::CRANpkg('roxygen2')`.
 
@@ -96,4 +96,4 @@ This package was developed using `r BiocStyle::Biocpkg('biocthis')`.
 
 ## Code of Conduct
 
-Please note that the iSEEExperimentHub project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+Please note that the iSEEhub project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.

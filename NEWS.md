@@ -1,4 +1,4 @@
-# iSEEExperimentHub 0.99.0
+# iSEEhub 0.99.0
 
 NEW FEATURES
 

@@ -1,4 +1,4 @@
-Package: iSEEExperimentHub
+Package: iSEEhub
 Title: iSEE for the Bioconductor ExperimentHub
 Version: 0.99.0
 Date: 2022-07-29
@@ -11,8 +11,8 @@ Description: This package defines a custom landing page for an iSEE app
     users to browse the ExperimentHub, select a data set, download and cache it,
     and import it directly into a Bioconductor iSEE app.
 License: Artistic-2.0
-URL: https://github.com/kevinrue/iSEEExperimentHub
-BugReports: https://support.bioconductor.org/t/iSEEExperimentHub
+URL: https://github.com/kevinrue/iSEEhub
+BugReports: https://support.bioconductor.org/t/iSEEhub
 biocViews: Software,
     Infrastructure,
     DataImport,

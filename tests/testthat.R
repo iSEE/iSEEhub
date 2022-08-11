@@ -1,4 +1,4 @@
 library(testthat)
-library(iSEEExperimentHub)
+library(iSEEhub)
 
-test_check("iSEEExperimentHub")
+test_check("iSEEhub")

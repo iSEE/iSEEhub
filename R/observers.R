@@ -7,7 +7,7 @@
 .ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
 .ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
 
-#' Observers for \code{\link{iSEEExperimentHub}}
+#' Observers for \code{\link{iSEEhub}}
 #'
 #' @param input The Shiny input object from the server function.
 #' @param pObjects An environment containing global parameters generated in the landing page.
