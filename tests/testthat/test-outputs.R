@@ -14,6 +14,8 @@ test_that(".render_datasets_table works", {
     expect_named(output, "iSEEExperiment_INTERNAL_datasets_table")
 })
 
+# .render_markdown_overview ----
+
 test_that(".render_markdown_overview works", {
     output <- new.env()
     pObjects <- new.env()
