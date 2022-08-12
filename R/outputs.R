@@ -10,6 +10,7 @@
 #'
 #' @rdname INTERNAL_render_datasets_table
 .render_datasets_table <- function(datasets_table, output, pObjects, rObjects) {
+    # nocov start
     output[[.ui_dataset_table]] <- DT::renderDT({
         force(rObjects$rerender_datasets)
         keep_rdataclass_indices <- which(datasets_table$rdataclass %in% pObjects[[.ui_dataset_rdataclass]])
@@ -27,6 +28,7 @@
                 columnDefs=NULL),
             selection=list(mode = 'single', selected=1L, target = 'row'))
     })
+    # nocov end
 
     invisible(NULL)
 }
