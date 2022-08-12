@@ -9,7 +9,18 @@ test_that(".render_datasets_table works", {
     rObjects <- new.env()
 
     out <- iSEEhub:::.render_datasets_table(df, output, pObjects, rObjects)
+
     expect_null(out)
     expect_named(output, "iSEEExperiment_INTERNAL_datasets_table")
+})
 
+test_that(".render_markdown_overview works", {
+    output <- new.env()
+    pObjects <- new.env()
+    rObjects <- new.env()
+
+    out <- iSEEhub:::.render_markdown_overview(ehub, output, pObjects, rObjects)
+
+    expect_null(out)
+    expect_named(output, "iSEEExperiment_INTERNAL_markdown_overview")
 })

@@ -47,6 +47,7 @@
 #'
 #' @rdname INTERNAL_render_markdown_overview
 .render_markdown_overview <- function(ehub, output, pObjects, rObjects) {
+    # nocov start
     output[[.ui_markdown_overview]] <- renderUI({
         force(rObjects$rerender_overview)
         dataset_selected_row <- pObjects[[.dataset_selected_id]]
@@ -76,6 +77,7 @@
         }
         contents
     })
+    # nocov end
 
     invisible(NULL)
 }
