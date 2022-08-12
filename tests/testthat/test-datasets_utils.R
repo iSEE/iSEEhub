@@ -1,6 +1,6 @@
 # library(testthat); source("setup-ehub.R"); source("test-datasets_available.R")
 
-context(".datasets_available")
+# .datasets_available ----
 
 test_that(".datasets_available works", {
     out <- iSEEhub:::.datasets_available(ehub)
@@ -13,14 +13,14 @@ test_that(".datasets_available works", {
             "sourcetype")))
 })
 
-context(".rdataclasses_available")
+# .rdataclasses_available ----
 
 test_that(".rdataclasses_available works", {
     out <- iSEEhub:::.rdataclasses_available(ehub)
     expect_vector(out, ptype = character())
 })
 
-context(".dataset_factor_columns")
+# .dataset_factor_columns ----
 
 test_that(".dataset_factor_columns works", {
     df <- data.frame(
