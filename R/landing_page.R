@@ -14,7 +14,7 @@
 #' @importFrom rintrojs introjs
 #'
 #' @rdname INTERNAL_landing_page
-landing_page <- function(ehub) {
+.landing_page <- function(ehub) {
     datasets_available_table <- .datasets_available(ehub)
     rdataclasses_available <- .rdataclasses_available(ehub)
 
@@ -75,7 +75,6 @@ landing_page <- function(ehub) {
                     ) # fluidRow
                 ) # tagList
         }) # renderUI
-        # nocov end
 
         ## Disable navbar buttons that are not linked to any observer yet
         shinyjs::disable(iSEE:::.generalOrganizePanels) # organize panels
@@ -99,6 +98,7 @@ landing_page <- function(ehub) {
         .render_markdown_overview(ehub, output, pObjects, rObjects)
 
         invisible(NULL)
+        # nocov end
     }
 }
 

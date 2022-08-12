@@ -21,7 +21,7 @@
 #' }
 iSEEhub <- function(ehub) {
     iSEE(
-        landingPage=landing_page(ehub),
+        landingPage=.landing_page(ehub),
         appTitle = sprintf("iSEEhub - v%s (snapshotDate: %s)",
             packageVersion("iSEEhub"),
             snapshotDate(ehub)
