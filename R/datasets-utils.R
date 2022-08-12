@@ -70,6 +70,14 @@
 #' This helper function cleans known artefacts in data sets imported from the
 #' Bioconductor `ExperimentHub`.
 #'
+#' @details
+#' Columns of metadata that consist entirely of `NA` values crash Shiny widgets
+#' with the error \dQuote{no non-missing arguments to max; returning -Inf}.
+#' Rather than removing those columns altogether -- hiding data in the object
+#' downloaded from the Bioconductor ExperimentHub -- this function converts
+#' those columns to `factor("NA")`, so that it may still be handled and
+#' displayed in table and plot panels.
+#'
 #' @param se A [SummarizedExperiment-class] object.
 #'
 #' @return The cleaned `SummarizedExperiment` object.
@@ -80,12 +88,15 @@
 #' @rdname INTERNAL_clean_dataset
 .clean_dataset <- function(se) {
     # Over-engineered method to write the code only once
-    # for processing rowData and colData identically
+    # for processing rowData and colData identically.
+    # Convert full-NA columns to factor("NA").
     for (FUN.NAME in c("rowData", "colData")) {
         FUN.GET <- selectMethod(FUN.NAME, class(se))
         FUN.SET <- selectMethod(paste0(FUN.NAME, "<-"), c(class(se), "DataFrame"))
-        all.is.na <- apply(FUN.GET(se), 2, function(x) all(is.na(x)))
-        se <- FUN.SET(se, value = FUN.GET(se)[, !all.is.na])
+        tmp <- FUN.GET(se)
+        all.is.na <- apply(tmp, 2, function(x) all(is.na(x)))
+        tmp[, all.is.na] <- factor("NA")
+        se <- FUN.SET(se, value = tmp)
     }
     se
 }
