@@ -83,10 +83,13 @@
 
     # nocov start
     observeEvent(input[[.ui_launch_button]], {
-        withProgress(message = 'Loading Data Set', value = 0, max = 2, {
-            id_object <- pObjects[[.dataset_selected_id]]
-            incProgress(1, detail = sprintf("Loading '%s'", id_object))
-            se2 <- try(.load_sce(ehub, pObjects[[.dataset_selected_id]]))
+        id_object <- pObjects[[.dataset_selected_id]]
+        withProgress(message = sprintf("Loading '%s'", id_object),
+            value = 0, max = 3, {
+            incProgress(1, detail = "Installing package dependencies")
+            .install_dataset_dependencies(ehub, id_object)
+            incProgress(1, detail = "(Down)loading object")
+            se2 <- try(.load_sce(ehub, id_object))
             incProgress(1, detail = "Launching iSEE app")
             if (is(se2, "try-error")) {
                 showNotification("invalid SummarizedExperiment supplied", type="error")
