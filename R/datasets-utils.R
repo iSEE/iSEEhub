@@ -21,7 +21,8 @@
     "RangedSummarizedExperiment", "RGChannelSetExtended", "SeuratObject",
     "SingleCellExperiment", "SpatialExperiment", "SummarizedExperiment"))
 
-.ehub_columns_factor <- c("species", "taxonomyid", "coordinate_1_based", "rdataclass", "sourcetype")
+.ehub_columns_factor <- c("dataprovider", "species", "taxonomyid", "genome",
+    "coordinate_1_based", "preparerclass", "rdataclass", "sourcetype")
 
 #' Available Data Sets
 #'
