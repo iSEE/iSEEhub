@@ -1,7 +1,6 @@
-# library(testthat); source("test-datasets_available.R")
+# library(testthat); source("setup-ehub.R"); source("test-datasets_available.R")
 
 test_that(".datasets_available works", {
-    ehub <- ExperimentHub()
     out <- iSEEhub:::.datasets_available(ehub)
     expect_s3_class(out, "data.frame")
     expect_identical(
@@ -13,3 +12,7 @@ test_that(".datasets_available works", {
 })
 
 
+test_that(".rdataclasses_available works", {
+    out <- iSEEhub:::.rdataclasses_available(ehub)
+    expect_vector(out, ptype = character())
+})
