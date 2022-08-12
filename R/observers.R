@@ -6,6 +6,8 @@
 .ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
 .ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
 .ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
+.ui_launch_yes <- "iSEEExperiment_INTERNAL_launch_yes"
+.ui_launch_no <- "iSEEExperiment_INTERNAL_launch_no"
 
 #' Observers for \code{\link{iSEEhub}}
 #'
@@ -83,38 +85,69 @@
 
     # nocov start
     observeEvent(input[[.ui_launch_button]], {
-        id_object <- pObjects[[.dataset_selected_id]]
-        withProgress(message = sprintf("Loading '%s'", id_object),
-            value = 0, max = 3, {
-            incProgress(1, detail = "Installing package dependencies")
-            .install_dataset_dependencies(ehub, id_object)
-            incProgress(1, detail = "(Down)loading object")
-            se2 <- try(.load_sce(ehub, id_object))
-            incProgress(1, detail = "Launching iSEE app")
-            if (is(se2, "try-error")) {
-                showNotification("invalid SummarizedExperiment supplied", type="error")
-            } else {
-                se2 <- .clean_dataset(se2)
-                # init <- try(initLoad(input[[.initializeInitial]]))
-                # if (is(init, "try-error")) {
-                #     showNotification("invalid initial state supplied", type="warning")
-                #     init <- NULL
-                # }
-                # init <- list(ReducedDimensionPlot())
-                init <- NULL
-                FUN(SE=se2, INITIAL=init)
-                shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
-                shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
-                shinyjs::enable(iSEE:::.generalExportOutput) # export content
-                shinyjs::enable(iSEE:::.generalCodeTracker) # tracked code
-                shinyjs::enable(iSEE:::.generalPanelSettings) # panel settings
-                shinyjs::enable(iSEE:::.generalVignetteOpen) # open vignette
-                shinyjs::enable(iSEE:::.generalSessionInfo) # session info
-                shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
-            }
-        }, session = session)
+        showModal(modalDialog(
+            p("Install data set dependencies?"),
+            hr(),
+            p(
+                style="text-align:center;",
+                actionButton(.ui_launch_yes, "Yes"),
+                actionButton(.ui_launch_no, "No")
+            ),
+            title = "Dependencies required",
+            easyClose = FALSE,
+            footer = NULL
+        ))
+    }, ignoreNULL=TRUE, ignoreInit=TRUE)
+    # nocov end
+
+    # nocov start
+    observeEvent(input[[.ui_launch_yes]], {
+        .launch_isee(FUN, ehub, session, pObjects)
+        removeModal(session)
+    }, ignoreNULL=TRUE, ignoreInit=TRUE)
+    # nocov end
+
+    # nocov start
+    observeEvent(input[[.ui_launch_no]], {
+        showNotification("Launch cancelled.")
+        removeModal(session)
     }, ignoreNULL=TRUE, ignoreInit=TRUE)
     # nocov end
 
     invisible(NULL)
+}
+
+.launch_isee <- function(FUN, ehub, session, pObjects) {
+    # nocov start
+    id_object <- pObjects[[.dataset_selected_id]]
+    withProgress(message = sprintf("Loading '%s'", id_object),
+        value = 0, max = 3, {
+        incProgress(1, detail = "Installing package dependencies")
+        .install_dataset_dependencies(ehub, id_object)
+        incProgress(1, detail = "(Down)loading object")
+        se2 <- try(.load_sce(ehub, id_object))
+        incProgress(1, detail = "Launching iSEE app")
+        if (is(se2, "try-error")) {
+            showNotification("invalid SummarizedExperiment supplied", type="error")
+        } else {
+            se2 <- .clean_dataset(se2)
+            # init <- try(initLoad(input[[.initializeInitial]]))
+            # if (is(init, "try-error")) {
+            #     showNotification("invalid initial state supplied", type="warning")
+            #     init <- NULL
+            # }
+            # init <- list(ReducedDimensionPlot())
+            init <- NULL
+            FUN(SE=se2, INITIAL=init)
+            shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
+            shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
+            shinyjs::enable(iSEE:::.generalExportOutput) # export content
+            shinyjs::enable(iSEE:::.generalCodeTracker) # tracked code
+            shinyjs::enable(iSEE:::.generalPanelSettings) # panel settings
+            shinyjs::enable(iSEE:::.generalVignetteOpen) # open vignette
+            shinyjs::enable(iSEE:::.generalSessionInfo) # session info
+            shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
+        }
+    }, session = session)
+    # nocov end
 }
