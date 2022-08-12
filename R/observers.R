@@ -90,6 +90,14 @@
                 # init <- list(ReducedDimensionPlot())
                 init <- NULL
                 FUN(SE=se2, INITIAL=init)
+                shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
+                shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
+                shinyjs::enable(iSEE:::.generalExportOutput) # export content
+                shinyjs::enable(iSEE:::.generalCodeTracker) # tracked code
+                shinyjs::enable(iSEE:::.generalPanelSettings) # panel settings
+                shinyjs::enable(iSEE:::.generalVignetteOpen) # open vignette
+                shinyjs::enable(iSEE:::.generalSessionInfo) # session info
+                shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
             }
         }, session = session)
     }, ignoreNULL=TRUE, ignoreInit=TRUE)

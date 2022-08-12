@@ -77,6 +77,16 @@ landing_page <- function(ehub) {
         }) # renderUI
         # nocov end
 
+        ## Disable navbar buttons that are not linked to any observer yet
+        shinyjs::disable(iSEE:::.generalOrganizePanels) # organize panels
+        shinyjs::disable(iSEE:::.generalLinkGraph) # link graph
+        shinyjs::disable(iSEE:::.generalExportOutput) # export content
+        shinyjs::disable(iSEE:::.generalCodeTracker) # tracked code
+        shinyjs::disable(iSEE:::.generalPanelSettings) # panel settings
+        shinyjs::disable(iSEE:::.generalVignetteOpen) # open vignette
+        shinyjs::disable(iSEE:::.generalSessionInfo) # session info
+        shinyjs::disable(iSEE:::.generalCitationInfo) # citation info
+
         pObjects <- .create_persistent_objects(datasets_available_table)
         rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
 
