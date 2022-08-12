@@ -22,7 +22,7 @@
 #' @return
 #' For `.convert_to_sce()`, a [SingleCellExperiment()] object.
 #'
-#' @importFrom methods is
+#' @importFrom methods is as
 #' @importFrom SummarizedExperiment SummarizedExperiment
 #'
 #' @rdname INTERNAL_load_sce
@@ -37,4 +37,26 @@
         object <- as(object, "SingleCellExperiment")
     }
     object
+}
+
+#' Install Package Dependencies
+#'
+#' Install packages necessary to load a particular data set in the Bioconductor
+#' ExperimentHub.
+#'
+#' @param ehub An [ExperimentHub()] object.
+#' @param x Numerical or character scalar to retrieve (if necessary) and import
+#' the resource from `ehub` into R.
+#'
+#' @return A `character` vector of packaged installed.
+#'
+#' @importFrom BiocManager install
+#'
+#' @rdname INTERNAL_install_dataset_dependencies
+.install_dataset_dependencies <- function(ehub, x) {
+    # nocov start
+    ehub_dataset <- ehub[x]
+    pkgs <- ehub_dataset$preparerclass
+    BiocManager::install(pkgs, update = FALSE)
+    # nocov end
 }
