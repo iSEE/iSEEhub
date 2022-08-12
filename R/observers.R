@@ -22,36 +22,46 @@
 #' @rdname INTERNAL_create_observers
 .create_observers <- function(ehub, input, session, pObjects, rObjects) {
 
-        observeEvent(input[[.dataset_selected_row]], {
-            pObjects[[.dataset_selected_id]] <- rownames(pObjects$datasets_visible)[input[[.dataset_selected_row]]]
-            rObjects$rerender_overview <- iSEE:::.increment_counter(isolate(rObjects$rerender_overview))
-        }, ignoreInit = FALSE, ignoreNULL = FALSE)
+    # nocov start
+    observeEvent(input[[.dataset_selected_row]], {
+        pObjects[[.dataset_selected_id]] <- rownames(pObjects$datasets_visible)[input[[.dataset_selected_row]]]
+        rObjects$rerender_overview <- iSEE:::.increment_counter(isolate(rObjects$rerender_overview))
+    }, ignoreInit = FALSE, ignoreNULL = FALSE)
+    # nocov end
 
-        observeEvent(input[[.ui_dataset_columns]], {
-            pObjects[[.ui_dataset_columns]] <- input[[.ui_dataset_columns]]
-            rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
-        })
+    # nocov start
+    observeEvent(input[[.ui_dataset_columns]], {
+        pObjects[[.ui_dataset_columns]] <- input[[.ui_dataset_columns]]
+        rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
+    })
+    # nocov end
 
-        observeEvent(input[[.ui_dataset_rdataclass]], {
-            value <- input[[.ui_dataset_rdataclass]]
-            pObjects[[.ui_dataset_rdataclass]] <- value
-            if (identical(sort(value), sort(.include_rdataclass))) {
-                shinyjs::disable(.ui_reset_rdataclasses)
-            } else {
-                shinyjs::enable(.ui_reset_rdataclasses)
-            }
-            rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
-        })
+    # nocov start
+    observeEvent(input[[.ui_dataset_rdataclass]], {
+        value <- input[[.ui_dataset_rdataclass]]
+        pObjects[[.ui_dataset_rdataclass]] <- value
+        if (identical(sort(value), sort(.include_rdataclass))) {
+            shinyjs::disable(.ui_reset_rdataclasses)
+        } else {
+            shinyjs::enable(.ui_reset_rdataclasses)
+        }
+        rObjects$rerender_datasets <- iSEE:::.increment_counter(isolate(rObjects$rerender_datasets))
+    })
+    # nocov end
 
-        observeEvent(input[[iSEE:::.generalTourSteps]], {
-            introjs(session, options=list(steps=.landing_page_tour))
-        }, ignoreInit=TRUE)
+    # nocov start
+    observeEvent(input[[iSEE:::.generalTourSteps]], {
+        introjs(session, options=list(steps=.landing_page_tour))
+    }, ignoreInit=TRUE)
+    # nocov end
 
-        observeEvent(input[[.ui_reset_rdataclasses]], {
-            updateSelectizeInput(session, .ui_dataset_rdataclass, selected = .include_rdataclass)
-        })
+    # nocov start
+    observeEvent(input[[.ui_reset_rdataclasses]], {
+        updateSelectizeInput(session, .ui_dataset_rdataclass, selected = .include_rdataclass)
+    })
+    # nocov end
 
-        invisible(NULL)
+    invisible(NULL)
 }
 
 #' Observers for Launching Main \code{\link{iSEE}} App
