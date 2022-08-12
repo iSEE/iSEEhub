@@ -74,6 +74,9 @@
 #' @param input The Shiny input object from the server function.
 #' @param session The Shiny session object from the server function.
 #' @param pObjects An environment containing global parameters generated in the landing page.
+#' @param runtime_install Logical scalar indicating whether the app may prompt
+#' users whether to install data set dependencies at runtime using
+#' [BiocManager::install()].
 #'
 #' @return Observers are created in the server function in which this is called.
 #' A \code{NULL} value is invisibly returned.
@@ -81,22 +84,43 @@
 #' @importFrom shiny incProgress observeEvent showNotification withProgress
 #'
 #' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(FUN, ehub, input, session, pObjects) {
+.create_launch_observer <- function(FUN, ehub, input, session, pObjects, runtime_install) {
 
     # nocov start
     observeEvent(input[[.ui_launch_button]], {
-        showModal(modalDialog(
-            p("Install data set dependencies?"),
-            hr(),
-            p(
-                style="text-align:center;",
-                actionButton(.ui_launch_yes, "Yes"),
-                actionButton(.ui_launch_no, "No")
-            ),
-            title = "Dependencies required",
-            easyClose = FALSE,
-            footer = NULL
-        ))
+        deps <- .missing_deps(ehub, pObjects[[.dataset_selected_id]])
+        if (length(deps)) {
+            if (runtime_install) {
+                showModal(modalDialog(
+                    p("Install data set dependencies?"),
+                    br(), br(),
+                    tagList(lapply(deps, code)),
+                    hr(),
+                    p(
+                        style="text-align:center;",
+                        actionButton(.ui_launch_yes, "Yes"),
+                        actionButton(.ui_launch_no, "No")
+                    ),
+                    title = "Dependencies required",
+                    easyClose = FALSE,
+                    footer = NULL
+                ))
+            } else {
+                showModal(modalDialog(
+                    p(
+                        "Some dependencies required to load the selected data set are missing.",
+                        "This app does not allow users to install packages at runtime.",
+                        br(), br(),
+                        "Please contact the maintainer of this app instance to install the required package(s): ",
+                        tagList(lapply(deps, code))
+                    ),
+                    title = "Dependencies missing",
+                    easyClose = TRUE
+                    ))
+            }
+        } else {
+            .launch_isee(FUN, ehub, session, pObjects)
+        }
     }, ignoreNULL=TRUE, ignoreInit=TRUE)
     # nocov end
 

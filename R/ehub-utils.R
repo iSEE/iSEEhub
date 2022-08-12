@@ -60,3 +60,11 @@
     BiocManager::install(pkgs, update = FALSE)
     # nocov end
 }
+
+.missing_deps <- function(ehub, x) {
+    ehub_dataset <- ehub[x]
+    deps <- ehub_dataset$preparerclass
+    ip <- rownames(installed.packages())
+    missing_deps <- setdiff(deps, ip)
+    missing_deps
+}

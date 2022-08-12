@@ -19,9 +19,9 @@
 #' if (interactive()) {
 #'   shiny::runApp(app, port = 1234)
 #' }
-iSEEhub <- function(ehub) {
+iSEEhub <- function(ehub, runtime_install = FALSE) {
     iSEE(
-        landingPage=.landing_page(ehub),
+        landingPage=.landing_page(ehub, runtime_install),
         appTitle = sprintf("iSEEhub - v%s (snapshotDate: %s)",
             packageVersion("iSEEhub"),
             snapshotDate(ehub)
