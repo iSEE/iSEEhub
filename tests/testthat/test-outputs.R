@@ -26,3 +26,16 @@ test_that(".render_markdown_overview works", {
     expect_null(out)
     expect_named(output, "iSEEhub_INTERNAL_markdown_overview")
 })
+
+# .render_markdown_overview ----
+
+test_that(".render_markdown_overview works", {
+    output <- new.env()
+    pObjects <- new.env()
+    rObjects <- new.env()
+
+    out <- iSEEhub:::.render_initial_overview(output, pObjects, rObjects)
+
+    expect_null(out)
+    expect_named(output, "iSEEhub_INTERNAL_initial_overview")
+})
