@@ -65,14 +65,13 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
         se2 <- try(.load_sce(ehub, id_object))
         incProgress(1, detail = "Launching iSEE app")
         if (is(se2, "try-error")) {
-            showNotification("invalid SummarizedExperiment supplied", type="error")
+            showNotification("Invalid SummarizedExperiment supplied.", type="error")
         } else {
             se2 <- .clean_dataset(se2)
-
             init <- try(.load_initial(pObjects))
             if (is(init, "try-error")) {
-                showNotification("Invalid initial state supplied", type="warning")
-                init <- NULL
+                showNotification("Invalid initial state supplied.", type="warning")
+                return()
             }
             FUN(SE=se2, INITIAL=init)
             shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
