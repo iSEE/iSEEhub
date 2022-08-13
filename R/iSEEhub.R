@@ -68,13 +68,12 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
             showNotification("invalid SummarizedExperiment supplied", type="error")
         } else {
             se2 <- .clean_dataset(se2)
-            # init <- try(initLoad(input[[.initializeInitial]]))
-            # if (is(init, "try-error")) {
-            #     showNotification("invalid initial state supplied", type="warning")
-            #     init <- NULL
-            # }
-            # init <- list(ReducedDimensionPlot())
-            init <- NULL
+
+            init <- try(.load_initial(pObjects))
+            if (is(init, "try-error")) {
+                showNotification("Invalid initial state supplied", type="warning")
+                init <- NULL
+            }
             FUN(SE=se2, INITIAL=init)
             shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
             shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
