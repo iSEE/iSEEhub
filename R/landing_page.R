@@ -12,7 +12,7 @@
 #' @importFrom methods is as
 #' @importFrom shiny actionButton br strong column fluidRow p reactiveValues
 #' renderUI selectizeInput showNotification tagList uiOutput
-#' @importFrom shinydashboard box
+#' @importFrom shinydashboard box tabBox tabPanel
 #' @importFrom DT datatable DTOutput renderDT
 #' @importFrom rintrojs introjs
 #'
@@ -37,13 +37,18 @@
                             DTOutput(.ui_dataset_table)
                     )),
                     column(width = 5L,
-                        shinydashboard::box(title = "Selected dataset",
-                            collapsible = FALSE, width = NULL,
-                            uiOutput(.ui_markdown_overview),
-                            p(
-                                actionButton(.ui_launch_button, label="Launch!",
-                                    style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"),
-                                style="text-align: center;"))
+                        shinydashboard::tabBox(title = "Selected dataset",
+                            side = "left",
+                            width = NULL,
+                            tabPanel("Info",
+                                uiOutput(.ui_markdown_overview),
+                                p(
+                                    actionButton(.ui_launch_button, label="Launch!",
+                                        style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"),
+                                    style="text-align: center;")),
+                            tabPanel("Config",
+                                "This tabPanel will display a choice of initial settings specific to each data set.")
+                            )
                         )
                     ),
                 fluidRow(
