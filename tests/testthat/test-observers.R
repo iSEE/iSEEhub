@@ -7,7 +7,7 @@ test_that(".create_observers works", {
     pObjects <- new.env()
     rObjects <- new.env()
 
-    out <- iSEEhub:::.create_observerss(ehub, input, session = NULL, pObjects, rObjects)
+    out <- iSEEhub:::.create_observers(ehub, input, session = NULL, pObjects, rObjects)
     expect_null(out)
 
 })
