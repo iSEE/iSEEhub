@@ -6,6 +6,8 @@
 .ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
 .ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
 .ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
+.ui_launch_yes <- "iSEEExperiment_INTERNAL_launch_yes"
+.ui_launch_no <- "iSEEExperiment_INTERNAL_launch_no"
 
 #' Observers for \code{\link{iSEEhub}}
 #'
@@ -66,53 +68,74 @@
 
 #' Observers for Launching Main \code{\link{iSEE}} App
 #'
-#' @param FUN A function to initialize the \code{\link{iSEE}} observer architecture.
-#' Refer to [iSEE::createLandingPage()] for more details.
+#' @param FUN A function to initialize the \code{\link{iSEE}} observer
+#' architecture. Refer to [iSEE::createLandingPage()] for more details.
 #' @param ehub An [ExperimentHub()] object.
 #' @param input The Shiny input object from the server function.
 #' @param session The Shiny session object from the server function.
-#' @param pObjects An environment containing global parameters generated in the landing page.
+#' @param pObjects An environment containing global parameters generated in the
+#' landing page.
+#' @param runtime_install A logical scalar indicating whether the app may allow
+#' users whether to install data set dependencies at runtime using
+#' [BiocManager::install()] through a modal prompt.
 #'
 #' @return Observers are created in the server function in which this is called.
 #' A \code{NULL} value is invisibly returned.
 #'
 #' @importFrom shiny incProgress observeEvent showNotification withProgress
 #'
-#' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(FUN, ehub, input, session, pObjects) {
+#' @rdname INTERNAL_create_launch_observers
+.create_launch_observers <- function(FUN, ehub, input, session, pObjects, runtime_install) {
 
     # nocov start
     observeEvent(input[[.ui_launch_button]], {
-        id_object <- pObjects[[.dataset_selected_id]]
-        withProgress(message = sprintf("Loading '%s'", id_object),
-            value = 0, max = 3, {
-            incProgress(1, detail = "Installing package dependencies")
-            .install_dataset_dependencies(ehub, id_object)
-            incProgress(1, detail = "(Down)loading object")
-            se2 <- try(.load_sce(ehub, id_object))
-            incProgress(1, detail = "Launching iSEE app")
-            if (is(se2, "try-error")) {
-                showNotification("invalid SummarizedExperiment supplied", type="error")
+        deps <- .missing_deps(ehub, pObjects[[.dataset_selected_id]])
+        if (length(deps)) {
+            if (runtime_install) {
+                showModal(modalDialog(
+                    p("Install data set dependencies?"),
+                    br(), br(),
+                    tagList(lapply(deps, code)),
+                    hr(),
+                    p(
+                        style="text-align:center;",
+                        actionButton(.ui_launch_yes, "Yes"),
+                        actionButton(.ui_launch_no, "No")
+                    ),
+                    title = "Dependencies required",
+                    easyClose = FALSE,
+                    footer = NULL
+                ))
             } else {
-                se2 <- .clean_dataset(se2)
-                # init <- try(initLoad(input[[.initializeInitial]]))
-                # if (is(init, "try-error")) {
-                #     showNotification("invalid initial state supplied", type="warning")
-                #     init <- NULL
-                # }
-                # init <- list(ReducedDimensionPlot())
-                init <- NULL
-                FUN(SE=se2, INITIAL=init)
-                shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
-                shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
-                shinyjs::enable(iSEE:::.generalExportOutput) # export content
-                shinyjs::enable(iSEE:::.generalCodeTracker) # tracked code
-                shinyjs::enable(iSEE:::.generalPanelSettings) # panel settings
-                shinyjs::enable(iSEE:::.generalVignetteOpen) # open vignette
-                shinyjs::enable(iSEE:::.generalSessionInfo) # session info
-                shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
+                showModal(modalDialog(
+                    p(
+                        "Some dependencies required to load the selected data set are missing.",
+                        "This app does not allow users to install packages at runtime.",
+                        br(), br(),
+                        "Please contact the maintainer of this app instance to install the required package(s): ",
+                        tagList(lapply(deps, code))
+                    ),
+                    title = "Dependencies missing",
+                    easyClose = TRUE
+                    ))
             }
-        }, session = session)
+        } else {
+            .launch_isee(FUN, ehub, session, pObjects)
+        }
+    }, ignoreNULL=TRUE, ignoreInit=TRUE)
+    # nocov end
+
+    # nocov start
+    observeEvent(input[[.ui_launch_yes]], {
+        .launch_isee(FUN, ehub, session, pObjects)
+        removeModal(session)
+    }, ignoreNULL=TRUE, ignoreInit=TRUE)
+    # nocov end
+
+    # nocov start
+    observeEvent(input[[.ui_launch_no]], {
+        showNotification("Launch cancelled.")
+        removeModal(session)
     }, ignoreNULL=TRUE, ignoreInit=TRUE)
     # nocov end
 

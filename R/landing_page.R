@@ -1,6 +1,9 @@
 #' Landing page function
 #'
 #' @param ehub An [ExperimentHub()] object.
+#' @param runtime_install A logical scalar indicating whether the app may allow
+#' users whether to install data set dependencies at runtime using
+#' [BiocManager::install()] through a modal prompt.
 #'
 #' @return A `function` that defines UI elements and observers for the
 #' landing page of the app.
@@ -14,7 +17,7 @@
 #' @importFrom rintrojs introjs
 #'
 #' @rdname INTERNAL_landing_page
-.landing_page <- function(ehub) {
+.landing_page <- function(ehub, runtime_install) {
     datasets_available_table <- .datasets_available(ehub)
     rdataclasses_available <- .rdataclasses_available(ehub)
 
@@ -91,7 +94,7 @@
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
-        .create_launch_observer(FUN, ehub, input, session, pObjects)
+        .create_launch_observers(FUN, ehub, input, session, pObjects, runtime_install)
 
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 

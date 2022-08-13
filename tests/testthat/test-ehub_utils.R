@@ -29,3 +29,23 @@ test_that(".convert_to_sce works for SummarizedExperiment", {
     expect_s4_class(out, "SingleCellExperiment")
 
 })
+
+# .missing_deps ----
+
+test_that(".missing_deps returns empty vector when dependencies are present", {
+
+    # ExpressionSet is supported
+    # package 'GSE62944' is installed through Suggests:
+    out <- iSEEhub:::.missing_deps(ehub, "EH1")
+    expect_vector(out, character(), 0)
+
+})
+
+test_that(".missing_deps detects missing dependencies", {
+
+    # BamFile is not supported
+    # package 'RNAmodR.Data' is not installed as an iSEEhub dependency
+    out <- iSEEhub:::.missing_deps(ehub, "EH2519")
+    expect_vector(out, character(), 1)
+
+})
