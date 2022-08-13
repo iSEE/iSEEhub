@@ -40,19 +40,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/iSEEhub.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/iSEEExperimentHub.html">Introduction to iSEEhub</a>
-    </li>
-  </ul>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -88,8 +79,8 @@ Oxford<br><a class="author_email" href="mailto:#"></a><a href="mailto:kevin.rue-
                   
             <h4 data-toc-skip class="date">13 August 2022</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/kevinrue/iSEEhub/blob/HEAD/vignettes/iSEEExperimentHub.Rmd" class="external-link"><code>vignettes/iSEEExperimentHub.Rmd</code></a></small>
-      <div class="hidden name"><code>iSEEExperimentHub.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/kevinrue/iSEEhub/blob/HEAD/vignettes/iSEEhub.Rmd" class="external-link"><code>vignettes/iSEEhub.Rmd</code></a></small>
+      <div class="hidden name"><code>iSEEhub.Rmd</code></div>
 
     </div>
 
@@ -121,10 +112,12 @@ by using the following commands in your <code>R</code> session:</p>
 <h3 id="required-knowledge">Required knowledge<a class="anchor" aria-label="anchor" href="#required-knowledge"></a>
 </h3>
 <p><em><a href="https://bioconductor.org/packages/3.16/iSEEhub" class="external-link">iSEEhub</a></em>
-is based on many other packages and in particular in those that have
-implemented the infrastructure needed for dealing with RNA-seq data
-(EDIT!). That is, packages like <em><a href="https://bioconductor.org/packages/3.16/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>
-(EDIT!).</p>
+is based on many other packages that have implemented the infrastructure
+needed for dealing with omics data and interactive visualisation. That
+is, packages like <em><a href="https://bioconductor.org/packages/3.16/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>,
+<em><a href="https://bioconductor.org/packages/3.16/SingleCellExperiment" class="external-link">SingleCellExperiment</a></em>,
+<em><a href="https://bioconductor.org/packages/3.16/iSEE" class="external-link">iSEE</a></em>
+and <em><a href="https://bioconductor.org/packages/3.16/shiny" class="external-link">shiny</a></em>.</p>
 <p>If you are asking yourself the question “Where do I start using
 Bioconductor?” you might be interested in <a href="http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU" class="external-link">this
 blog post</a>.</p>
@@ -177,6 +170,11 @@ to cite the package and the overall approach. Thank you!</p>
 <div class="section level2">
 <h2 id="quick-start-to-using-to-iseehub">Quick start to using to <code>iSEEhub</code><a class="anchor" aria-label="anchor" href="#quick-start-to-using-to-iseehub"></a>
 </h2>
+<p>The main functionality of the package is available through the
+function <code><a href="../reference/iSEEhub.html">iSEEhub()</a></code>.</p>
+<p>The function returns a <em><a href="https://bioconductor.org/packages/3.16/shiny" class="external-link">shiny</a></em> app
+that can then be launched using the function
+<code><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">shiny::runApp()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/kevinrue/iSEEhub" class="external-link">"iSEEhub"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ExperimentHub</span><span class="op">)</span></span>
@@ -194,6 +192,32 @@ vignette:</p>
 <em><a href="https://bioconductor.org/packages/3.16/iSEEhub" class="external-link">iSEEhub</a></em>
 (kevinrue, 2022)</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="managing-data-set-dependencies">Managing data set dependencies<a class="anchor" aria-label="anchor" href="#managing-data-set-dependencies"></a>
+</h2>
+<p>Each data set in the Bioconductor <em><a href="https://bioconductor.org/packages/3.16/ExperimentHub" class="external-link">ExperimentHub</a></em>
+is associated with package dependencies that are required to handle the
+data set in an <em>R</em> session. Package dependencies must be
+installed in the <em>R</em> library before the corresponding data set
+can be loaded.</p>
+<p>The list of packages associated with all data sets types supported by
+<em><a href="https://bioconductor.org/packages/3.16/iSEEhub" class="external-link">iSEEhub</a></em>
+is regularly updated in the <code>Suggests:</code> field of the
+<code>DESCRIPTION</code> file. However, those packages are not
+automatically installed in a minimal installation of the <em><a href="https://bioconductor.org/packages/3.16/iSEEhub" class="external-link">iSEEhub</a></em>
+package.</p>
+<p>By default, <code>iSEEhub(..., runtime_install = FALSE)</code>
+prevents the app from installing those dependencies at runtime. In that
+case, when users identify a missing dependency, they must interrupt the
+app, install the required package(s) using the <em>R</em> console, and
+re-launch the app. We recommend this approach for applications hosted on
+public web-servers.</p>
+<p>Alternatively, <code>iSEEhub(..., runtime_install = TRUE)</code> can
+be used to launch an app that prompts users interactively (i.e., within
+the app) for their consent to install missing dependencies. We recommend
+this approach for applications run on personal computers (unless users
+prefer to install packages themselves, of course).</p>
 </div>
 <div class="section level2">
 <h2 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
@@ -233,9 +257,9 @@ Chang, and Iannone, 2022)</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"iSEEhub.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span><span class="co">#&gt; [1] "2022-08-13 16:23:11 UTC"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2022-08-13 17:11:06 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span><span class="co">#&gt; Time difference of 13.828 secs</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Time difference of 11.675 secs</span></span></code></pre>
 <p><code>R</code> session information.</p>
 <pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>

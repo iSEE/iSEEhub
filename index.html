@@ -43,19 +43,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="articles/iSEEhub.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/iSEEExperimentHub.html">Introduction to iSEEhub</a>
-    </li>
-  </ul>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -85,8 +76,8 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>iSEEhub</code> is to provide an interface to the Bioconductor <em><a href="https://bioconductor.org/packages/3.16/ExperimentHub" class="external-link">ExperimentHub</a></em> directly within an <em><a href="https://bioconductor.org/packages/3.16/iSEE" class="external-link">iSEE</a></em> web-application.</p>
-<p>The main functionality of this package is to define a custom landing page allowing users to browse the Bioconductor <em><a href="https://bioconductor.org/packages/3.16/ExperimentHub" class="external-link">ExperimentHub</a></em> and directly load objects into an <em><a href="https://bioconductor.org/packages/3.16/iSEE" class="external-link">iSEE</a></em> web-application.</p>
+<p>The goal of <code>iSEEhub</code> is to provide an interface to the Bioconductor <em><a href="https://bioconductor.org/packages/3.15/ExperimentHub" class="external-link">ExperimentHub</a></em> directly within an <em><a href="https://bioconductor.org/packages/3.15/iSEE" class="external-link">iSEE</a></em> web-application.</p>
+<p>The main functionality of this package is to define a custom landing page allowing users to browse the Bioconductor <em><a href="https://bioconductor.org/packages/3.15/ExperimentHub" class="external-link">ExperimentHub</a></em> and directly load objects into an <em><a href="https://bioconductor.org/packages/3.15/iSEE" class="external-link">iSEE</a></em> web-application.</p>
 <div class="section level2">
 <h2 id="installation-instructions">Installation instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
 </h2>
@@ -107,80 +98,9 @@
 <p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/kevinrue/iSEEhub" class="external-link">"iSEEhub"</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: SingleCellExperiment</span></span>
-<span><span class="co">#&gt; Loading required package: SummarizedExperiment</span></span>
-<span><span class="co">#&gt; Loading required package: MatrixGenerics</span></span>
-<span><span class="co">#&gt; Loading required package: matrixStats</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'MatrixGenerics'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:matrixStats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,</span></span>
-<span><span class="co">#&gt;     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,</span></span>
-<span><span class="co">#&gt;     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,</span></span>
-<span><span class="co">#&gt;     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,</span></span>
-<span><span class="co">#&gt;     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,</span></span>
-<span><span class="co">#&gt;     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,</span></span>
-<span><span class="co">#&gt;     colWeightedMeans, colWeightedMedians, colWeightedSds,</span></span>
-<span><span class="co">#&gt;     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,</span></span>
-<span><span class="co">#&gt;     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,</span></span>
-<span><span class="co">#&gt;     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,</span></span>
-<span><span class="co">#&gt;     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,</span></span>
-<span><span class="co">#&gt;     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,</span></span>
-<span><span class="co">#&gt;     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,</span></span>
-<span><span class="co">#&gt;     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,</span></span>
-<span><span class="co">#&gt;     rowWeightedSds, rowWeightedVars</span></span>
-<span><span class="co">#&gt; Loading required package: GenomicRanges</span></span>
-<span><span class="co">#&gt; Loading required package: stats4</span></span>
-<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
-<span><span class="co">#&gt; Warning: package 'BiocGenerics' was built under R version 4.2.1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span></span>
-<span><span class="co">#&gt;     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span></span>
-<span><span class="co">#&gt;     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span></span>
-<span><span class="co">#&gt;     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span></span>
-<span><span class="co">#&gt;     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span></span>
-<span><span class="co">#&gt;     union, unique, unsplit, which.max, which.min</span></span>
-<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
-<span><span class="co">#&gt; Loading required package: IRanges</span></span>
-<span><span class="co">#&gt; Loading required package: GenomeInfoDb</span></span>
-<span><span class="co">#&gt; Loading required package: Biobase</span></span>
-<span><span class="co">#&gt; Welcome to Bioconductor</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Vignettes contain introductory material; view with</span></span>
-<span><span class="co">#&gt;     'browseVignettes()'. To cite Bioconductor, see</span></span>
-<span><span class="co">#&gt;     'citation("Biobase")', and for packages 'citation("pkgname")'.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'Biobase'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:MatrixGenerics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     rowMedians</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:matrixStats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     anyMissing, rowMedians</span></span>
-<span><span class="co">#&gt; Loading required package: ExperimentHub</span></span>
-<span><span class="co">#&gt; Loading required package: AnnotationHub</span></span>
-<span><span class="co">#&gt; Loading required package: BiocFileCache</span></span>
-<span><span class="co">#&gt; Loading required package: dbplyr</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'AnnotationHub'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:Biobase':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     cache</span></span>
+<span><span class="co">#&gt; Warning: package 'GenomeInfoDb' was built under R version 4.2.1</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ExperimentHub</span><span class="op">)</span></span>
 <span><span class="va">ehub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; snapshotDate(): 2022-07-22</span></span>
 <span></span>
 <span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/iSEEhub.html">iSEEhub</a></span><span class="op">(</span><span class="va">ehub</span><span class="op">)</span></span>
 <span></span>
@@ -239,14 +159,14 @@
 <h2 id="development-tools">Development tools<a class="anchor" aria-label="anchor" href="#development-tools"></a>
 </h2>
 <ul>
-<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.16/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
+<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.15/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
 <li>Code coverage assessment is possible thanks to <a href="https://codecov.io/gh" class="external-link">codecov</a> and <em><a href="https://CRAN.R-project.org/package=covr" class="external-link">covr</a></em>.</li>
 <li>The <a href="http://kevinrue.github.io/iSEEhub" class="external-link">documentation website</a> is automatically updated thanks to <em><a href="https://CRAN.R-project.org/package=pkgdown" class="external-link">pkgdown</a></em>.</li>
 <li>The code is styled automatically thanks to <em><a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a></em>.</li>
 <li>The documentation is formatted thanks to <em><a href="https://CRAN.R-project.org/package=devtools" class="external-link">devtools</a></em> and <em><a href="https://CRAN.R-project.org/package=roxygen2" class="external-link">roxygen2</a></em>.</li>
 </ul>
 <p>For more details, check the <code>dev</code> directory.</p>
-<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.16/biocthis" class="external-link">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.15/biocthis" class="external-link">biocthis</a></em>.</p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct-1">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct-1"></a>
