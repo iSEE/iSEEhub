@@ -17,15 +17,15 @@ coverage](https://codecov.io/gh/kevinrue/iSEEhub/branch/main/graph/badge.svg)](h
 <!-- badges: end -->
 
 The goal of `iSEEhub` is to provide an interface to the Bioconductor
-*[ExperimentHub](https://bioconductor.org/packages/3.16/ExperimentHub)*
-directly within an *[iSEE](https://bioconductor.org/packages/3.16/iSEE)*
+*[ExperimentHub](https://bioconductor.org/packages/3.15/ExperimentHub)*
+directly within an *[iSEE](https://bioconductor.org/packages/3.15/iSEE)*
 web-application.
 
 The main functionality of this package is to define a custom landing
 page allowing users to browse the Bioconductor
-*[ExperimentHub](https://bioconductor.org/packages/3.16/ExperimentHub)*
+*[ExperimentHub](https://bioconductor.org/packages/3.15/ExperimentHub)*
 and directly load objects into an
-*[iSEE](https://bioconductor.org/packages/3.16/iSEE)* web-application.
+*[iSEE](https://bioconductor.org/packages/3.15/iSEE)* web-application.
 
 ## Installation instructions
 
@@ -54,80 +54,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library("iSEEhub")
-#> Loading required package: SingleCellExperiment
-#> Loading required package: SummarizedExperiment
-#> Loading required package: MatrixGenerics
-#> Loading required package: matrixStats
-#> 
-#> Attaching package: 'MatrixGenerics'
-#> The following objects are masked from 'package:matrixStats':
-#> 
-#>     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-#>     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-#>     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-#>     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-#>     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-#>     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-#>     colWeightedMeans, colWeightedMedians, colWeightedSds,
-#>     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-#>     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-#>     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-#>     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-#>     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-#>     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-#>     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-#>     rowWeightedSds, rowWeightedVars
-#> Loading required package: GenomicRanges
-#> Loading required package: stats4
-#> Loading required package: BiocGenerics
-#> Warning: package 'BiocGenerics' was built under R version 4.2.1
-#> 
-#> Attaching package: 'BiocGenerics'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     IQR, mad, sd, var, xtabs
-#> The following objects are masked from 'package:base':
-#> 
-#>     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-#>     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-#>     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-#>     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-#>     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-#>     union, unique, unsplit, which.max, which.min
-#> Loading required package: S4Vectors
-#> 
-#> Attaching package: 'S4Vectors'
-#> The following objects are masked from 'package:base':
-#> 
-#>     expand.grid, I, unname
-#> Loading required package: IRanges
-#> Loading required package: GenomeInfoDb
-#> Loading required package: Biobase
-#> Welcome to Bioconductor
-#> 
-#>     Vignettes contain introductory material; view with
-#>     'browseVignettes()'. To cite Bioconductor, see
-#>     'citation("Biobase")', and for packages 'citation("pkgname")'.
-#> 
-#> Attaching package: 'Biobase'
-#> The following object is masked from 'package:MatrixGenerics':
-#> 
-#>     rowMedians
-#> The following objects are masked from 'package:matrixStats':
-#> 
-#>     anyMissing, rowMedians
-#> Loading required package: ExperimentHub
-#> Loading required package: AnnotationHub
-#> Loading required package: BiocFileCache
-#> Loading required package: dbplyr
-#> 
-#> Attaching package: 'AnnotationHub'
-#> The following object is masked from 'package:Biobase':
-#> 
-#>     cache
+#> Warning: package 'GenomeInfoDb' was built under R version 4.2.1
 library(ExperimentHub)
 ehub <- ExperimentHub()
-#> snapshotDate(): 2022-07-22
 
 app <- iSEEhub(ehub)
 
@@ -200,7 +129,7 @@ contributing to this project, you agree to abide by its terms.
     *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
     customized to use [Bioconductor’s docker
     containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.16/BiocCheck)*.
+    *[BiocCheck](https://bioconductor.org/packages/3.15/BiocCheck)*.
 -   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
@@ -216,7 +145,7 @@ contributing to this project, you agree to abide by its terms.
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.16/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.15/biocthis)*.
 
 ## Code of Conduct
 

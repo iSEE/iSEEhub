@@ -49,6 +49,8 @@ bib <- c(
 )
 ```
 
+
+
 # Basics
 
 ## Install `iSEEhub`
@@ -66,11 +68,15 @@ BiocManager::install("iSEEhub")
 BiocManager::valid()
 ```
 
+
 ## Required knowledge
 
-`r Biocpkg("iSEEhub")` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data (EDIT!). That is, packages like `r Biocpkg("SummarizedExperiment")` (EDIT!).
+`r Biocpkg("iSEEhub")` is based on many other packages that have implemented the infrastructure needed for dealing with omics data and interactive visualisation.
+That is, packages like `r Biocpkg("SummarizedExperiment")`, `r Biocpkg("SingleCellExperiment")`, `r Biocpkg("iSEE")` and `r Biocpkg("shiny")`.
 
 If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
+
+
 
 ## Asking for help
 
@@ -85,7 +91,13 @@ We hope that `r Biocpkg("iSEEhub")` will be useful for your research. Please use
 citation("iSEEhub")
 ```
 
+
+
 # Quick start to using to `iSEEhub`
+
+The main functionality of the package is available through the function `iSEEhub()`.
+
+The function returns a `r Biocpkg("shiny")` app that can then be launched using the function `shiny::runApp()`.
 
 ```{r "start", message=FALSE}
 library("iSEEhub")
@@ -99,10 +111,26 @@ if (interactive()) {
 }
 ```
 
-
 Here is an example of you can cite your package inside the vignette:
 
 * `r Biocpkg("iSEEhub")` `r Citep(bib[["iSEEhub"]])`
+
+
+
+# Managing data set dependencies
+
+Each data set in the Bioconductor `r Biocpkg("ExperimentHub")` is associated with package dependencies that are required to handle the data set in an _R_ session.
+Package dependencies must be installed in the _R_ library before the corresponding data set can be loaded.
+
+The list of packages associated with all data sets types supported by `r Biocpkg("iSEEhub")` is regularly updated in the `Suggests:` field of the `DESCRIPTION` file.
+However, those packages are not automatically installed in a minimal installation of the `r Biocpkg("iSEEhub")` package.
+
+By default, `iSEEhub(..., runtime_install = FALSE)` prevents the app from installing those dependencies at runtime.
+In that case, when users identify a missing dependency, they must interrupt the app, install the required package(s) using the _R_ console, and re-launch the app.
+We recommend this approach for applications hosted on public web-servers.
+
+Alternatively, `iSEEhub(..., runtime_install = TRUE)` can be used to launch an app that prompts users interactively (i.e., within the app) for their consent to install missing dependencies.
+We recommend this approach for applications run on personal computers (unless users prefer to install packages themselves, of course).
 
 
 
