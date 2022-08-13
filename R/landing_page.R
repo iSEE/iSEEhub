@@ -11,8 +11,8 @@
 #' @importFrom S4Vectors mcols
 #' @importFrom methods is as
 #' @importFrom shiny actionButton br strong column fluidRow p reactiveValues
-#' renderUI selectizeInput showNotification tagList uiOutput
-#' @importFrom shinydashboard box tabBox tabPanel
+#' renderUI selectizeInput showNotification tabPanel tagList uiOutput
+#' @importFrom shinydashboard box tabBox
 #' @importFrom DT datatable DTOutput renderDT
 #' @importFrom rintrojs introjs
 #'
