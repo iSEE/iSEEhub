@@ -81,3 +81,29 @@
 
     invisible(NULL)
 }
+
+.render_initial_overview <- function(output, pObjects, rObjects) {
+    # nocov start
+    output[[.ui_initial_overview]] <- renderUI({
+        force(rObjects$rerender_initial)
+        dataset_selected_id <- pObjects[[.dataset_selected_id]]
+        initial_basename <- pObjects[[.ui_initial]]
+        if (identical(initial_basename, "(Default)")) {
+            contents <- markdown(paste0(
+                "By default, `iSEE()` automatically displays one instance of each built-in panel compatible with the data set.\n\n",
+                "This is useful to showcase the functionality of the [_iSEE_](https://bioconductor.org/packages/iSEE/) package, ",
+                "sometimes at the cost of a longer loading time."
+            ))
+        } else {
+            initial_dirname <- system.file(package = "iSEEhub", "initial", dataset_selected_id)
+            initial_path <- file.path(initial_dirname, initial_basename)
+            contents <- readLines(initial_path)
+            contents <- paste0(c("```", contents, "```"), collapse = "\n")
+            contents <- markdown(contents)
+        }
+        contents
+    })
+    # nocov end
+
+    invisible(NULL)
+}

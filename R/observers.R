@@ -1,13 +1,15 @@
-.ui_dataset_table <- "iSEEExperiment_INTERNAL_datasets_table"
-.ui_launch_button <- "iSEEExperiment_INTERNAL_launch"
+.ui_dataset_table <- "iSEEhub_INTERNAL_datasets_table"
+.ui_launch_button <- "iSEEhub_INTERNAL_launch"
 .dataset_selected_row <- paste0(.ui_dataset_table, "_rows_selected")
 .dataset_selected_id <- paste0(.ui_dataset_table, "_id_selected")
-.ui_dataset_columns <- "iSEEExperiment_INTERNAL_datasets_columns"
-.ui_markdown_overview <- "iSEEExperiment_INTERNAL_markdown_overview"
-.ui_dataset_rdataclass <- "iSEEExperiment_INTERNAL_dataset_rdataclass"
-.ui_reset_rdataclasses <- "iSEEExperiment_INTERNAL_reset_rdataclass"
-.ui_launch_yes <- "iSEEExperiment_INTERNAL_launch_yes"
-.ui_launch_no <- "iSEEExperiment_INTERNAL_launch_no"
+.ui_dataset_columns <- "iSEEhub_INTERNAL_datasets_columns"
+.ui_markdown_overview <- "iSEEhub_INTERNAL_markdown_overview"
+.ui_dataset_rdataclass <- "iSEEhub_INTERNAL_dataset_rdataclass"
+.ui_reset_rdataclasses <- "iSEEhub_INTERNAL_reset_rdataclass"
+.ui_launch_yes <- "iSEEhub_INTERNAL_launch_yes"
+.ui_launch_no <- "iSEEhub_INTERNAL_launch_no"
+.ui_initial <- "iSEEhub_INTERNAL_initial"
+.ui_initial_overview <- "iSEEhub_INTERNAL_initial_overview"
 
 #' Observers for \code{\link{iSEEhub}}
 #'
@@ -26,8 +28,11 @@
 
     # nocov start
     observeEvent(input[[.dataset_selected_row]], {
-        pObjects[[.dataset_selected_id]] <- rownames(pObjects$datasets_visible)[input[[.dataset_selected_row]]]
+        dataset_selected_id <- rownames(pObjects$datasets_visible)[input[[.dataset_selected_row]]]
+        pObjects[[.dataset_selected_id]] <- dataset_selected_id
         rObjects$rerender_overview <- iSEE:::.increment_counter(isolate(rObjects$rerender_overview))
+        initial_choices <- .initial_choices(dataset_selected_id)
+        updateSelectizeInput(session, .ui_initial, choices = initial_choices)
     }, ignoreInit = FALSE, ignoreNULL = FALSE)
     # nocov end
 
@@ -60,6 +65,13 @@
     # nocov start
     observeEvent(input[[.ui_reset_rdataclasses]], {
         updateSelectizeInput(session, .ui_dataset_rdataclass, selected = .include_rdataclass)
+    })
+    # nocov end
+
+    # nocov start
+    observeEvent(input[[.ui_initial]], {
+        pObjects[[.ui_initial]] <- input[[.ui_initial]]
+        rObjects$rerender_initial <- iSEE:::.increment_counter(isolate(rObjects$rerender_initial))
     })
     # nocov end
 

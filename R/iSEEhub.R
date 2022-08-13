@@ -65,16 +65,23 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
         se2 <- try(.load_sce(ehub, id_object))
         incProgress(1, detail = "Launching iSEE app")
         if (is(se2, "try-error")) {
-            showNotification("invalid SummarizedExperiment supplied", type="error")
+            showNotification("Invalid SummarizedExperiment supplied.", type="error")
         } else {
             se2 <- .clean_dataset(se2)
-            # init <- try(initLoad(input[[.initializeInitial]]))
-            # if (is(init, "try-error")) {
-            #     showNotification("invalid initial state supplied", type="warning")
-            #     init <- NULL
-            # }
-            # init <- list(ReducedDimensionPlot())
-            init <- NULL
+            initial_message <- capture.output(
+                init <- try(.load_initial(pObjects)),
+                type = "message")
+            if (is(init, "try-error")) {
+                showModal(modalDialog(
+                    title = "Invalid initial state",
+                    p("An error occured while evaluating the script:"),
+                    markdown(paste0(c("```", initial_message, "```"), collapse = "\n")),
+                    p("Contact the app maintainer for further help."),
+                    easyClose = TRUE,
+                    footer = NULL
+                  ))
+                return(NULL)
+            }
             FUN(SE=se2, INITIAL=init)
             shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
             shinyjs::enable(iSEE:::.generalLinkGraph) # link graph

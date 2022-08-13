@@ -12,7 +12,7 @@
 #' @importFrom methods is as
 #' @importFrom shiny actionButton br strong column fluidRow p reactiveValues
 #' renderUI selectizeInput showNotification tagList uiOutput
-#' @importFrom shinydashboard box
+#' @importFrom shinydashboard box tabBox tabPanel
 #' @importFrom DT datatable DTOutput renderDT
 #' @importFrom rintrojs introjs
 #'
@@ -29,7 +29,7 @@
                     column(width = 7L,
                         shinydashboard::box(title = "ExperimentHub",
                             collapsible = FALSE, width = NULL,
-                            selectizeInput(inputId = .ui_dataset_columns, label = "Show columns:",
+                            selectizeInput(.ui_dataset_columns, label = "Show columns:",
                                 choices = colnames(datasets_available_table),
                                 selected = c("title", "dataprovider", "species", "rdataclass"),
                                 multiple = TRUE,
@@ -37,13 +37,23 @@
                             DTOutput(.ui_dataset_table)
                     )),
                     column(width = 5L,
-                        shinydashboard::box(title = "Selected dataset",
-                            collapsible = FALSE, width = NULL,
-                            uiOutput(.ui_markdown_overview),
-                            p(
-                                actionButton(.ui_launch_button, label="Launch!",
-                                    style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"),
-                                style="text-align: center;"))
+                        shinydashboard::tabBox(title = "Selected dataset",
+                            side = "left",
+                            width = NULL,
+                            tabPanel("Info",
+                                uiOutput(.ui_markdown_overview)),
+                            tabPanel("Config",
+                                fluidRow(
+                                    column(width = 10L,
+                                        selectizeInput(.ui_initial, label = "Initial settings:",
+                                    choices = character(0))),
+                                    column(width = 2L,
+                                        br(),
+                                        actionButton(.ui_launch_button, label="Launch!",
+                                        style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"))
+                                ),
+                                uiOutput(.ui_initial_overview))
+                            )
                         )
                     ),
                 fluidRow(
@@ -90,7 +100,10 @@
         shinyjs::disable(iSEE:::.generalCitationInfo) # citation info
 
         pObjects <- .create_persistent_objects(datasets_available_table)
-        rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
+        rObjects <- reactiveValues(
+            rerender_datasets=1L,
+            rerender_overview=1L,
+            rerender_initial=1L)
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
@@ -99,6 +112,8 @@
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 
         .render_markdown_overview(ehub, output, pObjects, rObjects)
+
+        .render_initial_overview(output, pObjects, rObjects)
 
         invisible(NULL)
         # nocov end
