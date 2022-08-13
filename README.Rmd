@@ -53,7 +53,7 @@ BiocManager::install("kevinrue/iSEEhub")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example, eval = requireNamespace('iSEEhub')}
+```{r example, eval = requireNamespace('iSEEhub'), message=FALSE}
 library("iSEEhub")
 library(ExperimentHub)
 ehub <- ExperimentHub()
