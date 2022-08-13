@@ -41,14 +41,18 @@
                             side = "left",
                             width = NULL,
                             tabPanel("Info",
-                                uiOutput(.ui_markdown_overview),
-                                p(
-                                    actionButton(.ui_launch_button, label="Launch!",
-                                        style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"),
-                                    style="text-align: center;")),
+                                uiOutput(.ui_markdown_overview)),
                             tabPanel("Config",
-                                selectizeInput(.ui_initial, label = "Initial settings:",
-                                    choices = character(0)))
+                                fluidRow(
+                                    column(width = 10L,
+                                        selectizeInput(.ui_initial, label = "Initial settings:",
+                                    choices = character(0))),
+                                    column(width = 2L,
+                                        br(),
+                                        actionButton(.ui_launch_button, label="Launch!",
+                                        style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"))
+                                ),
+                                "Coming soon: Display the contents of the script here, or a message explaining the default settings.")
                             )
                         )
                     ),
