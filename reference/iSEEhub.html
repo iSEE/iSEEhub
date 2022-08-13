@@ -63,13 +63,19 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">iSEEhub</span><span class="op">(</span><span class="va">ehub</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">iSEEhub</span><span class="op">(</span><span class="va">ehub</span>, runtime_install <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>ehub</dt>
 <dd><p>An <code><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub()</a></code> object.</p></dd>
+
+
+<dt>runtime_install</dt>
+<dd><p>A logical scalar indicating whether the app may allow
+users whether to install data set dependencies at runtime using
+<code><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">BiocManager::install()</a></code> through a modal prompt.</p></dd>
 
 </dl></div>
     <div id="value">
