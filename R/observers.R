@@ -84,8 +84,8 @@
 #'
 #' @importFrom shiny incProgress observeEvent showNotification withProgress
 #'
-#' @rdname INTERNAL_create_launch_observer
-.create_launch_observer <- function(FUN, ehub, input, session, pObjects, runtime_install) {
+#' @rdname INTERNAL_create_launch_observers
+.create_launch_observers <- function(FUN, ehub, input, session, pObjects, runtime_install) {
 
     # nocov start
     observeEvent(input[[.ui_launch_button]], {

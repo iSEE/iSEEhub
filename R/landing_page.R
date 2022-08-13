@@ -94,7 +94,7 @@
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
-        .create_launch_observer(FUN, ehub, input, session, pObjects, runtime_install)
+        .create_launch_observers(FUN, ehub, input, session, pObjects, runtime_install)
 
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 
