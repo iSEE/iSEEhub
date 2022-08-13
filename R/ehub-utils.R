@@ -73,6 +73,8 @@
 #' expect a fixed result across all testing platforms
 #' (e.g., GitHub, Bioconductor Build System), depending on their respective
 #' configuration.
+#' At least not without (un)installing packages during the unit tests, which
+#' is a big no-no.
 #'
 #' In theory, the `Suggests:` field of the `DESCRIPTION` file includes all
 #' packages known to be required for loading any of the data sets available
