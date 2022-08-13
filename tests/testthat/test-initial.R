@@ -19,3 +19,13 @@ test_that(".load_initial works with an R script", {
 
     expect_type(out, "list")
 })
+
+# .initial_choices ----
+
+test_that(".initial_choices works", {
+    out <- iSEEhub:::.initial_choices("EH1")
+    expect_identical(
+        out,
+        c(Default = "(Default)", "config_1.R", "config_error.R")
+    )
+})
