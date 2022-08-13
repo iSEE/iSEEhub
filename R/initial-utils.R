@@ -1,7 +1,7 @@
 .load_initial <- function(pObjects) {
     dataset_selected_id <- pObjects[[.dataset_selected_id]]
     initial_basename <- pObjects[[.ui_initial]]
-    if (is.na(initial_basename)) {
+    if (identical(initial_basename, "(Default)")) {
         initial <- NULL
     } else {
         initial_dirname <- system.file(package = "iSEEhub", "initial", dataset_selected_id)

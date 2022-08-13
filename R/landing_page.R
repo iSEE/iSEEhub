@@ -52,7 +52,7 @@
                                         actionButton(.ui_launch_button, label="Launch!",
                                         style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"))
                                 ),
-                                "Coming soon: Display the contents of the script here, or a message explaining the default settings.")
+                                uiOutput(.ui_initial_overview))
                             )
                         )
                     ),
@@ -100,7 +100,10 @@
         shinyjs::disable(iSEE:::.generalCitationInfo) # citation info
 
         pObjects <- .create_persistent_objects(datasets_available_table)
-        rObjects <- reactiveValues(rerender_datasets=1L, rerender_overview=1L)
+        rObjects <- reactiveValues(
+            rerender_datasets=1L,
+            rerender_overview=1L,
+            rerender_initial=1L)
 
         .create_observers(ehub, input, session, pObjects, rObjects)
 
@@ -109,6 +112,8 @@
         .render_datasets_table(datasets_available_table, output, pObjects, rObjects)
 
         .render_markdown_overview(ehub, output, pObjects, rObjects)
+
+        .render_initial_overview(output, pObjects, rObjects)
 
         invisible(NULL)
         # nocov end

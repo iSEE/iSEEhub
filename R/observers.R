@@ -9,6 +9,7 @@
 .ui_launch_yes <- "iSEEhub_INTERNAL_launch_yes"
 .ui_launch_no <- "iSEEhub_INTERNAL_launch_no"
 .ui_initial <- "iSEEhub_INTERNAL_initial"
+.ui_initial_overview <- "iSEEhub_INTERNAL_initial_overview"
 
 #' Observers for \code{\link{iSEEhub}}
 #'
@@ -70,6 +71,7 @@
     # nocov start
     observeEvent(input[[.ui_initial]], {
         pObjects[[.ui_initial]] <- input[[.ui_initial]]
+        rObjects$rerender_initial <- iSEE:::.increment_counter(isolate(rObjects$rerender_initial))
     })
     # nocov end
 
