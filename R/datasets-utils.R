@@ -101,3 +101,13 @@
     }
     se
 }
+
+.initial_choices <- function(x) {
+    # x: EH identifier of the data set in the ExperimentHub
+    dataset_dir <- system.file(package = "iSEEhub", "initial", x)
+    if (dir.exists(dataset_dir)) {
+        list.files(dataset_dir)
+    } else {
+        character(0)
+    }
+}

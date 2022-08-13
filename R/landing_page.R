@@ -29,7 +29,7 @@
                     column(width = 7L,
                         shinydashboard::box(title = "ExperimentHub",
                             collapsible = FALSE, width = NULL,
-                            selectizeInput(inputId = .ui_dataset_columns, label = "Show columns:",
+                            selectizeInput(.ui_dataset_columns, label = "Show columns:",
                                 choices = colnames(datasets_available_table),
                                 selected = c("title", "dataprovider", "species", "rdataclass"),
                                 multiple = TRUE,
@@ -47,7 +47,8 @@
                                         style="color: #ffffff; background-color: #0092AC; border-color: #2e6da4"),
                                     style="text-align: center;")),
                             tabPanel("Config",
-                                "This tabPanel will display a choice of initial settings specific to each data set.")
+                                selectizeInput(.ui_initial, label = "Initial settings:",
+                                    choices = character(0)))
                             )
                         )
                     ),
