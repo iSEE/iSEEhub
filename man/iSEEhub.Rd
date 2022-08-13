@@ -4,10 +4,14 @@
 \alias{iSEEhub}
 \title{iSEEhub app}
 \usage{
-iSEEhub(ehub)
+iSEEhub(ehub, runtime_install = FALSE)
 }
 \arguments{
 \item{ehub}{An \code{\link[=ExperimentHub]{ExperimentHub()}} object.}
+
+\item{runtime_install}{A logical scalar indicating whether the app may allow
+users whether to install data set dependencies at runtime using
+\code{\link[BiocManager:install]{BiocManager::install()}} through a modal prompt.}
 }
 \value{
 An \code{\link[=iSEE]{iSEE()}} app with a custom landing page interfacing with \code{ehub}.

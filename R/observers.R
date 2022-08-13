@@ -68,15 +68,16 @@
 
 #' Observers for Launching Main \code{\link{iSEE}} App
 #'
-#' @param FUN A function to initialize the \code{\link{iSEE}} observer architecture.
-#' Refer to [iSEE::createLandingPage()] for more details.
+#' @param FUN A function to initialize the \code{\link{iSEE}} observer
+#' architecture. Refer to [iSEE::createLandingPage()] for more details.
 #' @param ehub An [ExperimentHub()] object.
 #' @param input The Shiny input object from the server function.
 #' @param session The Shiny session object from the server function.
-#' @param pObjects An environment containing global parameters generated in the landing page.
-#' @param runtime_install Logical scalar indicating whether the app may prompt
+#' @param pObjects An environment containing global parameters generated in the
+#' landing page.
+#' @param runtime_install A logical scalar indicating whether the app may allow
 #' users whether to install data set dependencies at runtime using
-#' [BiocManager::install()].
+#' [BiocManager::install()] through a modal prompt.
 #'
 #' @return Observers are created in the server function in which this is called.
 #' A \code{NULL} value is invisibly returned.
@@ -141,6 +142,22 @@
     invisible(NULL)
 }
 
+#' Prepare and Launch the Main App.
+#'
+#' @details
+#' This function wraps steps that can be tracked and reported to the
+#' user through a progress bar, using [shiny::withProgress()].
+#'
+#' @param FUN A function to initialize the \code{\link{iSEE}} observer
+#' architecture. Refer to [iSEE::createLandingPage()] for more details.
+#' @param ehub An [ExperimentHub()] object.
+#' @param session The Shiny session object from the server function.
+#' @param pObjects An environment containing global parameters generated in the
+#' landing page.
+#'
+#' @return A `NULL` value is invisibly returned.
+#'
+#' @rdname INTERNAL_launch_isee
 .launch_isee <- function(FUN, ehub, session, pObjects) {
     # nocov start
     id_object <- pObjects[[.dataset_selected_id]]
@@ -173,5 +190,7 @@
             shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
         }
     }, session = session)
+
+    invisible(NULL)
     # nocov end
 }

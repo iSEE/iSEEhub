@@ -1,9 +1,9 @@
 #' Landing page function
 #'
 #' @param ehub An [ExperimentHub()] object.
-#' @param runtime_install Logical scalar indicating whether the app may prompt
+#' @param runtime_install A logical scalar indicating whether the app may allow
 #' users whether to install data set dependencies at runtime using
-#' [BiocManager::install()].
+#' [BiocManager::install()] through a modal prompt.
 #'
 #' @return A `function` that defines UI elements and observers for the
 #' landing page of the app.

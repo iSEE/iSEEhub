@@ -48,7 +48,9 @@
 #' @param x Numerical or character scalar to retrieve (if necessary) and import
 #' the resource from `ehub` into R.
 #'
-#' @return A `character` vector of packaged installed.
+#' @return
+#' For `.install_dataset_dependencies()`,
+#' a `character` vector of packaged installed.
 #'
 #' @importFrom BiocManager install
 #'
@@ -61,6 +63,11 @@
     # nocov end
 }
 
+#' @return
+#' For `.missing_deps()`,
+#' a character vector of packages that need to be installed.
+#'
+#' @rdname INTERNAL_install_dataset_dependencies
 .missing_deps <- function(ehub, x) {
     ehub_dataset <- ehub[x]
     deps <- ehub_dataset$preparerclass

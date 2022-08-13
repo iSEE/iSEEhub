@@ -1,6 +1,9 @@
 #' iSEEhub app
 #'
 #' @param ehub An [ExperimentHub()] object.
+#' @param runtime_install A logical scalar indicating whether the app may allow
+#' users whether to install data set dependencies at runtime using
+#' [BiocManager::install()] through a modal prompt.
 #'
 #' @return An [iSEE()] app with a custom landing page interfacing with `ehub`.
 #'
