@@ -11,7 +11,7 @@ test_that(".render_datasets_table works", {
     out <- iSEEhub:::.render_datasets_table(df, output, pObjects, rObjects)
 
     expect_null(out)
-    expect_named(output, "iSEEExperiment_INTERNAL_datasets_table")
+    expect_named(output, "iSEEhub_INTERNAL_datasets_table")
 })
 
 # .render_markdown_overview ----
@@ -24,5 +24,5 @@ test_that(".render_markdown_overview works", {
     out <- iSEEhub:::.render_markdown_overview(ehub, output, pObjects, rObjects)
 
     expect_null(out)
-    expect_named(output, "iSEEExperiment_INTERNAL_markdown_overview")
+    expect_named(output, "iSEEhub_INTERNAL_markdown_overview")
 })
