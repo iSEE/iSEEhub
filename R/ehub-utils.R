@@ -67,11 +67,27 @@
 #' For `.missing_deps()`,
 #' a character vector of packages that need to be installed.
 #'
+#' @section Unit tests:
+#'
+#' The function `.missing_deps()` is not unit tested as we cannot reliably
+#' expect a fixed result across all testing platforms
+#' (e.g., GitHub, Bioconductor Build System), depending on their respective
+#' configuration.
+#'
+#' In theory, the `Suggests:` field of the `DESCRIPTION` file includes all
+#' packages known to be required for loading any of the data sets available
+#' in the Bioconductor ExperimentHub.
+#' As such, any continuous integration that installs all stated dependencies
+#' should always return an empty vector, while minimal installations on
+#' users' personal computers are likely to report missing dependencies.
+#'
 #' @rdname INTERNAL_install_dataset_dependencies
 .missing_deps <- function(ehub, x) {
+    # nocov start
     ehub_dataset <- ehub[x]
     deps <- ehub_dataset$preparerclass
     ip <- rownames(installed.packages())
     missing_deps <- setdiff(deps, ip)
     missing_deps
+    # nocov end
 }
