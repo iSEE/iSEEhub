@@ -31,3 +31,56 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
             )
         )
 }
+
+#' Prepare and Launch the Main App.
+#'
+#' @details
+#' This function wraps steps that can be tracked and reported to the
+#' user through a progress bar, using [shiny::withProgress()].
+#'
+#' @param FUN A function to initialize the \code{\link{iSEE}} observer
+#' architecture. Refer to [iSEE::createLandingPage()] for more details.
+#' @param ehub An [ExperimentHub()] object.
+#' @param session The Shiny session object from the server function.
+#' @param pObjects An environment containing global parameters generated in the
+#' landing page.
+#'
+#' @return A `NULL` value is invisibly returned.
+#'
+#' @rdname INTERNAL_launch_isee
+.launch_isee <- function(FUN, ehub, session, pObjects) {
+    # nocov start
+    id_object <- pObjects[[.dataset_selected_id]]
+    withProgress(message = sprintf("Loading '%s'", id_object),
+        value = 0, max = 3, {
+        incProgress(1, detail = "Installing package dependencies")
+        .install_dataset_dependencies(ehub, id_object)
+        incProgress(1, detail = "(Down)loading object")
+        se2 <- try(.load_sce(ehub, id_object))
+        incProgress(1, detail = "Launching iSEE app")
+        if (is(se2, "try-error")) {
+            showNotification("invalid SummarizedExperiment supplied", type="error")
+        } else {
+            se2 <- .clean_dataset(se2)
+            # init <- try(initLoad(input[[.initializeInitial]]))
+            # if (is(init, "try-error")) {
+            #     showNotification("invalid initial state supplied", type="warning")
+            #     init <- NULL
+            # }
+            # init <- list(ReducedDimensionPlot())
+            init <- NULL
+            FUN(SE=se2, INITIAL=init)
+            shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
+            shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
+            shinyjs::enable(iSEE:::.generalExportOutput) # export content
+            shinyjs::enable(iSEE:::.generalCodeTracker) # tracked code
+            shinyjs::enable(iSEE:::.generalPanelSettings) # panel settings
+            shinyjs::enable(iSEE:::.generalVignetteOpen) # open vignette
+            shinyjs::enable(iSEE:::.generalSessionInfo) # session info
+            shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
+        }
+    }, session = session)
+
+    invisible(NULL)
+    # nocov end
+}
