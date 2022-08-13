@@ -105,9 +105,9 @@
 .initial_choices <- function(x) {
     # x: EH identifier of the data set in the ExperimentHub
     dataset_dir <- system.file(package = "iSEEhub", "initial", x)
+    choices <- c("Default" = NA_character_)
     if (dir.exists(dataset_dir)) {
-        list.files(dataset_dir)
-    } else {
-        character(0)
+        choices <- c(choices, list.files(dataset_dir))
     }
+    choices
 }
