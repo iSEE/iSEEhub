@@ -1,0 +1,1 @@
+stop("Bad config script!")

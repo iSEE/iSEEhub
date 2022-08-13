@@ -68,10 +68,19 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
             showNotification("Invalid SummarizedExperiment supplied.", type="error")
         } else {
             se2 <- .clean_dataset(se2)
-            init <- try(.load_initial(pObjects))
+            initial_message <- capture.output(
+                init <- try(.load_initial(pObjects)),
+                type = "message")
             if (is(init, "try-error")) {
-                showNotification("Invalid initial state supplied.", type="warning")
-                return()
+                showModal(modalDialog(
+                    title = "Invalid initial state",
+                    p("An error occured while evaluating the script:"),
+                    markdown(paste0(c("```", initial_message, "```"), collapse = "\n")),
+                    p("Contact the app maintainer for further help."),
+                    easyClose = TRUE,
+                    footer = NULL
+                  ))
+                return(NULL)
             }
             FUN(SE=se2, INITIAL=init)
             shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
