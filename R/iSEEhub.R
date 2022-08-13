@@ -38,6 +38,12 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
 #' This function wraps steps that can be tracked and reported to the
 #' user through a progress bar, using [shiny::withProgress()].
 #'
+#' @section Unit testing:
+#' This function cannot be unit tested (yet), as [shiny::withProgress()]
+#' requires a functional `ShinySession` object.
+#'
+#' This might be revisited in the future.
+#'
 #' @param FUN A function to initialize the \code{\link{iSEE}} observer
 #' architecture. Refer to [iSEE::createLandingPage()] for more details.
 #' @param ehub An [ExperimentHub()] object.
