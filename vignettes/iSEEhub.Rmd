@@ -111,6 +111,8 @@ if (interactive()) {
 }
 ```
 
+<img src="screenshots/landing_page_overview.png" width="100%" />
+
 Here is an example of you can cite your package inside the vignette:
 
 * `r Biocpkg("iSEEhub")` `r Citep(bib[["iSEEhub"]])`
