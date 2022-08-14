@@ -100,7 +100,7 @@ The main functionality of the package is available through the function `iSEEhub
 The function returns a `r Biocpkg("shiny")` app that can then be launched using the function `shiny::runApp()`.
 
 ```{r "start", message=FALSE}
-library("iSEEhub")
+library(iSEEhub)
 library(ExperimentHub)
 ehub <- ExperimentHub()
 
