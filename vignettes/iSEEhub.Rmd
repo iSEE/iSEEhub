@@ -55,7 +55,7 @@ bib <- c(
 
 ## Install `iSEEhub`
 
-`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg("iSEEhub")` is a `R` package available via the [Bioconductor](http://bioconductor.org) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg("iSEEhub")` by using the following commands in your `R` session:
+_R_ is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg("iSEEhub")` is a _R_ package available via the [Bioconductor](http://bioconductor.org) repository for packages. _R_ can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg("iSEEhub")` by using the following commands in your _R_ session:
 
 ```{r "install", eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
@@ -80,7 +80,7 @@ If you are asking yourself the question "Where do I start using Bioconductor?" y
 
 ## Asking for help
 
-As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `iSEEhub` tag and check [the older posts](https://support.bioconductor.org/t/iSEEhub/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But _R_ and _Bioconductor_ have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `iSEEhub` tag and check [the older posts](https://support.bioconductor.org/t/iSEEhub/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
 
 ## Citing `iSEEhub`
 
@@ -176,7 +176,7 @@ totalTime <- diff(c(startTime, Sys.time()))
 round(totalTime, digits = 3)
 ```
 
-`R` session information.
+_R_ session information.
 
 ```{r reproduce3, echo=FALSE}
 ## Session info
