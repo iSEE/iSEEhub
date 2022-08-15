@@ -65,7 +65,7 @@ if (interactive()) {
 }
 ```
 
-<img src="man/figures/landing_page.png" width="100%" />
+<img src="vignettes/screenshots/landing_page_overview.png" width="100%" />
 
 ## Citation
 

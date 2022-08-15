@@ -17,15 +17,15 @@ coverage](https://codecov.io/gh/kevinrue/iSEEhub/branch/main/graph/badge.svg)](h
 <!-- badges: end -->
 
 The goal of `iSEEhub` is to provide an interface to the Bioconductor
-*[ExperimentHub](https://bioconductor.org/packages/3.15/ExperimentHub)*
-directly within an *[iSEE](https://bioconductor.org/packages/3.15/iSEE)*
+*[ExperimentHub](https://bioconductor.org/packages/3.16/ExperimentHub)*
+directly within an *[iSEE](https://bioconductor.org/packages/3.16/iSEE)*
 web-application.
 
 The main functionality of this package is to define a custom landing
 page allowing users to browse the Bioconductor
-*[ExperimentHub](https://bioconductor.org/packages/3.15/ExperimentHub)*
+*[ExperimentHub](https://bioconductor.org/packages/3.16/ExperimentHub)*
 and directly load objects into an
-*[iSEE](https://bioconductor.org/packages/3.15/iSEE)* web-application.
+*[iSEE](https://bioconductor.org/packages/3.16/iSEE)* web-application.
 
 ## Installation instructions
 
@@ -54,6 +54,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library("iSEEhub")
+#> Warning: package 'BiocGenerics' was built under R version 4.2.1
 #> Warning: package 'GenomeInfoDb' was built under R version 4.2.1
 library(ExperimentHub)
 ehub <- ExperimentHub()
@@ -65,7 +66,7 @@ if (interactive()) {
 }
 ```
 
-<img src="man/figures/landing_page.png" width="100%" />
+<img src="vignettes/screenshots/landing_page_overview.png" width="100%" />
 
 ## Citation
 
@@ -129,7 +130,7 @@ contributing to this project, you agree to abide by its terms.
     *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
     customized to use [Bioconductor’s docker
     containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.15/BiocCheck)*.
+    *[BiocCheck](https://bioconductor.org/packages/3.16/BiocCheck)*.
 -   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
@@ -145,7 +146,7 @@ contributing to this project, you agree to abide by its terms.
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.15/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.16/biocthis)*.
 
 ## Code of Conduct
 
