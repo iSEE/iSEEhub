@@ -77,7 +77,7 @@ For demonstration, the package includes two configurations for the dataset `EH1`
 The scripts that define those configurations are stored within the directory `inst/initial/EH1`.
 Within that directory, the files are named `config_1.R` and `config_error.R`.
 
-The script `config_1.R` defines an initial app state that contains only one panel, namely a `ComplexHeatmapPlot`, that is configured to span half the width of the app (6 out of 12 units in `r Biocpkg("shiny")` app), and display the metadata `gender` and `status` as color bars next to the heat map.
+The script `config_1.R` defines an initial app state that contains only one panel, namely a `ComplexHeatmapPlot`, that is configured to span half the width of the app (6 out of 12 units in `r Biocpkg("shiny")` units), and displays the metadata `gender` and `status` as color bars next to the heat map.
 
 ```
 ## EH1/config_1.R
