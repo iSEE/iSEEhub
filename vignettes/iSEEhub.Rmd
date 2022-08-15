@@ -146,7 +146,7 @@ The pane is composed of two tabs described in the following sections.
 
 The `Info` tab displays the full metadata associated with the currently selected dataset -- the same metadata as in the `ExperimentHub` table -- in formatted text.
 
-As such, users can uses a minimal subset of columns in the table to efficiently browse available datasets, while having a full overview of the currently selected dataset in this pane.
+As such, users can uses a minimal subset of columns in the table to efficiently browse available datasets, while having a full overview of the currently selected dataset in this tab.
 
 ## The Config tab
 
