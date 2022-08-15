@@ -103,10 +103,10 @@ stop("Bad config script!")
 
 ## Process for contributing
 
-- Fork the GitHub repository for [iSEEhub](https://github.com/kevinrue/iSEEhub/).
+- Fork the GitHub repository for [iSEEhub](https://github.com/iSEE/iSEEhub/).
 - Create and/or edit appropriate files and directories within the `inst/initial` directory.
 - Test your new configuration(s) locally; install the updated `r Biocpkg("iSEEhub")` package, launch the app, and load dataset(s) using the new configuration(s).
-- Open a pull request on the GitHub repository.
+- Open a pull request on the GitHub repository [iSEEhub](https://github.com/iSEE/iSEEhub/).
 - Wait for maintainers to review and approve the pull request.
 
 # Reproducibility
