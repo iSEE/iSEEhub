@@ -193,6 +193,8 @@ We recommend this approach for applications hosted on public web-servers.
 Alternatively, `iSEEhub(..., runtime_install = TRUE)` can be used to launch an app that prompts users interactively (i.e., within the app) for their consent to install missing dependencies.
 We recommend this approach for applications run on personal computers (unless users prefer to install packages themselves, of course).
 
+<img src="screenshots/dependencies_missing_prompt.png" width="100%" />
+
 
 
 # Reproducibility
