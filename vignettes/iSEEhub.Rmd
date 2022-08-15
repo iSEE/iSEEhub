@@ -140,7 +140,7 @@ The pane on the right updates with the currently selected dataset.
 
 This pane contains information and the users inputs required to load the currently selected dataset in the main about the currently selected dataset in the main `r Biocpkg("iSEE")` app.
 
-The pane is composed of two tabs.
+The pane is composed of two tabs described in the following sections.
 
 ## The Info tab
 
