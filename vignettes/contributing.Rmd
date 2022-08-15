@@ -64,7 +64,7 @@ Contributions to initial app configurations are welcome to the `r Biocpkg("iSEEh
 
 ## Requirements
 
-An initial configuration script must define at least one object called `initial`, that contains a list of instances of panel classes defined in the `r Biocpkg("iSEE")` package -- so-called builti-in panels -- and other packages that extend `r Biocpkg("iSEE")` functionality.
+An initial configuration script must define at least one object called `initial`, that contains a list of instances of panel classes defined in the `r Biocpkg("iSEE")` package -- so-called built-in panels -- and other packages that extend `r Biocpkg("iSEE")` functionality.
 That is, packages like `r Biocpkg("iSEEu")` and `r Biocpkg("iSEEhex")`.
 
 Other objects created by configuration scripts are ignored.
@@ -80,7 +80,7 @@ Within that directory, the files are named `config_1.R` and `config_error.R`.
 The script `config_1.R` defines an initial app state that contains only one panel, namely a `ComplexHeatmapPlot`, that is configured to span half the width of the app (6 out of 12 units in `r Biocpkg("shiny")` app), and display the metadata `gender` and `status` as color bars next to the heat map.
 
 ```
-## config_1.R
+## EH1/config_1.R
 library(iSEE)
 
 initial <- list(
@@ -95,7 +95,7 @@ Conversely, the script `config_error.R` provides a brutal example of an invalid 
 This script is only included in the package to test and demonstrate that the app fails elegantly when an invalid configuration is supplied (which should never happen in the first place).
 
 ```
-## config_error.R
+## EH1/config_error.R
 # This script demonstrates how the app handles a bad configuration.
 
 stop("Bad config script!")
