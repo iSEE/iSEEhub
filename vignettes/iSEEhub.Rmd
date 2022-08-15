@@ -161,7 +161,7 @@ The number of panels and data points to draw for large datasets makes the `Defau
 For some datasets, additional choices of initial settings are available.
 Configurations are provided as scripts that define the list of panels and their respective initial configuration when the main `r Biocpkg("iSEE")` app is launched.
 
-<!-- To contribute new scripts, please refer to the vignette [Contributing to iSEEhub](contributing.html). -->
+To contribute new scripts, please refer to the vignette [Contributing to iSEEhub](contributing.html).
 
 For demonstration, a simple example `config_1.R` is included for the dataset `EH1`.
 When selected, the contents of the configuration file are shown in the pane -- including any comment from the authors -- allowing users to review the script before using it.
