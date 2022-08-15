@@ -178,17 +178,23 @@ Once the dataset is successfully loaded into the _R_ session, the app will switc
 
 # Managing dataset dependencies
 
+## Overview
+
 Each dataset in the Bioconductor `r Biocpkg("ExperimentHub")` is associated with package dependencies that are required to handle the dataset in an _R_ session.
 Package dependencies must be installed in the _R_ library before the corresponding dataset can be loaded.
 
 The list of packages associated with all datasets types supported by `r Biocpkg("iSEEhub")` is regularly updated in the `Suggests:` field of the `DESCRIPTION` file.
 However, those packages are not automatically installed in a minimal installation of the `r Biocpkg("iSEEhub")` package.
 
+## From the _R_ console
+
 By default, `iSEEhub(..., runtime_install = FALSE)` prevents the app from installing those dependencies at runtime.
 In that case, when users identify a missing dependency, they must interrupt the app, install the required package(s) using the _R_ console, and re-launch the app.
 We recommend this approach for applications hosted on public web-servers.
 
 <img src="screenshots/dependencies_missing_blocked.png" width="100%" />
+
+## From the live app
 
 Alternatively, `iSEEhub(..., runtime_install = TRUE)` can be used to launch an app that prompts users interactively (i.e., within the app) for their consent to install missing dependencies.
 We recommend this approach for applications run on personal computers (unless users prefer to install packages themselves, of course).
