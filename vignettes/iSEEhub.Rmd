@@ -156,7 +156,7 @@ For all datasets, an option `Default` is available.
 That option does not provide any specific instruction with respect to the initial set of panels, their layout, nor their respective initial settings.
 Instead, the `Default` option prompts the app to automatically identify all the built-in `r Biocpkg("iSEE")` panel classes that are compatible with the loaded dataset, initialising an app that contains one instance of each of those panels.
 
-The number of panels and data points to draw for large datasets makes the `Default` option a showcase mode for demonstration and for new users, more than an one optimised for a short loading time or featuring specific aspects of the dataset.
+The number of panels and data points to draw for large datasets makes the `Default` option a showcase mode for demonstration and for new users, more than one optimised for a short loading time or featuring specific aspects of the dataset.
 
 For some datasets, additional choices of initial settings are available.
 Configurations are provided as scripts that define the list of panels and their respective initial configuration when the main `r Biocpkg("iSEE")` app is launched.
