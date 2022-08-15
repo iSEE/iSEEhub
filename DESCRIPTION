@@ -11,7 +11,7 @@ Description: This package defines a custom landing page for an iSEE app
     users to browse the ExperimentHub, select a data set, download and cache it,
     and import it directly into a Bioconductor iSEE app.
 License: Artistic-2.0
-URL: https://github.com/kevinrue/iSEEhub
+URL: https://github.com/iSEE/iSEEhub
 BugReports: https://support.bioconductor.org/t/iSEEhub
 biocViews: Software,
     Infrastructure,
