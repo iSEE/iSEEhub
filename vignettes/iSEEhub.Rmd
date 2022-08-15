@@ -126,7 +126,7 @@ Datasets available in the _Bioconductor_ `r Biocpkg("ExperimentHub")` are listed
 The table may be filtered and sorted using any metadata column, to efficiently browse the datasets available.
 
 By default, only a subset of metadata columns are displayed.
-The selectize input labelled `Show columns:` may be used to add, remove, or reorder columns in the table.
+The selectize input labelled `Show columns:` at the top of the pane may be used to add, remove, or reorder columns in the table.
 
 No more than one dataset may be selected at any time.
 
@@ -138,7 +138,7 @@ No more than one dataset may be selected at any time.
 
 The pane on the right updates with the currently selected dataset.
 
-This pane is contains information and the users inputs required to load the currently selected dataset in the main about the currently selected dataset in the main `r Biocpkg("iSEE")` app.
+This pane contains information and the users inputs required to load the currently selected dataset in the main about the currently selected dataset in the main `r Biocpkg("iSEE")` app.
 
 The pane is composed of two tabs.
 
