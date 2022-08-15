@@ -164,7 +164,7 @@ Configurations are provided as scripts that define the list of panels and their 
 <!-- To contribute new scripts, please refer to the vignette [Contributing to iSEEhub](contributing.html). -->
 
 For demonstration, a simple example `config_1.R` is included for the dataset `EH1`.
-When selected, the contents of the configuration file are shown in the pane -- including any comment from the authors -- allowing users to review the script if they so wish.
+When selected, the contents of the configuration file are shown in the pane -- including any comment from the authors -- allowing users to review the script before using it.
 
 When the apropriate configuration is selected, users may click the `Launch!` button to load the dataset into the main `r Biocpkg("iSEE")` app.
 
