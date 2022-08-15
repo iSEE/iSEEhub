@@ -6,14 +6,14 @@
 <!-- badges: start -->
 
 [![GitHub
-issues](https://img.shields.io/github/issues/kevinrue/iSEEhub)](https://github.com/kevinrue/iSEEhub/issues)
+issues](https://img.shields.io/github/issues/iSEE/iSEEhub)](https://github.com/iSEE/iSEEhub/issues)
 [![GitHub
-pulls](https://img.shields.io/github/issues-pr/kevinrue/iSEEhub)](https://github.com/kevinrue/iSEEhub/pulls)
+pulls](https://img.shields.io/github/issues-pr/iSEE/iSEEhub)](https://github.com/iSEE/iSEEhub/pulls)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check-bioc](https://github.com/kevinrue/iSEEhub/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/kevinrue/iSEEhub/actions)
+[![R-CMD-check-bioc](https://github.com/iSEE/iSEEhub/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/iSEE/iSEEhub/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/kevinrue/iSEEhub/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kevinrue/iSEEhub?branch=main)
+coverage](https://codecov.io/gh/iSEE/iSEEhub/branch/main/graph/badge.svg)](https://app.codecov.io/gh/iSEE/iSEEhub?branch=main)
 <!-- badges: end -->
 
 The goal of `iSEEhub` is to provide an interface to the Bioconductor
@@ -42,10 +42,10 @@ BiocManager::install("iSEEhub")
 ```
 
 And the development version from
-[GitHub](https://github.com/kevinrue/iSEEhub) with:
+[GitHub](https://github.com/iSEE/iSEEhub) with:
 
 ``` r
-BiocManager::install("kevinrue/iSEEhub")
+BiocManager::install("iSEE/iSEEhub")
 ```
 
 ## Example
@@ -134,7 +134,7 @@ contributing to this project, you agree to abide by its terms.
 -   Code coverage assessment is possible thanks to
     [codecov](https://codecov.io/gh) and
     *[covr](https://CRAN.R-project.org/package=covr)*.
--   The [documentation website](http://kevinrue.github.io/iSEEhub) is
+-   The [documentation website](http://isee.github.io/iSEEhub) is
     automatically updated thanks to
     *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
 -   The code is styled automatically thanks to
