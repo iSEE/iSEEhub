@@ -172,6 +172,8 @@ When the apropriate configuration is selected, users may click the `Launch!` but
 
 # The main iSEE app
 
+Once the dataset is successfully loaded into the _R_ session, the app will switch to the main `r Biocpkg("iSEE")` view.
+
 <img src="screenshots/isee_eh1.png" width="100%" />
 
 # Managing dataset dependencies
