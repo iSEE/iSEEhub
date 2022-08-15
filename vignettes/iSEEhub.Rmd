@@ -188,7 +188,7 @@ By default, `iSEEhub(..., runtime_install = FALSE)` prevents the app from instal
 In that case, when users identify a missing dependency, they must interrupt the app, install the required package(s) using the _R_ console, and re-launch the app.
 We recommend this approach for applications hosted on public web-servers.
 
-<img src="screenshots/dependencies_missing_blocked" width="100%" />
+<img src="screenshots/dependencies_missing_blocked.png" width="100%" />
 
 Alternatively, `iSEEhub(..., runtime_install = TRUE)` can be used to launch an app that prompts users interactively (i.e., within the app) for their consent to install missing dependencies.
 We recommend this approach for applications run on personal computers (unless users prefer to install packages themselves, of course).
