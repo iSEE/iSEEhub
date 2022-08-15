@@ -150,7 +150,7 @@ As such, users can uses a minimal subset of columns in the table to efficiently 
 
 ## The Config tab
 
-The `Config` tab displays a selectize input offering users a choice of initial app configuration that are specific to the currently selected dataset.
+The `Config` tab displays a selectize input offering users a choice of initial app configurations that are specific to the currently selected dataset.
 
 For all datasets, an option `Default` is available.
 That option does not provide any specific instruction with respect to the initial set of panels, their layout, nor their respective initial settings.
