@@ -3,7 +3,7 @@
 # .generate_description_suggests ----
 
 test_that(".generate_description_suggests works", {
-    out <- iSEEhub:::.generate_description_suggests(ehub)
+    out <- iSEEhub:::.dataset_packages_enhanced(ehub)
 
     expect_vector(out, character(), 1)
 })
