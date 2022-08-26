@@ -21,9 +21,13 @@
     ehub_enhanced_packages <- unique(datasets_available_table$preparerclass)
     available_packages <- BiocManager::available()
     final_suggested_packages <- intersect(ehub_enhanced_packages, available_packages)
-    paste0(
-        "Enhances:\n",
-        paste0("    ", sort(unique(final_suggested_packages)), collapse=",\n"),
-        collapse = ""
-    )
+    if (identical(final_suggested_packages, 0L)) {
+        out <- ""
+    } else {
+        out <- paste0(
+            "Enhances:\n",
+            paste0("    ", sort(unique(final_suggested_packages)), collapse=",\n"),
+            collapse = "")
+    }
+    return(out)
 }
