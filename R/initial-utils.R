@@ -15,7 +15,10 @@
         initial_dirname <- system.file(package = "iSEEhub", "initial", dataset_selected_id)
         initial_path <- file.path(initial_dirname, initial_basename)
         source(initial_path, local = TRUE)
-        stopifnot(exists("initial"))
+        if (!exists("initial")) {
+            stop("No object named 'initial' was found - this needs to be ",
+                 "defined in the config script.")
+        }
     }
     initial
 }
