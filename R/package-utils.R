@@ -19,6 +19,8 @@
     keep_rows <- datasets_available_table$rdataclass %in% .include_rdataclass
     datasets_available_table <- datasets_available_table[keep_rows, , drop = FALSE]
     ehub_enhanced_packages <- unique(datasets_available_table$preparerclass)
+    # 'nullrangesData' in Suggests because used in tests
+    ehub_enhanced_packages <- setdiff(ehub_enhanced_packages, "nullrangesData")
     available_packages <- BiocManager::available()
     final_suggested_packages <- intersect(ehub_enhanced_packages, available_packages)
     if (identical(final_suggested_packages, 0L)) {
