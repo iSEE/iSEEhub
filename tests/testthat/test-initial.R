@@ -42,6 +42,6 @@ test_that(".initial_choices works", {
     out <- iSEEhub:::.initial_choices("EH1")
     expect_identical(
         out,
-        c(Default = "(Default)", "config_1.R", "config_error.R")
+        c(Default = "(Default)", "config_1.R", "config_error.R", "config_no_initial.R")
     )
 })
