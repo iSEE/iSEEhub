@@ -8,6 +8,7 @@ BUG FIXES
 
 * Add missing NAMESPACE imports.
 * Adjust unit tests for single package builder environment.
+* Update tour steps to point at the right locations.
 
 MINOR UPDATES
 
