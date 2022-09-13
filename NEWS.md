@@ -1,3 +1,16 @@
+# iSEEhub 0.99.3
+
+BUG FIXES
+
+* Add missing NAMESPACE imports.
+* Adjust unit tests for single package builder environment.
+
+# iSEEhub 0.99.2
+
+MINOR UPDATES
+
+* Rename UI panel tab.
+
 # iSEEhub 0.99.1
 
 BUG FIXES
