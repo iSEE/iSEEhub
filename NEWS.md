@@ -1,5 +1,9 @@
 # iSEEhub 0.99.3
 
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Add validity check that `ehub` is actually an `ExperimentHub` object.
+
 BUG FIXES
 
 * Add missing NAMESPACE imports.
