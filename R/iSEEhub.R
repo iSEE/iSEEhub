@@ -77,8 +77,9 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
                     p("An error occured while evaluating the script:"),
                     markdown(paste0(c("```", initial_message, "```"), collapse = "\n")),
                     p("Contact the app maintainer for further help."),
-                    easyClose = TRUE,
-                    footer = NULL
+                    footer = NULL,
+                    size = "l",
+                    easyClose = TRUE
                   ))
                 return(NULL)
             }

@@ -42,7 +42,7 @@
                             width = NULL,
                             tabPanel("Info",
                                 uiOutput(.ui_markdown_overview)),
-                            tabPanel("Config",
+                            tabPanel("Configure and launch",
                                 fluidRow(
                                     column(width = 10L,
                                         selectizeInput(.ui_initial, label = "Initial settings:",

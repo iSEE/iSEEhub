@@ -36,7 +36,7 @@ test_that(".missing_deps returns empty vector when dependencies are present", {
 
     # ExpressionSet is supported
     # package 'GSE62944' is installed through Suggests:
-    out <- iSEEhub:::.missing_deps(ehub, "EH1")
+    out <- iSEEhub:::.missing_deps(ehub, "EH7082")
     expect_vector(out, character(), 0)
 
 })
