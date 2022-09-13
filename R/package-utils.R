@@ -23,6 +23,7 @@
     ehub_enhanced_packages <- setdiff(ehub_enhanced_packages, "nullrangesData")
     available_packages <- BiocManager::available()
     final_suggested_packages <- intersect(ehub_enhanced_packages, available_packages)
+    # nocov start
     if (identical(final_suggested_packages, 0L)) {
         out <- ""
     } else {
@@ -31,5 +32,6 @@
             paste0("    ", sort(unique(final_suggested_packages)), collapse=",\n"),
             collapse = "")
     }
+    # nocov end
     return(out)
 }
