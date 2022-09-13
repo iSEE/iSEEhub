@@ -5,6 +5,11 @@ BUG FIXES
 * Add missing NAMESPACE imports.
 * Adjust unit tests for single package builder environment.
 
+MINOR UPDATES
+
+* Remove CITATION file.
+* Add an Introduction section to the main vignette.
+
 # iSEEhub 0.99.2
 
 MINOR UPDATES
