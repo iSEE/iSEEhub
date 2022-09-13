@@ -10,6 +10,7 @@
 .ui_launch_no <- "iSEEhub_INTERNAL_launch_no"
 .ui_initial <- "iSEEhub_INTERNAL_initial"
 .ui_initial_overview <- "iSEEhub_INTERNAL_initial_overview"
+.ui_box_dataset <- "iSEEhub_INTERNAL_box_dataset"
 
 #' Observers for \code{\link{iSEEhub}}
 #'

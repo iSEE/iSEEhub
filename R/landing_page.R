@@ -37,7 +37,7 @@
                             DTOutput(.ui_dataset_table)
                     )),
                     column(width = 5L,
-                        shinydashboard::tabBox(title = "Selected dataset",
+                        shinydashboard::tabBox(id = .ui_box_dataset, title = "Selected dataset",
                             side = "left",
                             width = NULL,
                             tabPanel("Info",

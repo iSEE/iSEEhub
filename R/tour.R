@@ -12,6 +12,24 @@
             "This panel collates all known information about the selected data set in the Bioconductor ExperimentHub metadata.")
         ),
     data.frame(
+        element=paste0("#", .ui_box_dataset),
+        intro=paste0(
+            "Click on the tab 'Configure and launch' to switch tab.")
+        ),
+    data.frame(
+        element=paste0("#", .ui_initial, " + .selectize-control"),
+        intro=paste0(
+            "This dropdown selectize input can be used to switch the initial configuration of the app.<br/><br/>",
+            "The set of configuration is different for each data set. ",
+            "The 'Default' configuration is intended for demonstration purposes; ",
+            "it includes one built-in panel of each type.")
+        ),
+    data.frame(
+        element=paste0("#", .ui_initial_overview),
+        intro=paste0(
+            "This area displays the contents of the configuration file, or a standard message for the default configuration.")
+        ),
+    data.frame(
         element=paste0("#", .ui_launch_button),
         intro=paste0(
             "Click this button when you are ready to load and visualise the selected data set!<br/><br/>",
