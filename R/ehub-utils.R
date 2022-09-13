@@ -67,6 +67,8 @@
 #' For `.missing_deps()`,
 #' a character vector of packages that need to be installed.
 #'
+#' @importFrom utils installed.packages
+#'
 #' @rdname INTERNAL_install_dataset_dependencies
 .missing_deps <- function(ehub, x) {
     ehub_dataset <- ehub[x]

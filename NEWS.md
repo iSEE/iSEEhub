@@ -1,3 +1,26 @@
+# iSEEhub 0.99.3
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Add validity check that `ehub` is actually an `ExperimentHub` object.
+
+BUG FIXES
+
+* Add missing NAMESPACE imports.
+* Adjust unit tests for single package builder environment.
+* Update tour steps to point at the right locations.
+
+MINOR UPDATES
+
+* Remove CITATION file.
+* Add an Introduction section to the main vignette.
+
+# iSEEhub 0.99.2
+
+MINOR UPDATES
+
+* Rename UI panel tab.
+
 # iSEEhub 0.99.1
 
 BUG FIXES

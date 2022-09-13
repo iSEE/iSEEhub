@@ -23,6 +23,7 @@
 #'   shiny::runApp(app, port = 1234)
 #' }
 iSEEhub <- function(ehub, runtime_install = FALSE) {
+    stopifnot(is(ehub, "ExperimentHub"))
     iSEE(
         landingPage=.landing_page(ehub, runtime_install),
         appTitle = sprintf("iSEEhub - v%s (snapshotDate: %s)",
@@ -52,6 +53,9 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
 #' landing page.
 #'
 #' @return A `NULL` value is invisibly returned.
+#'
+#' @importFrom utils capture.output
+#' @importFrom shiny modalDialog showModal
 #'
 #' @rdname INTERNAL_launch_isee
 .launch_isee <- function(FUN, ehub, session, pObjects) {
