@@ -20,6 +20,22 @@ test_that(".load_initial works with an R script", {
     expect_type(out, "list")
 })
 
+test_that(".load_initial throws error if 'initial' object not found", {
+    pObjects <- new.env()
+    pObjects[[iSEEhub:::.dataset_selected_id]] <- "EH1"
+    pObjects[[iSEEhub:::.ui_initial]] <- "config_no_initial.R"
+
+    expect_error(iSEEhub:::.load_initial(pObjects))
+})
+
+test_that(".load_initial throws error if script throws error", {
+    pObjects <- new.env()
+    pObjects[[iSEEhub:::.dataset_selected_id]] <- "EH1"
+    pObjects[[iSEEhub:::.ui_initial]] <- "config_error.R"
+
+    expect_error(iSEEhub:::.load_initial(pObjects))
+})
+
 # .initial_choices ----
 
 test_that(".initial_choices works", {
