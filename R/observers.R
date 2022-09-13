@@ -94,7 +94,8 @@
 #' @return Observers are created in the server function in which this is called.
 #' A \code{NULL} value is invisibly returned.
 #'
-#' @importFrom shiny incProgress observeEvent showNotification withProgress
+#' @importFrom shiny code hr incProgress modalDialog observeEvent showModal
+#' showNotification withProgress
 #'
 #' @rdname INTERNAL_create_launch_observers
 .create_launch_observers <- function(FUN, ehub, input, session, pObjects, runtime_install) {

@@ -53,6 +53,9 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
 #'
 #' @return A `NULL` value is invisibly returned.
 #'
+#' @importFrom utils capture.output
+#' @importFrom shiny modalDialog showModal
+#'
 #' @rdname INTERNAL_launch_isee
 .launch_isee <- function(FUN, ehub, session, pObjects) {
     # nocov start
