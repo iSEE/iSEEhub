@@ -51,6 +51,21 @@ bib <- c(
 
 
 
+# Introduction
+
+`r BiocStyle::Biocpkg("iSEEhub")` is an extension to the
+`r BiocStyle::Biocpkg("iSEE")` _Bioconductor_ package
+that provides a link between `r BiocStyle::Biocpkg("iSEE")` and the
+_Bioconductor_ `r BiocStyle::Biocpkg("ExperimentHub")`.
+
+Specifically, `r BiocStyle::Biocpkg("iSEEhub")` adds a custom landing page
+to `r BiocStyle::Biocpkg("iSEE")` web applications that can be used to browse the
+_Bioconductor_ `r BiocStyle::Biocpkg("ExperimentHub")`
+interactively, and loads a selected data set in the standard
+`r BiocStyle::Biocpkg("iSEE")` user interface.
+
+
+
 # Basics
 
 ## Install `iSEEhub`
