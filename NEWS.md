@@ -1,3 +1,9 @@
+# iSEEhub 0.99.4
+
+BUG FIXES
+
+* Add missing NAMESPACE imports.
+
 # iSEEhub 0.99.3
 
 SIGNIFICANT USER-VISIBLE CHANGES
