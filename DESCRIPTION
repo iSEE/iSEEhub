@@ -1,7 +1,7 @@
 Package: iSEEhub
 Title: iSEE for the Bioconductor ExperimentHub
-Version: 0.99.3
-Date: 2022-10-13
+Version: 0.99.4
+Date: 2022-10-14
 Authors@R: 
     c(person("Kevin", "Rue-Albrecht", , "kevinrue67@gmail.com",
              role = c("aut", "cre"),
