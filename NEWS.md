@@ -1,3 +1,9 @@
+# iSEE hub 1.1.1.
+
+MINOR UPDATES
+
+* Update screenshots in vignettes.
+
 # iSEEhub 0.99.4
 
 BUG FIXES
