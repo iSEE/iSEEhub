@@ -56,6 +56,7 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
 #'
 #' @importFrom utils capture.output
 #' @importFrom shiny modalDialog showModal
+#' @importFrom iSEE iSEEconstants
 #'
 #' @rdname INTERNAL_launch_isee
 .launch_isee <- function(FUN, ehub, session, pObjects) {
@@ -88,14 +89,14 @@ iSEEhub <- function(ehub, runtime_install = FALSE) {
                 return(NULL)
             }
             FUN(SE=se2, INITIAL=init)
-            shinyjs::enable(iSEE:::.generalOrganizePanels) # organize panels
-            shinyjs::enable(iSEE:::.generalLinkGraph) # link graph
-            shinyjs::enable(iSEE:::.generalExportOutput) # export content
-            shinyjs::enable(iSEE:::.generalCodeTracker) # tracked code
-            shinyjs::enable(iSEE:::.generalPanelSettings) # panel settings
-            shinyjs::enable(iSEE:::.generalVignetteOpen) # open vignette
-            shinyjs::enable(iSEE:::.generalSessionInfo) # session info
-            shinyjs::enable(iSEE:::.generalCitationInfo) # citation info
+            shinyjs::enable(iSEEconstants$generalOrganizePanels) # organize panels
+            shinyjs::enable(iSEEconstants$generalLinkGraph) # link graph
+            shinyjs::enable(iSEEconstants$generalExportOutput) # export content
+            shinyjs::enable(iSEEconstants$generalCodeTracker) # tracked code
+            shinyjs::enable(iSEEconstants$generalPanelSettings) # panel settings
+            shinyjs::enable(iSEEconstants$generalVignetteOpen) # open vignette
+            shinyjs::enable(iSEEconstants$generalSessionInfo) # session info
+            shinyjs::enable(iSEEconstants$generalCitationInfo) # citation info
         }
     }, session = session)
 
