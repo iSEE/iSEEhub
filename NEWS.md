@@ -1,4 +1,10 @@
-# iSEE hub 1.1.1.
+# iSEEhub 1.1.2
+
+MINOR UPDATES
+
+* Add `ShinyApps` to BiocViews.
+
+# iSEEhub 1.1.1.
 
 MINOR UPDATES
 
