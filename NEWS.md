@@ -1,3 +1,9 @@
+# iSEEhub 1.3.1
+
+BUG FIXES
+
+* Fix cleaning of missing `rowData` and `colData`.
+
 # iSEEhub 1.1.2
 
 MINOR UPDATES
