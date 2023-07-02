@@ -1,3 +1,9 @@
+# iSEEhub 1.3.2
+
+BUG FIXES
+
+* Cleaner version of bug fix introduced in version 1.3.1.
+
 # iSEEhub 1.3.1
 
 BUG FIXES

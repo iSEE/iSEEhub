@@ -10,6 +10,7 @@ test_that(".clean_dataset works on rowData", {
     expect_identical(rowData(out)$c, factor("NA"))
     expect_identical(rowData(out)$d, "a")
     expect_identical(rowData(out)$e, factor("A"))
+    expect_identical(dim(se), dim(out))
 })
 
 test_that(".clean_dataset works on colData", {
@@ -22,4 +23,5 @@ test_that(".clean_dataset works on colData", {
     expect_identical(colData(out)$c, factor("NA"))
     expect_identical(colData(out)$d, "a")
     expect_identical(colData(out)$e, factor("A"))
+    expect_identical(dim(se), dim(out))
 })
