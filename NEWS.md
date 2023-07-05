@@ -1,4 +1,10 @@
-# iSEE hub 1.1.1.
+# iSEE hub 1.2.1
+
+BUG FIXES
+
+* Only clean columns if there is at least one row.
+
+# iSEE hub 1.1.1
 
 MINOR UPDATES
 

@@ -95,8 +95,10 @@
         FUN.GET <- selectMethod(FUN.NAME, class(se))
         FUN.SET <- selectMethod(paste0(FUN.NAME, "<-"), c(class(se), "DataFrame"))
         tmp <- FUN.GET(se)
-        all.is.na <- apply(tmp, 2, function(x) all(is.na(x)))
-        tmp[, all.is.na] <- factor("NA")
+        if (nrow(tmp) > 0) {
+            all.is.na <- apply(tmp, 2, function(x) all(is.na(x)))
+            tmp[, all.is.na] <- factor("NA")
+        }
         se <- FUN.SET(se, value = tmp)
     }
     se
