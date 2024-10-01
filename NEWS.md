@@ -1,3 +1,7 @@
+# iSEEhub 1.7.1
+
+* Version bump to rebuild classes derived from `DotPlot`.
+
 # iSEEhub 1.3.2
 
 BUG FIXES
