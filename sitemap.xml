@@ -1,39 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>/articles/contributing.html</loc>
-  </url>
-  <url>
-    <loc>/articles/iSEEhub.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/iSEEhub.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://isee.github.io/iSEEhub/404.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/CONTRIBUTING.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/SUPPORT.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/articles/contributing.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/articles/iSEEhub.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/articles/index.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/authors.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/index.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/news/index.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/reference/iSEEhub.html</loc></url>
+<url><loc>https://isee.github.io/iSEEhub/reference/index.html</loc></url>
 </urlset>
+
