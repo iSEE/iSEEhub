@@ -1,9 +1,10 @@
+^\.github$
+^\.Rproj\.user$
+^_pkgdown.yml$
+^iSEEhub\.Rproj$
+^codecov\.yml$
+^dev$
+^pkgdown$
+^README\.Rmd$
 ^renv$
 ^renv\.lock$
-^iSEEhub\.Rproj$
-^\.Rproj\.user$
-^dev$
-^README\.Rmd$
-^\.github$
-^codecov\.yml$
-^pkgdown$
