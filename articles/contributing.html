@@ -8,8 +8,8 @@
 <title>Contributing to iSEEhub • iSEEhub</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Contributing to iSEEhub">
 </head>
@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">iSEEhub</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.7.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@ Rue-Albrecht</h4>
 Oxford<br><a class="author_email" href="mailto:#"></a><a href="mailto:kevin.rue-albrecht@imm.ox.ac.uk" class="email">kevin.rue-albrecht@imm.ox.ac.uk</a>
       </address>
                   
-            <h4 data-toc-skip class="date">18 October 2024</h4>
+            <h4 data-toc-skip class="date">13 February 2025</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/iSEE/iSEEhub/blob/devel/vignettes/contributing.Rmd" class="external-link"><code>vignettes/contributing.Rmd</code></a></small>
       <div class="d-none name"><code>contributing.Rmd</code></div>
@@ -81,16 +81,16 @@ Oxford<br><a class="author_email" href="mailto:#"></a><a href="mailto:kevin.rue-
 <h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
 <p>Initial app configurations configure the set of panels and their
-respective initial state when the main <em><a href="https://bioconductor.org/packages/3.20/iSEE" class="external-link">iSEE</a></em> app is
+respective initial state when the main <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> app is
 launched.</p>
 <p>Initial app configurations are implemented as <em>R</em> scripts that
-are stored in the <code>inst/initial</code> subdirectory of the <em><a href="https://bioconductor.org/packages/3.20/iSEEhub" class="external-link">iSEEhub</a></em>
+are stored in the <code>inst/initial</code> subdirectory of the <em><a href="https://bioconductor.org/packages/3.21/iSEEhub" class="external-link">iSEEhub</a></em>
 package. Within that directory, the app expects a subdirectory named
 exactly as the <code>EH</code> identifier of each dataset for which
 additional configurations are made available. Within each
 dataset-specific directory, the app expects any number of <em>R</em>
 scripts, each script defining one configuration.</p>
-<p>Contributions to initial app configurations are welcome to the <em><a href="https://bioconductor.org/packages/3.20/iSEEhub" class="external-link">iSEEhub</a></em>
+<p>Contributions to initial app configurations are welcome to the <em><a href="https://bioconductor.org/packages/3.21/iSEEhub" class="external-link">iSEEhub</a></em>
 as pull requests, both as new configurations and edits to existing
 configurations.</p>
 </div>
@@ -99,10 +99,10 @@ configurations.</p>
 </h3>
 <p>An initial configuration script must define at least one object
 called <code>initial</code>, that contains a list of instances of panel
-classes defined in the <em><a href="https://bioconductor.org/packages/3.20/iSEE" class="external-link">iSEE</a></em> package
-– so-called built-in panels – and other packages that extend <em><a href="https://bioconductor.org/packages/3.20/iSEE" class="external-link">iSEE</a></em>
-functionality. That is, packages like <em><a href="https://bioconductor.org/packages/3.20/iSEEu" class="external-link">iSEEu</a></em> and
-<em><a href="https://bioconductor.org/packages/3.20/iSEEhex" class="external-link">iSEEhex</a></em>.</p>
+classes defined in the <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> package
+– so-called built-in panels – and other packages that extend <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
+functionality. That is, packages like <em><a href="https://bioconductor.org/packages/3.21/iSEEu" class="external-link">iSEEu</a></em> and
+<em><a href="https://bioconductor.org/packages/3.21/iSEEhex" class="external-link">iSEEhex</a></em>.</p>
 <p>Other objects created by configuration scripts are ignored. We
 encourage users to refrain from creating any other object than
 <code>initial</code>, to avoid any unexpected behaviour in the app.</p>
@@ -119,14 +119,14 @@ files are named <code>config_1.R</code> and
 <p>The script <code>config_1.R</code> defines an initial app state that
 contains only one panel, namely a <code>ComplexHeatmapPlot</code>, that
 is configured to span half the width of the app (6 out of 12 units in
-<em><a href="https://bioconductor.org/packages/3.20/shiny" class="external-link">shiny</a></em>
+<em><a href="https://bioconductor.org/packages/3.21/shiny" class="external-link">shiny</a></em>
 units), and displays the metadata <code>gender</code> and
 <code>status</code> as color bars next to the heat map.</p>
 <pre><code><span><span class="co">## EH1/config_1.R</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/iSEE/iSEE" class="external-link">iSEE</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://isee.github.io/iSEE/" class="external-link">iSEE</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">initial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/iSEE/man/ComplexHeatmapPlot-class.html" class="external-link">ComplexHeatmapPlot</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://isee.github.io/iSEE/reference/ComplexHeatmapPlot-class.html" class="external-link">ComplexHeatmapPlot</a></span><span class="op">(</span></span>
 <span>        PanelWidth <span class="op">=</span> <span class="fl">6L</span>,</span>
 <span>        ColumnData <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"tumor_status"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
@@ -148,7 +148,7 @@ happen in the first place).</p>
 <li>Fork the GitHub repository for <a href="https://github.com/iSEE/iSEEhub/" class="external-link">iSEEhub</a>.</li>
 <li>Create and/or edit appropriate files and directories within the
 <code>inst/initial</code> directory.</li>
-<li>Test your new configuration(s) locally; install the updated <em><a href="https://bioconductor.org/packages/3.20/iSEEhub" class="external-link">iSEEhub</a></em>
+<li>Test your new configuration(s) locally; install the updated <em><a href="https://bioconductor.org/packages/3.21/iSEEhub" class="external-link">iSEEhub</a></em>
 package, launch the app, and load dataset(s) using the new
 configuration(s).</li>
 <li>Open a pull request on the GitHub repository <a href="https://github.com/iSEE/iSEEhub/" class="external-link">iSEEhub</a>.</li>
@@ -159,12 +159,12 @@ configuration(s).</li>
 <div class="section level2">
 <h2 id="reproducibility">Reproducibility<a class="anchor" aria-label="anchor" href="#reproducibility"></a>
 </h2>
-<p>The <em><a href="https://bioconductor.org/packages/3.20/iSEEhub" class="external-link">iSEEhub</a></em>
-package (Rue-Albrecht, 2024) was made possible thanks to:</p>
+<p>The <em><a href="https://bioconductor.org/packages/3.21/iSEEhub" class="external-link">iSEEhub</a></em>
+package (Rue-Albrecht, 2025) was made possible thanks to:</p>
 <ul>
-<li>R (R Core Team, 2024)</li>
+<li>R (R Core Team, 2025)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.20/BiocStyle" class="external-link">BiocStyle</a></em>
+<em><a href="https://bioconductor.org/packages/3.21/BiocStyle" class="external-link">BiocStyle</a></em>
 (Oleś, 2024)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
@@ -178,12 +178,12 @@ package (Rue-Albrecht, 2024) was made possible thanks to:</p>
 Cheng, Chang, and Iannone, 2024)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=sessioninfo" class="external-link">sessioninfo</a></em>
-(Wickham, Chang, Flight, Müller, and Hester, 2021)</li>
+(Wickham, Chang, Flight, Müller, and Hester, 2025)</li>
 <li>
 <em><a href="https://CRAN.R-project.org/package=testthat" class="external-link">testthat</a></em>
 (Wickham, 2011)</li>
 </ul>
-<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.20/biocthis" class="external-link">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.21/biocthis" class="external-link">biocthis</a></em>.</p>
 <p>Code for creating the vignette</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Create the vignette</span></span>
@@ -194,78 +194,80 @@ Cheng, Chang, and Iannone, 2024)</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/" class="external-link">"knitr"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html" class="external-link">knit</a></span><span class="op">(</span><span class="st">"iSEEhub.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code><span><span class="co">#&gt; [1] "2024-10-18 12:10:47 UTC"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2025-02-13 12:13:07 UTC"</span></span></code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code><span><span class="co">#&gt; Time difference of 0.56 secs</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Time difference of 0.561 secs</span></span></code></pre>
 <p><em>R</em> session information.</p>
 <pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
-<span><span class="co">#&gt;  version  R version 4.4.1 (2024-06-14)</span></span>
-<span><span class="co">#&gt;  os       Ubuntu 22.04.5 LTS</span></span>
+<span><span class="co">#&gt;  version  R Under development (unstable) (2025-02-03 r87683)</span></span>
+<span><span class="co">#&gt;  os       Ubuntu 24.04.1 LTS</span></span>
 <span><span class="co">#&gt;  system   x86_64, linux-gnu</span></span>
 <span><span class="co">#&gt;  ui       X11</span></span>
 <span><span class="co">#&gt;  language en</span></span>
 <span><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
 <span><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
 <span><span class="co">#&gt;  tz       UTC</span></span>
-<span><span class="co">#&gt;  date     2024-10-18</span></span>
-<span><span class="co">#&gt;  pandoc   3.4 @ /usr/bin/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt;  date     2025-02-13</span></span>
+<span><span class="co">#&gt;  pandoc   3.6.2 @ /usr/bin/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt;  quarto   1.5.57 @ /usr/local/bin/quarto</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package    </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version</span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
-<span><span class="co">#&gt;  backports     1.5.0   <span style="color: #555555;">2024-05-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  bibtex        0.5.1   <span style="color: #555555;">2023-01-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  BiocManager   1.30.25 <span style="color: #555555;">2024-08-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.4.1)</span></span></span>
-<span><span class="co">#&gt;  BiocStyle   * 2.33.1  <span style="color: #555555;">2024-06-12</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor 3.20 (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  bookdown      0.41    <span style="color: #555555;">2024-10-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  bslib         0.8.0   <span style="color: #555555;">2024-07-29</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  cachem        1.1.0   <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  cli           3.6.3   <span style="color: #555555;">2024-06-21</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  desc          1.4.3   <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  digest        0.6.37  <span style="color: #555555;">2024-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  evaluate      1.0.1   <span style="color: #555555;">2024-10-10</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  fastmap       1.2.0   <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  fs            1.6.4   <span style="color: #555555;">2024-04-25</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  generics      0.1.3   <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  glue          1.8.0   <span style="color: #555555;">2024-09-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  htmltools     0.5.8.1 <span style="color: #555555;">2024-04-04</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  htmlwidgets   1.6.4   <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  httr          1.4.7   <span style="color: #555555;">2023-08-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  jquerylib     0.1.4   <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  jsonlite      1.8.9   <span style="color: #555555;">2024-09-20</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  knitr         1.48    <span style="color: #555555;">2024-07-07</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  lifecycle     1.0.4   <span style="color: #555555;">2023-11-07</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  lubridate     1.9.3   <span style="color: #555555;">2023-09-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  magrittr      2.0.3   <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  pkgdown       2.1.1   <span style="color: #555555;">2024-09-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  plyr          1.8.9   <span style="color: #555555;">2023-10-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  R6            2.5.1   <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  ragg          1.3.3   <span style="color: #555555;">2024-09-11</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  Rcpp          1.0.13  <span style="color: #555555;">2024-07-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  RefManageR  * 1.4.0   <span style="color: #555555;">2022-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  rlang         1.1.4   <span style="color: #555555;">2024-06-04</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  rmarkdown     2.28    <span style="color: #555555;">2024-08-17</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  sass          0.4.9   <span style="color: #555555;">2024-03-15</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  sessioninfo * 1.2.2   <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  stringi       1.8.4   <span style="color: #555555;">2024-05-06</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  stringr       1.5.1   <span style="color: #555555;">2023-11-14</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  systemfonts   1.1.0   <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  textshaping   0.4.0   <span style="color: #555555;">2024-05-24</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  timechange    0.3.0   <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  xfun          0.48    <span style="color: #555555;">2024-10-03</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  xml2          1.3.6   <span style="color: #555555;">2023-12-04</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
-<span><span class="co">#&gt;  yaml          2.3.10  <span style="color: #555555;">2024-07-26</span> <span style="color: #555555;">[2]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.4.0)</span></span></span>
+<span><span class="co">#&gt;  backports     1.5.0   <span style="color: #555555;">2024-05-23</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  bibtex        0.5.1   <span style="color: #555555;">2023-01-26</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  BiocManager   1.30.25 <span style="color: #555555;">2024-08-28</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  BiocStyle   * 2.35.0  <span style="color: #555555;">2024-10-29</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">Bioconductor 3.21 (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  bookdown      0.42    <span style="color: #555555;">2025-01-07</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  bslib         0.9.0   <span style="color: #555555;">2025-01-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  cachem        1.1.0   <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  cli           3.6.4   <span style="color: #555555;">2025-02-13</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  desc          1.4.3   <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  digest        0.6.37  <span style="color: #555555;">2024-08-19</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  evaluate      1.0.3   <span style="color: #555555;">2025-01-10</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  fastmap       1.2.0   <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  fs            1.6.5   <span style="color: #555555;">2024-10-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  generics      0.1.3   <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  glue          1.8.0   <span style="color: #555555;">2024-09-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  htmltools     0.5.8.1 <span style="color: #555555;">2024-04-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  htmlwidgets   1.6.4   <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  httr          1.4.7   <span style="color: #555555;">2023-08-15</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  jquerylib     0.1.4   <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  jsonlite      1.8.9   <span style="color: #555555;">2024-09-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  knitr         1.49    <span style="color: #555555;">2024-11-08</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  lifecycle     1.0.4   <span style="color: #555555;">2023-11-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  lubridate     1.9.4   <span style="color: #555555;">2024-12-08</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  magrittr      2.0.3   <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  pkgdown       2.1.1   <span style="color: #555555;">2024-09-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  plyr          1.8.9   <span style="color: #555555;">2023-10-02</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  R6            2.6.0   <span style="color: #555555;">2025-02-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  ragg          1.3.3   <span style="color: #555555;">2024-09-11</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  Rcpp          1.0.14  <span style="color: #555555;">2025-01-12</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  RefManageR  * 1.4.0   <span style="color: #555555;">2022-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  rlang         1.1.5   <span style="color: #555555;">2025-01-17</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  rmarkdown     2.29    <span style="color: #555555;">2024-11-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  sass          0.4.9   <span style="color: #555555;">2024-03-15</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  sessioninfo * 1.2.3   <span style="color: #555555;">2025-02-05</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  stringi       1.8.4   <span style="color: #555555;">2024-05-06</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  stringr       1.5.1   <span style="color: #555555;">2023-11-14</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  systemfonts   1.2.1   <span style="color: #555555;">2025-01-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  textshaping   1.0.0   <span style="color: #555555;">2025-01-20</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  timechange    0.3.0   <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  xfun          0.50    <span style="color: #555555;">2025-01-07</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  xml2          1.3.6   <span style="color: #555555;">2023-12-04</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
+<span><span class="co">#&gt;  yaml          2.3.10  <span style="color: #555555;">2024-07-26</span> <span style="color: #555555;">[2]</span> <span style="color: #555555;">CRAN (R 4.5.0)</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #555555;"> [1] /__w/_temp/Library</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;"> [2] /usr/local/lib/R/site-library</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;"> [3] /usr/local/lib/R/library</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #BBBBBB; background-color: #BB0000;">*</span> ── Packages attached to the search path.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
 </h2>
-<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.20/BiocStyle" class="external-link">BiocStyle</a></em>
+<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.21/BiocStyle" class="external-link">BiocStyle</a></em>
 (Oleś, 2024) with <em><a href="https://CRAN.R-project.org/package=knitr" class="external-link">knitr</a></em> (Xie,
 2024) and <em><a href="https://CRAN.R-project.org/package=rmarkdown" class="external-link">rmarkdown</a></em>
 (Allaire, Xie, Dervieux et al., 2024) running behind the scenes.</p>
@@ -274,7 +276,7 @@ Cheng, Chang, and Iannone, 2024)</li>
 <p>
 <a id="bib-allaire2024rmarkdown"></a><a href="#cite-allaire2024rmarkdown">[1]</a><cite>
 J. Allaire, Y. Xie, C. Dervieux, et al. <em>rmarkdown: Dynamic Documents
-for R</em>. R package version 2.28. 2024. URL:
+for R</em>. R package version 2.29. 2024. URL:
 <a href="https://github.com/rstudio/rmarkdown" class="external-link">https://github.com/rstudio/rmarkdown</a>.</cite>
 </p>
 <p>
@@ -287,22 +289,22 @@ References in R”. In: <em>The Journal of Open Source Software</em>
 <p>
 <a id="bib-ole2024biocstyle"></a><a href="#cite-ole2024biocstyle">[3]</a><cite>
 A. Oleś. <em>BiocStyle: Standard styles for vignettes and other
-Bioconductor documents</em>. R package version 2.33.1. 2024. DOI:
+Bioconductor documents</em>. R package version 2.35.0. 2024. DOI:
 <a href="https://doi.org/10.18129/B9.bioc.BiocStyle" class="external-link">10.18129/B9.bioc.BiocStyle</a>.
 URL:
 <a href="https://bioconductor.org/packages/BiocStyle" class="external-link">https://bioconductor.org/packages/BiocStyle</a>.</cite>
 </p>
 <p>
-<a id="bib-2024language"></a><a href="#cite-2024language">[4]</a><cite>
+<a id="bib-2025language"></a><a href="#cite-2025language">[4]</a><cite>
 R Core Team. <em>R: A Language and Environment for Statistical
 Computing</em>. R Foundation for Statistical Computing. Vienna, Austria,
-2024. URL:
+2025. URL:
 <a href="https://www.R-project.org/" class="external-link">https://www.R-project.org/</a>.</cite>
 </p>
 <p>
-<a id="bib-ruealbrecht2024iseehub"></a><a href="#cite-ruealbrecht2024iseehub">[5]</a><cite>
+<a id="bib-ruealbrecht2025iseehub"></a><a href="#cite-ruealbrecht2025iseehub">[5]</a><cite>
 K. Rue-Albrecht. <em>iSEEhub: iSEE for the Bioconductor
-ExperimentHub</em>. R package version 1.7.1. 2024. URL:
+ExperimentHub</em>. R package version 1.9.1. 2025. URL:
 <a href="https://github.com/iSEE/iSEEhub" class="external-link">https://github.com/iSEE/iSEEhub</a>.</cite>
 </p>
 <p>
@@ -312,15 +314,17 @@ Journal</em> 3 (2011), pp. 5–10. URL:
 <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="external-link">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</cite>
 </p>
 <p>
-<a id="bib-wickham2021sessioninfo"></a><a href="#cite-wickham2021sessioninfo">[7]</a><cite>
+<a id="bib-wickham2025sessioninfo"></a><a href="#cite-wickham2025sessioninfo">[7]</a><cite>
 H. Wickham, W. Chang, R. Flight, et al. <em>sessioninfo: R Session
-Information</em>. R package version 1.2.2, <a href="https://r-lib.github.io/sessioninfo/" class="external-link uri">https://r-lib.github.io/sessioninfo/</a>. 2021. URL:
-<a href="https://github.com/r-lib/sessioninfo#readme" class="external-link">https://github.com/r-lib/sessioninfo#readme</a>.</cite>
+Information</em>. R package version 1.2.3. 2025. DOI:
+<a href="https://doi.org/10.32614/CRAN.package.sessioninfo" class="external-link">10.32614/CRAN.package.sessioninfo</a>.
+URL:
+<a href="https://CRAN.R-project.org/package=sessioninfo" class="external-link">https://CRAN.R-project.org/package=sessioninfo</a>.</cite>
 </p>
 <p>
 <a id="bib-xie2024knitr"></a><a href="#cite-xie2024knitr">[8]</a><cite>
 Y. Xie. <em>knitr: A General-Purpose Package for Dynamic Report
-Generation in R</em>. R package version 1.48. 2024. URL:
+Generation in R</em>. R package version 1.49. 2024. URL:
 <a href="https://yihui.org/knitr/" class="external-link">https://yihui.org/knitr/</a>.</cite>
 </p>
 </div>

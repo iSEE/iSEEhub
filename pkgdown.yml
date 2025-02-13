@@ -1,10 +1,10 @@
-pandoc: '3.4'
+pandoc: 3.6.2
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   contributing: contributing.html
   iSEEhub: iSEEhub.html
-last_built: 2024-10-18T12:10Z
+last_built: 2025-02-13T12:12Z
 urls:
   reference: https://isee.github.io/iSEEhub/reference
   article: https://isee.github.io/iSEEhub/articles
