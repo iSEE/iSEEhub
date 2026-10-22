@@ -1,3 +1,7 @@
+# iSEEhub 1.9.1
+
+* Smaller screenshots sizes with `pngquant`.
+
 # iSEEhub 1.7.1
 
 * Version bump to rebuild classes derived from `DotPlot`.
